@@ -1,0 +1,28 @@
+body{
+    padding-top: 140px;
+    background-image: url("../img/PACKFILE_LOGO.png");
+    background-size: auto;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: 130% -10%;
+    
+}
+
+/* Propiedad de degradado en background */
+body:before {
+    content: "";
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #57638f,#98bd9c);
+    opacity:50%;
+    z-index: -50; /* Posicionamiento en eje z */
+}
+
+#btn_logout {
+    align-tracks: right;
+    width: 300px;
+}
+
