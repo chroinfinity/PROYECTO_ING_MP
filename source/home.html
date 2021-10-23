@@ -8,31 +8,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="img/logo_ico.ico">
     <title>Inicio</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- FONTS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Rose&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/estilos.css">
-    <!-- link rel="stylesheet" href="assets/css/Navigation-with-Button.css" -->
+    
+    <!--STYLE SHEETS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/btn.css">
+
 </head>
 
 
 <body>
     
     <div class="" style="background-color: #ffffff;">
-        <img src="assets/img/LOGO_LARGE.png" style="width: 200px;margin-left: 23px;">
+        <img src="img/LOGO_LARGE.png" style="width: 200px;margin-left: 23px;">
     </div>
     <div>
 
         <!-- NAV BAR -->
-        
         <nav class="navbar navbar-light navbar-expand-md" style="background: #57638F;">
             <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="ayuda.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,23 +45,31 @@
     </div>
 
 
+    <!-- COLUMNAS INICIO -->
     <div>
         <div class="container">
+            <!-- FILA -->
             <div class="row">
-                <div class="col-xl " style="display:inline; border-radius: 20px;box-shadow: 5px 5px 5px rgba(33,37,41,0.39);border-style: solid;border-color: #98bd9d;margin-top: 15px;">
+               <!-- COLUMNA 1 --> 
+                <div class="col-xl " style="display:inline; border-radius: 20px;box-shadow: 5px 5px 5px rgba(33,37,41,0.39);border-style: solid;border-color: #98bd9d;margin-top: 15px; background-color: #ffffff;">
                     <h1 style="font-family: 'Red Rose', serif;text-align: center;font-size: 30px;margin-top: 10px;">BIENVENIDO (USUARIO)</h1>
                     <p style="text-align: center;font-family: 'Red Rose', serif;color: #57638f;font-size: 18px;">¡Comienza a subir archivos desde ahora!</p>
+                    
+                    
+
                     <div class="short_cuts_inicio">
-                        <button class="btn btn-primary" id="opcion" type="button" style=" background: #57638f;border-radius: 20px;font-family: 'Red Rose', serif;font-size: 23px;">Subir archivos</button>
-                        <p style="text-align: center;"></p><br>
-                        <br>
-                        <button id="opcion" class="btn btn-primary" type="button" style="background: #57638f;border-radius: 20px;font-family: 'Red Rose', serif;font-size: 23px;">Archivero</button>
+                        <button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 14px;">SUBIR ARCHIVO</button>
+                        <br><br>
+                        <button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 14px;">
+                            IR A ARCHIVERO ->
+                            </button>
                     </div>    
                     
                     
                     <p style="text-align: center;font-family: 'Red Rose', serif;color: #98bd9d;font-size: 18px;margin-top: 30px;">¿Tienes dudas? Contáctanos</p>
                 </div>
 
+                <!-- COLUMNA DOS -->
                 <div class="col-xl" style="border-radius: 20px;box-shadow: 5px 5px 5px rgba(33,37,41,0.39);border-style: solid;border-color:#57638F;margin-top: 15px; margin-left: 15px; background-color: #ffffff;">
                     <h1 style="font-family: 'Red Rose', serif;text-align: center;font-size: 30px;margin-top: 10px;color: var(--bs-gray-900);">¿Cómo usar PACKFILE?</h1>
                     <p style="text-align: center;font-family: 'Red Rose', serif;color: #57638f;font-size: 18px;">¿Por dónde empiezo?</p>
@@ -73,13 +86,17 @@
                     </div>
                     <p style="text-align: center;font-family: 'Red Rose', serif;color: #98bd9d;font-size: 18px;margin-top: 30px;">¡ Packfile, tu portafolio digital !</p>
                 </div>
+
+
             </div>
         </div>
     </div>
     
 
 
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- DO NOT TOUCH:  Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 <footer class="container" style="text-align: center; color:#57638F">

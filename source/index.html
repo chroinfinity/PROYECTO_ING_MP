@@ -13,6 +13,15 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Rose&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+
+    <!--STYLE SHEETS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/btn.css">
+
+    <!-- ESTILO DE LOGIN -->
     <style>
         body{
             background: #57638f;
@@ -20,18 +29,26 @@
         }
 
         .bg{
-            background-image: url(img/fondo_login.png);
+            background-image: url(img/fondo_login.png)!important;
             background-position: center center;
             width:50%;
         }
 
+        a {
+            color:#57638f;
+        }
+
+        a:hover{
+            color:#ffffff;
+        }
 
     </style>
+
 </head>
 <body>
 
 
-    <div class="container w-75 bg-light mt-5 rounded-1 shadow">
+    <div class="container w-75 bg-light mt-5 shadow-lg rounded-3" style="border: 2px solid #57638f">
         <div class="row align-items-stretch">
             <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6" >
 
@@ -42,7 +59,7 @@
 
                 </div>
 
-                <h3 class="fw-bold text-center py-4">Bienvenido</h3>
+                <h3 class="fw-bold text-center py-4" style="font-family: 'Red Rose'; color:#98bd9c">Bienvenido</h3>
 
                 <!-- login form -->
                 <form action="#funcion_login">
@@ -57,18 +74,13 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" onclick="enviar_correo()" class="btn-primary">Iniciar Sesión</button>
+                        <button type="submit" onclick="enviar_correo()" class="btn-outline-primary">Iniciar Sesión</button>
                     </div>
                     
                     <div class="my-3">
-                        <span>¿No tienes cuenta? <a href="#">Ponte en contacto con un Administrador</a></span><br>
-                        <span><a href="#">¿Tienes dudas?
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-square" viewBox="0 0 16 16">
-                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                        </svg></a>
-                        </span>
-                    </div>
+                        <span>¿No tienes cuenta? <a href="home.html">Ponte en contacto con un Administrador</a></span><br>
+                        
+                    </div >
                 </form>
 
                 

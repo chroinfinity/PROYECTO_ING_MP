@@ -55,3 +55,17 @@ body:before {
     border-left: 10px;
     border-right: 3px;
 }
+
+.short_cuts_inicio{
+    display:block;
+    justify-content:center;
+  
+  }
+
+a {
+    color:#98bd9c;
+}
+
+a:hover{
+    color:#57638f;
+}

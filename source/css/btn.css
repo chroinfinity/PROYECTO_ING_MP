@@ -4,7 +4,11 @@
     color: #57638f;
     background-color: transparent;
     background-image: none;
-    border-color: #57638f
+    border-color: #57638f;
+    border-radius: 5px;
+    padding-left: 40%;
+    padding-right: 40%;
+    margin-left: 10px;
 }
 
 .btn-outline-primary:hover {
