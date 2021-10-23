@@ -1,5 +1,5 @@
 body{
-  background-image:url("../img/PACKFILE_LOGO.png");
+  background-image:url("../img/LOGO_LARGE.png");
   background-size: auto;
   background-attachment: scroll;
   background-repeat: no-repeat;
@@ -24,3 +24,9 @@ body{
   width: 600px;
   height: 600px;
 } 
+
+.short_cuts_inicio{
+  display:block;
+  justify-content:center;
+
+}
