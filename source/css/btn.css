@@ -9,10 +9,11 @@
     padding-left: 40%;
     padding-right: 40%;
     margin-left: 10px;
+    margin-right:10px;
 }
 
 .btn-outline-primary:hover {
     color: white;
     background-color:#98bd9c;
-    border-color: #98bd9c
+    border-color: #98bd9c;
 }
