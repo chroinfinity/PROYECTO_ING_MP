@@ -121,3 +121,16 @@ hr {
     border-color: #ffffff;
     color:#505050
 }
+
+
+td{
+    overflow-x: hidden;
+    background-color: #a8a7a7;
+    border-radius: 5px;
+    color:#57638f
+}
+
+table{
+    table-layout: fixed;
+    
+}
