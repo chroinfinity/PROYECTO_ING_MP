@@ -33,3 +33,24 @@
     background-color:#57638f;
     border-color: #98bd9c;
 }
+
+.btn_descarga { 
+    color: white;
+    background-color:#167963;
+    border-radius: 10px;
+
+}
+
+.btn_prev { 
+    color: white;
+    background-color:#8155b3;
+    border-radius: 10px;
+
+}
+
+.btn_analizar { 
+    color: white;
+    background-color:#364c9b;
+    border-radius: 10px;
+
+}
