@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -12,16 +14,63 @@
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+
+    <style>
+        body{
+        padding-top: 0px;
+        background-image: url("../img/PACKFILE_LOGO.png");
+        background-size:auto;
+        background-attachment: scroll;
+        background-repeat: no-repeat;
+        background-position: 130% -10%;
+        
+    }
+
+    /* Propiedad de degradado en background */
+    body:before {
+        content: "";
+        width: 100%;
+        min-height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(to right, #57638f,#98bd9c);
+        opacity:50%;
+        z-index: -50; /* Posicionamiento en eje z */
+}
+    </style>
+
 </head>
 
-<body><img src="assets/img/LOGO_LARGE.png" style="width: 200px;margin-left: 23px;">
+<header>
+    <div class="logo_banner" style="background-color: white;">
+        <img src="img/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;">
+        <button
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    class="navbar-toggler"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                    </svg>
+
+        </button>
+    </div>
+</header>
+
+<body>
     <div>
         <nav class="navbar navbar-light navbar-expand-md" style="background: #57638F;">
             <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;border-top-color: rgba(0,;border-bottom-color: 0,;border-left-color: 0.55);">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;border-right-color: 0,;border-bottom-color: 0,;border-left-color: 0.55);">Mis archivos</a></li>
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Lista de usuarios</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
@@ -29,9 +78,9 @@
             </div>
         </nav>
         <div style="padding-bottom: 1%;">
-            <h1 class="text-uppercase text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="color: #8d8fb6;font-size: 34px;text-align: center;font-family: Roboto, sans-serif;font-weight: bold;padding-top: 10px;padding-bottom: 10px;">LISTA DE USUARIOS</h1>
+            <h1 class="text-uppercase text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="color: #57638f;font-size: 34px;text-align: center;font-family: Roboto, sans-serif;font-weight: bold;padding-top: 10px;padding-bottom: 10px;">LISTA DE USUARIOS</h1>
             <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="text-align: center;margin-left: auto;margin-right: auto;height: 420.8px;">
-                <div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="background: #747474;padding-top: 2px;padding-bottom: 15px;width: 625.4px;margin-left: auto;border-radius: 10px;height: 100%;margin-right: auto;">
+                <div class="shadow d-xxl-flex text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="background: #747474;padding-top: 2px;padding-bottom: 15px;width: 625.4px;margin-left: auto;border-radius: 10px;height: 100%;margin-right: auto;">
                     <div class="table-responsive text-start" style="width: 600.4px;font-family: Roboto, sans-serif;margin-left: auto;margin-right: auto;">
                         <table class="table">
                             <thead>
