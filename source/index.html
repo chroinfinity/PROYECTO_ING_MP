@@ -62,19 +62,22 @@
                 <h3 class="fw-bold text-center py-4" style="font-family: 'Red Rose'; color:#98bd9c">Bienvenido</h3>
 
                 <!-- login form -->
-                <form action="#funcion_login">
+                <div id="error" class="container" style="background-color: rgb(224, 129, 129); border-radius: 5px;">
+                    <!-- AQUI VA EL MENSAJE DE ERRORES -->
+                </div>
+                <form action="">
                     <div class="mb-4">
                         <label for="email" class="form-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" name="email">
+                        <input type="email" class="form-control" name="email" id="email">
                     </div>
 
                     <div class="mb-4">
-                        <label for="email" class="form-label">Contraseña:</label>
-                        <input type="password" class="form-control" name="password">
+                        <label for="clave" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" name="password" id="clave">
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" onclick="enviar_correo()" class="btn-outline-primary">Iniciar Sesión</button>
+                        <button type="submit" onclick='return iniciar_sesion_val();'  class="btn-outline-primary">Iniciar Sesión</button>
                     </div>
                     
                     <div class="my-3">
@@ -82,6 +85,7 @@
                         
                     </div >
                 </form>
+                
 
                 
             </div>
@@ -98,25 +102,7 @@
     <!-- FOOTER -->
     <footer class="container text-center" style="color:azure"><a href="https://github.com/hectordelgadoneveu/PROYECTO_ING_MP" target="_blank" rel="noopener noreferrer"><b>@Packfile - 2021</b></a></footer>
 
-
 </body>
-<!--script-- >
 
-    // Crea el formulario
-    var f = document.createElement("form");
-
-    // Lo añade en el cuerpo ('body') del documento
-    document.body.appendChild(f);
-
-    // Añade los atributos de acción y método
-    f.action = "/cgi-bin/some.cgi";
-    f.method = "POST"
-
-    // Llama el método de enviar el formulario
-    f.submit();
-    //metodos:
-    function funcion_login{
-        return 0;
-    }
-</!--script- -->
+<script src="scripts/js/validaciones.js"></script>
 </html>

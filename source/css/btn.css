@@ -17,3 +17,19 @@
     background-color:#98bd9c;
     border-color: #98bd9c;
 }
+
+/*BOTÓN DE FILTROS*/
+.btn-filtro {
+    color: #ffffff;
+    background-color: #98bd9c;
+    background-image: none;
+    border-color: white;
+    margin-left: 0%;
+    border-radius: 5px;
+}
+
+.btn-filtro:hover {
+    color: white;
+    background-color:#57638f;
+    border-color: #98bd9c;
+}
