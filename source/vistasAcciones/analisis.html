@@ -51,16 +51,15 @@
     <!-- CANVAS DE GRÁFICAS-->
 
     <div class="row">
-        <div class="col-6">
-            <div class="container" style="background-color: #ffffff; border-radius: 5px; margin: 20px;">
+        <div class="col-sm">
+            <div class="container" style="background-color: #ffffff; border-radius: 5px; margin: 20px; max-width: 600px; max-height: 800px;">
                 <canvas id="miGrafica" width="100px" height="100px"></canvas>
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-sm">
             <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin: 20px;">
                 <h3>Estadisticas</h3>
-                
                     Numero de Palabras: <h6 id="num_palabras">35</h6> <br>
                     Numero de Parrafos: <h6 id="num_parrafos">4</h6> <br>
                     Numero de caracteres: <h6 id="num_caracteres">345</h6> <br>
@@ -77,20 +76,37 @@
     <script>
         let miCanvas=document.getElementById("miGrafica").getContext("2d");
 
-        //variable de libreri char:
+        //variable de libreri char: https://www.chartjs.org/docs/latest/samples/other-charts/radar-skip-points.html
 
         var chart = new Chart(miCanvas,{
-            type: "bar",
+            type: "pie",
             data: {
                 labels:["# de palabras","# de parrafos","# de Coincidencias","# de caracteres"],
                 datasets: [
                     {
-                        label: "Estadistica de contenido",
-                        backgroundColor: "#98bd9d",
+                        backgroundColor: [
+                            '#57638F',
+                            '#91E7F9',
+                            '#173975',
+                            '#093B46',
+                            '#50585A',
+                            '#173975',
+                            '#2D5C66'
+                        ],
                         data:[12,39.5,5,30]
                     }
                 ]
-            }
+            },
+
+            options: {
+                responsive: true,
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'Analisis de documento'
+                }
+                }
+            },
         })
     
     

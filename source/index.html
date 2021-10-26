@@ -20,6 +20,7 @@
     <!--STYLE SHEETS -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/btn.css">
+    <link rel="stylesheet" href="css/login.css">
 
     <!-- ESTILO DE LOGIN -->
     <style>
@@ -65,19 +66,35 @@
                 <div id="error" class="container" style="background-color: rgb(224, 129, 129); border-radius: 5px;">
                     <!-- AQUI VA EL MENSAJE DE ERRORES -->
                 </div>
-                <form action="">
-                    <div class="mb-4">
+
+
+                <!-- FORMULARIO -->
+                <form action="" class="formulario"  id="formulario">
+                    <!-- GRUPO EMAIL -->
+                    <div class="formulario__grupo" id="grupo__email">
                         <label for="email" class="form-label">Correo Electrónico:</label>
-                        <input type="email" class="form-control" name="email" id="email">
+                        <div class="mb-4 formulario__grupo-input">
+                            <input type="email" class="form-control formulario__input" name="email" id="email">
+                        </div>
+    
+                        <p class="formulario__input-error">El correo es incorrecto</p>
+
                     </div>
 
-                    <div class="mb-4">
+                    <!-- GRUPO CLAVE -->
+                    <div class="formulario__grupo" id="grupo__password">
                         <label for="clave" class="form-label">Contraseña:</label>
-                        <input type="password" class="form-control" name="password" id="clave">
+                        <div class="mb-4 formulario__grupo-input" >
+                            <input type="password" class="form-control formulario__input" name="password" id="password">
+                        </div>
+
+                        <p class="formulario__input-error">La clave es incorrecta</p>
                     </div>
 
-                    <div class="d-grid">
-                        <button type="submit" onclick=''  class="btn-outline-primary">Iniciar Sesión</button>
+                    <!-- BOTON DE SUBMIT -->
+                    <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
+                        <button type="submit" onclick=''  class="btn-outline-primary formulario__btn">Iniciar Sesión</button>
+                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Bienvenido!</p>
                     </div>
                     <a href="home.html" style="text-align: center;">Inicio prueba</a>
                     
@@ -89,6 +106,9 @@
         </div>
 
     </div>
+
+    <!-- script -->
+    <script src="scripts/js/formulario_login.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

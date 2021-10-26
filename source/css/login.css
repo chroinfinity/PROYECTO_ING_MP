@@ -1,0 +1,18 @@
+/*Estilos para validación de login*/
+.formulario__grupo-incorrecto {
+    color:red;
+}
+
+.formulario__grupo-correcto {
+    color:rgb(60, 228, 82);
+}
+
+
+.formulario__input-error {
+    display: none;
+}
+
+
+.formulario__input-error-activo {
+    display: block;
+}
