@@ -44,6 +44,35 @@
         </nav>
     </div>
 
+    <!-- MODULO DE SUBIR IMAGENES -->
+    <div class="container">
+        <div class="form-group col-xs-12 col-sm-6 col-md-4">
+          <h2>Subir Archivo:</h2>
+          <div class="input-group">
+              <label class="input-group-btn">
+                  <span class="btn btn-primary btn-file">
+                      Banner <input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="banner" type="file" id="banner">
+                  </span>
+              </label>
+              <input class="form-control" id="banner_captura" readonly="readonly" name="banner_captura" type="text" value="">
+          </div>
+      </div>
+      
+      <!-- controlador -->
+      <!-- 	public function store(CreateEmpresaRequest $request){
+              $input = $request->all();
+              if($request->hasFile('banner')){
+                  $file = $request->file('banner');
+                  $extension= $file->getClientOriginalExtension();
+                  $nombreImagen = 'logo.'.$extension;
+                  $file->move(public_path().'/img/uploads/empresa',$nombreImagen);
+                  $input['banner']=$nombreImagen;
+              }
+              $empresa = $this->empresaRepository->store($input);
+              Flash::message('Datos Almacenados Correctamente.');
+              return redirect(route('empresas.index'));
+          }-->
+
 
    
     
