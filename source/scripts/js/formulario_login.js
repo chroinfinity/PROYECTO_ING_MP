@@ -78,8 +78,6 @@ formulario.addEventListener('submit',(e) => {
         //Se reinicia formulario
         formulario.reset();
 
-        
-
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
         setTimeout(() =>{
