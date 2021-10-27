@@ -119,14 +119,25 @@
 
                         </div>
                         
+                        <!-- CLAVE USUARIO -->
+                        <label for="clave_usuario" class="form-label">* Clave- Usuario:</label>
+                        <div class="formulario__grupo" id="grupo__claveusser">
+                            <div class="mb-4">
+                                <input type="password" class="form-control formulario__input" id="password_usser" name="password_usser" placeholder="Inserte la clave para el usuario">
+                            </div>
 
+                                <p class="formulario__input-error">La contraseña debe se de 4 a 12 digitos</p>
+                            
+                        </div>
 
                         <!-- CLAVE DE CONFIRMACIÓN -->
                         <label for="email" class="form-label">* Clave- Administrador:</label>
                         <div class="formulario__grupo" id="grupo__claveadm">
                             <div class="mb-4">
-                                <input type="password" class="form-control formulario__input" id="clave" name="password" placeholder="Inserte la clave administrativa">
+                                <input type="password" class="form-control formulario__input" id="password" name="password" placeholder="Inserte la clave administrativa">
                             </div>
+
+                            <p class="formulario__input-error">La contraseña debe se de 4 a 12 digitos</p>
                         </div>
 
                         
@@ -135,7 +146,7 @@
                         <!-- BOTON DE SUBMIT -->
                         <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
                             <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
-                            <button type="submit" id="submit">Registrar</button>
+                            <button  type="submit" id="submitButton">Registrar</button>
                             <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Usuario registrado!</p>
                         </div>
                         

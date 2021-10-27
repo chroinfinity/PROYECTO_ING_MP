@@ -1,27 +1,7 @@
-/*Estilos para validación de login*/
-.formulario__grupo-incorrecto {
-    color:red;
-}
-
-.formulario__grupo-correcto {
-    color:rgb(60, 228, 82);
-}
-
-
-.formulario__input-error {
-    display: none;
-}
-
-
-
-
-.formulario__input-error-activo {
-    display: block;
-}
 
 
 /* MENSAJE DE ERROR O CORRECTO */
-.formulario__mensaje {
+.formulario__input-error {
 	height: 45px;
 	line-height: 45px;
 	background: #F66060;
@@ -30,7 +10,7 @@
 	display: none;
 }
 
-.formulario__mensaje-activo {
+.formulario__input-error-activo {
 	display: block;
 }
 
