@@ -78,6 +78,8 @@ formulario.addEventListener('submit',(e) => {
         //Se reinicia formulario
         formulario.reset();
 
+        //return true;
+
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');
         setTimeout(() =>{
@@ -89,5 +91,6 @@ formulario.addEventListener('submit',(e) => {
     }else{
         //si no todos los campos son verdadero:
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+        return false;
     }
 });
