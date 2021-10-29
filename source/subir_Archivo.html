@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="icon" href="img/logo_ico.ico">
+    <title>Subir archivos</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Rose&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/subir_archivo.css">
+    <div class="logo_banner" style="background-color: #ffffff;">
+        <img src="img/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="index.html"><img class="float-end" src="img/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
+        
+    </div>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md" style="background: #57638F;">
+            <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: #ffffff;text-align: center;border-right-color: 0,;">Mis archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Subir archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="#" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div>
+    <div class="container" style="background-color: #ffffff; border-radius: 10px; margin-bottom: 10px;">
+            <div class="container" style="margin-left: 19px;margin-top: 25px;"> 
+                <h1 style="font-family: Roboto, sans-serif;font-weight: bold;color: #57638f;">SUBIR ARCHIVO</h1>
+                <p style="font-family: 'Red Rose', serif;font-size: 20px;color: #98bd9d;margin-top: 15px;">Nombre del archivo</p><input type="text" class="w-50" style="background: #DDD;border-color: rgba(0,0,0,0);border-radius: 6px;">
+                <p style="font-family: 'Red Rose', serif;font-size: 20px;color: #98bd9d;margin-top: 20px;">Dirección del archivo</p><input type="text" class="w-50" style="background: #DDD;border-color: rgba(0,0,0,0);border-radius: 6px;">
+            </div>
+        <div class="drag-area">
+            <div class="icon"><i class="fas fa-file-upload"></i></div>
+            <header>Arrastre y suelte para subir el archivo</header>
+            <span>o</span>
+            <button>Busque su archivo</button>
+            <input type="file" hidden>
+        </div>
+    </div>
+
+    <script src="scripts/js/upload.js"></script>
+    
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

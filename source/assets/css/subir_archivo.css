@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Red Rose', cursive;
+}
+
+.nav-item {
+  width: 200px;
+  padding: 2px;
+}
+
+body{
+  padding-top: 0px;
+  background-image: url("../img/PACKFILE_LOGO.png");
+  background-size:auto;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-position: 130% -10%;
+  
+}
+
+/* Propiedad de degradado en background */
+body:before {
+  content: "";
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #57638f,#98bd9c);
+  opacity:50%;
+  z-index: -50; /* Posicionamiento en eje z */
+}
+
+.drag-area {
+  margin-top: 30px;
+  margin-left: 30px;
+  border: 2px dashed #DDD;
+  height: 500px;
+  width: 700px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.drag-area.active {
+  border: 2px solid #DDD;
+}
+
+.drag-area .icon {
+  font-size: 100px;
+  color: #DDD;
+}
+
+.drag-area header {
+  font-size: 30px;
+  font-weight: 500;
+  color: #DDD;
+}
+
+.drag-area span {
+  font-size: 25px;
+  font-weight: 500;
+  color: #DDD;
+  margin: 10px 0 15px 0;
+}
+
+.drag-area button {
+  padding: 10px 25px;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: #57638F;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.drag-area img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
