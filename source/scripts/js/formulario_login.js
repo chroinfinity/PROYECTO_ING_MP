@@ -75,7 +75,7 @@ formulario.addEventListener('submit',(e) => {
         console.log(e.target.email.value);
         console.log(e.target.password.value);
 
-        //Se reinicia formulario
+        //Se envía formulario
         formulario.submit();
 
         //return true;

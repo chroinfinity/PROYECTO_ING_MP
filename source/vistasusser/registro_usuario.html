@@ -22,10 +22,12 @@
     <!--STYLE SHEETS -->
     <link rel="stylesheet" href="../css/ussers/styles.css">
     <link rel="stylesheet" href="../css/ussers/btn.css">
-    <link rel="stylesheet" href="../css/ussers/login.css">
+    <link rel="stylesheet" href="../css/ussers/registro_usser.css">
 
     <!--FONTAWESOME -->
     <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+
+    
 
     <!-- ESTILO DE LOGIN -->
     <style>
@@ -68,19 +70,15 @@
 
                 <h3 class="fw-bold text-center py-4" style="font-family: 'Red Rose'; color:#98bd9c">¿Nueva cuenta?</h3>
 
-                <!-- login form -->
-                <div id="error" class="container" style="background-color: rgb(224, 129, 129); border-radius: 5px;">
-                    <!-- AQUI VA EL MENSAJE DE ERRORES -->
-                </div>
 
 
                 <!-- FORMULARIO -->
-                <form action="" method="POST" class="formulario"  id="formulario">
+                <form action="registro_usuario.html"  class="form"  id="form">
                     <!-- GRUPO NICKNAME -->
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <label for="email" class="form-label">Nombre de Usuario:</label>
+                    <div class="formulario__grupo" id="grupo__name">
+                        <label for="name" class="form-label">Nombre de Usuario:</label>
                         <div class="mb-4 formulario__grupo-input">
-                            <input type="email" class="form-control formulario__input" name="name" id="name">
+                            <input type="text" class="form-control formulario__input" name="name" id="name" required>
                         </div>
     
                         <p class="formulario__input-error">El nombre solo puede contener letras</p>
@@ -116,7 +114,8 @@
 
                     <!-- BOTON DE SUBMIT -->
                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
-                        <button type="submit" onclick='' id="submitbtn"  class="btn-outline-primary formulario__btn">¡Registrarme!</button>
+                        <button type="submit"  id="submitButton"  class="btn-outline-primary formulario__btn">¡Registrarme!</button> 
+                        
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                     </div>
                    
@@ -134,6 +133,8 @@
 
     <!-- script -->
     <script src="../scripts/js/mostrar_pass.js"></script>
+    <script src="../scripts/js/formulario_reg_usser.js"></script>
+    
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
