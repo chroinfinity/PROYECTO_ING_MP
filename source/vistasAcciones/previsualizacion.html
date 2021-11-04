@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
     
     <!--STYLE SHEETS -->
-    <link rel="stylesheet" href="../css/ussers/styles.css">
     <link rel="stylesheet" href="../css/ussers/btn.css">
+    <link rel="stylesheet" href="../css/acciones/previsualizacion.css">
 
     <!-- CHART JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -50,31 +50,37 @@
 
     <!-- CANVAS DE GRÁFICAS-->
 
-    <div class="row">
-        <div class="col-md">
-            <div class="container" style="background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
-                <h3>Previsualizacion de Archivo</h3>
-                <p>
-                    Nombre del archivo: ejemplo.pdf <br>
-                    Tipo: PDF <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="container" style="background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
+                    <br>
+                    <h3>Informacion de Archivo</h3>
+                    <p>
+                        Nombre del archivo: ejemplo.pdf <br>
+                        Tipo: PDF <br><br>
 
-                </p>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
+                    <h1> Previsualización</h1>
+
+                    <div class="container">
+                        <!-- https://www.kyocode.com/2019/08/visualizar-pdfs-html/ -->
+                    <iframe src="../files/carta_test.pdf"class="responsive-iframe" style="width:500px; height:600px;min-width:200px; min-height:300px;border-radius: 5px;" frameborder="0" ></iframe>
+                    </div>
+                    
+                    
+                
+                    
+                </div>
             </div>
         </div>
 
-        <div class="col-md">
-            <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
-                <h1> AQUI VA EL ARCHIVO</h1>
-
-                <!-- https://www.kyocode.com/2019/08/visualizar-pdfs-html/ -->
-                <iframe src="../files/carta_test.pdf" style="width:500px; height:600px;border-radius: 5px;" frameborder="0" ></iframe>
-                
-                
-            
-                
-            </div>
-        </div>
-    </div>
+   </div>
     
 
         

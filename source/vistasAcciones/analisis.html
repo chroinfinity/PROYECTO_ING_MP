@@ -50,21 +50,33 @@
 
     <!-- CANVAS DE GRÁFICAS-->
 
-    <div class="row">
-        <div class="col-sm">
-            <div class="container" style="background-color: #ffffff; border-radius: 5px; margin: 20px; max-width: 600px; max-height: 800px;">
-                <canvas id="miGrafica" width="100px" height="100px"></canvas>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="container" style="box-shadow: 5px 5px 5px rgba(33,37,41,0.39);background-color: #ffffff; border-radius: 5px; margin-top: 20px; max-width: 600px; max-height: 800px;">
+                    <canvas id="miGrafica" width="100px" height="100px"></canvas>
+                </div>
+            </div>
+    
+            <div class="col-md">
+                <div class="container border-light" style="box-shadow: 5px 5px 5px rgba(33,37,41,0.39);text-align: center; background-color: #57638F;border-style: solid;border-color:#ffffff; border-radius: 5px; margin-top: 20px; color: white;">
+                    <br>
+                    <h3>Estadisticas</h3><br>
+                        Numero de Palabras: <h6 id="num_palabras">6</h6> <br>
+                        Numero de Parrafos: <h6 id="num_parrafos">4</h6> <br>
+                        Numero de caracteres: <h6 id="num_caracteres">345</h6> <br>
+                </div>
+
+                <!-- BOTON DE REGRESO A ARCHIVERO -->
+                <div  style="margin-top: 20px;">
+                    <a href="../vistasusser/misarchivos.html"><button  class="btn-outline-primary analisis_btn_back">Regresar</button></a>
+                </div>
+                <br>
+                
+                
             </div>
         </div>
 
-        <div class="col-sm">
-            <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin: 20px;">
-                <h3>Estadisticas</h3>
-                    Numero de Palabras: <h6 id="num_palabras">35</h6> <br>
-                    Numero de Parrafos: <h6 id="num_parrafos">4</h6> <br>
-                    Numero de caracteres: <h6 id="num_caracteres">345</h6> <br>
-            </div>
-        </div>
     </div>
     
 
@@ -74,26 +86,43 @@
 </body>
 
     <script>
+
+        //variables prueba:
+        num_palabras= 13;
+        num_coincidencias = 14;
+        num_parrafos = 20;
+        num_caracteres = 12;
+
+        var label_palabras = document.getElementById('num_palabras');
+        //var label_coincidencias = document.getElementById('num_palabras');
+        var label_parrafos = document.getElementById('num_parrafos');
+        var label_caracteres = document.getElementById('num_caracteres');
+
+        //agregado de información
+        label_palabras.innerHTML= num_palabras;
+        label_parrafos.innerHTML= num_parrafos;
+        label_caracteres.innerHTML= num_caracteres;
+        //obtencion de canvas
         let miCanvas=document.getElementById("miGrafica").getContext("2d");
 
         //variable de libreri char: https://www.chartjs.org/docs/latest/samples/other-charts/radar-skip-points.html
 
         var chart = new Chart(miCanvas,{
-            type: "pie",
+            type: "bar",
             data: {
+                
                 labels:["# de palabras","# de parrafos","# de Coincidencias","# de caracteres"],
                 datasets: [
                     {
+                        
                         backgroundColor: [
-                            '#57638F',
-                            '#91E7F9',
-                            '#173975',
-                            '#093B46',
-                            '#50585A',
-                            '#173975',
-                            '#2D5C66'
+                            '#DA380D',
+                            '#2ADA0D',
+                            '#0DDACC',
+                            '#0D12DA',
+                            '#E181EE',
                         ],
-                        data:[12,39.5,5,30]
+                        data:[num_palabras,num_coincidencias,num_parrafos,num_caracteres]
                     }
                 ]
             },

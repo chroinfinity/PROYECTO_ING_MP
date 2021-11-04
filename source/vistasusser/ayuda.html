@@ -19,6 +19,10 @@
     <!--STYLE SHEETS -->
     <link rel="stylesheet" href="../css/ussers/styles.css">
     <link rel="stylesheet" href="../css/ussers/btn.css">
+    <link rel="stylesheet" href="../css/ussers/ayuda.css">
+
+    <!--FONTAWESOME -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
 
 </head>
 
@@ -57,32 +61,62 @@
             </div>
             <div class="col-md-6">
                 <!-- login form -->
-                <form action="#funcion_login">
+                <form action="#" id="form" class="form">
                     <div class="mb-4">
                         <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
-                        <label for="name" class="form-label">* Nombre:</label>
-                        <input type="text" class="form-control" name="text">
-                    </div>
+                        
+                        <!-- FORMULARIO: NOMBRE-->
+                        <div class="formulario__grupo" id="grupo__name">
+                            <label for="name" class="form-label">* Nombre:</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Introduce tu nombre">
 
-                    <div class="mb-4">
-                        <label for="email" class="form-label">* Correo:</label>
-                        <input type="password" class="form-control" name="password" placeholder="Correo del remitente...">
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="email" class="form-label">* Asunto:</label>
-                        <input type="password" class="form-control" name="password" placeholder="Motivo del correo...">
-                    </div>
-
-                    <div class="mb-4">
-                        <div class="form-group">
-                          <label for="Mensaje">* Descripción</label>
-                          <textarea class="form-control" name="" id="mensaje_correo" rows="3" placeholder="Escribe tu mensaje..."></textarea>
+                        <p class="formulario__input-error">Introduce un nombre válido [Solo letras y espacios]</p>
                         </div>
                     </div>
 
-                    <div class="d-grid">
-                        <button type="submit" class="btn-outline-primary">Enviar</button>
+                    <div class="mb-4">
+                        <!-- FORMULARIO: CORREO-->
+                        
+                        <div class="formulario__grupo" id="grupo__email">
+                        <label for="email" class="form-label">* Correo:</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu correo...">
+
+                        <p class="formulario__input-error">El correo no es válido.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <!-- FORMULARIO: ASUNTO-->
+                        
+                        <div class="formulario__grupo" id="grupo__asunto">
+                        <label for="text" class="form-label">* Asunto:</label>
+                        <input type="text" class="form-control" name="asunto" id="asunto" placeholder="Motivo del correo...">
+
+                        <p class="formulario__input-error">El asunto solo puede contener letras y numeros.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <!-- FORMULARIO: DECRIPCION-->
+                        <div class="formulario__grupo" id="grupo__descripcion">
+                          <label for="Mensaje">* Descripción</label>
+                          <textarea class="form-control" name="mensaje_correo" id="mensaje_correo" rows="3" placeholder="Escribe tu mensaje..."></textarea>
+                        
+                          <p class="formulario__input-error">Escribe la descripción de tu problema</p>
+                        </div>
+
+                        
+                    </div>
+
+                    <!-- MENSAJE DE ERROR -->
+                    <div class="formulario__mensaje" id="formulario__mensaje">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+                    </div>
+
+                    <!-- FORMULARIO: BOTON DE ENVIAR-->
+                    <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
+                        <button  type="submit" id="submitButton">Enviar</button>
+                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Gracias por contactarnos, nos pondremos en contacto contigo cuando antes.</p>
                     </div>
                     
                 </form>
@@ -94,6 +128,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
+    <!-- SCRIPT VALIDACIONES -->
+    <script src="../scripts/js/formulario_ayuda.js"></script>
     <!-- FOOTER -->
     <footer class="container" style="text-align: center; color:#57638F">
         <br>

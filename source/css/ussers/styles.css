@@ -1,24 +1,23 @@
 body{
     padding-top: 0px;
-    background-image: url("../../resources/img/icons/PACKFILE_LOGO.png");
-    background-size:auto;
-    background-attachment: scroll;
+    background-image: url("../../resources/img/img/background.png");
+    background-size:cover;
+    background-attachment: content;
     background-repeat: no-repeat;
-    background-position: 130% -10%;
+    /*background-position: 130% -10%;*/
     
 }
 
-/* Propiedad de degradado en background */
-body:before {
-    content: "";
-    width: 100%;
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: linear-gradient(to right, #57638f,#98bd9c);
-    opacity:50%;
-    z-index: -50; /* Posicionamiento en eje z */
+
+@media only screen and (min-width : 300px) and (max-width : 1000px) {
+    body{
+    padding-top: 0px;
+    background-image: url("../../resources/img/img/background_cell.png");
+    background-size:cover;
+    background-attachment: content;
+    background-repeat: no-repeat;
+    /*background-position: 130% -10%;*/
+    }
 }
 
 #btn_logout {
