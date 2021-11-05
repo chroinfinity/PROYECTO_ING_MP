@@ -76,7 +76,7 @@
 
 
                 <!-- FORMULARIO -->
-                <form action="#" class="formulario"  id="formulario">
+                <form method="post" action="php/login.php" class="formulario"  id="formulario">
                     <!-- GRUPO EMAIL -->
                     <div class="formulario__grupo" id="grupo__email">
                         <label for="email" class="form-label">Correo Electrónico:</label>
