@@ -73,7 +73,7 @@
 
 
                 <!-- FORMULARIO -->
-                <form action="registro_usuario.html"  class="form"  id="form">
+                <form action="../php/guardar_usuario_u.php" method= "POST" id="form" class="form">
                     <!-- GRUPO NICKNAME -->
                     <div class="formulario__grupo" id="grupo__name">
                         <label for="name" class="form-label">Nombre de Usuario:</label>
@@ -101,7 +101,7 @@
                         <label for="clave" class="form-label" style="margin-right: 5px;">Contraseña:</label><i class="fa fa-eye" id="show"></i>
 
                             <div class="mb-4 formulario__grupo-input" >
-                                <input type="password" class="form-control formulario__input" name="password" id="password">
+                                <input type="password" class="form-control formulario__input" name="password_usser" id="password_usser">
                             </div>
 
                         <p class="formulario__input-error">La clave debe tener de 4 a 12 digitos.</p>

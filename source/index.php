@@ -108,7 +108,7 @@
                         <button type="submit" onclick='' id="submitbtn"  class="btn-outline-primary formulario__btn">Iniciar Sesión</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
                     </div>
-                    <h6 style="text-align: center; margin-top: 10px;">¿No tienes una cuenta? <a href="vistasusser/registro_usuario.html" style="text-align: center; margin-top: 5px;">¡Registrate!</a></h6>
+                    <h6 style="text-align: center; margin-top: 10px;">¿No tienes una cuenta? <a href="vistasusser/registro_usuario.php" style="text-align: center; margin-top: 5px;">¡Registrate!</a></h6>
                     
                 </form>
                 

@@ -5,7 +5,7 @@ const button = document.getElementById('submitButton')
 //Rescate de variables:
 const nombre= document.getElementById('name');
 const email= document.getElementById('email');
-const usser_pass= document.getElementById('password');
+const usser_pass= document.getElementById('password_usser');
 
 //seccion de expresiones regulares para validar:
 const expresiones = {

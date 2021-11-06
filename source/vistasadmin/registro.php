@@ -63,8 +63,8 @@
                         
                         <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
                         <!-- FORMULARIO -->
-                        <form action="#" id="form" class="form">
-                        <!-- <form action="../php/guardar_usuario.php" method= "POST" id="form" class="form"> -->
+                        
+                        <form action="../php/guardar_usuario.php" method= "POST" id="form" class="form">
                             
                             
                             <!-- GRUPO DE NOMBRE DE USUARIO -->
