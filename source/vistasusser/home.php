@@ -1,3 +1,4 @@
+<!-- ARCHIVO DOOM -->
 <!doctype html>
 <html lang="en">
 
@@ -16,18 +17,48 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
     
     <!--STYLE SHEETS -->
-    <link rel="stylesheet" href="../css/admin/styles.css">
-    <link rel="stylesheet" href="../css/admin/btn.css">
+    <link rel="stylesheet" href="../css/ussers/styles.css">
+    <link rel="stylesheet" href="../css/ussers/btn.css">
 
 </head>
 
+<!-- CODIGO PHP -->
+    <?php
+
+            session_start();
+            //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
+            if(!isset($_SESSION['id'])){
+                header("Location: ../index.php");
+            }
+
+
+            //Catura de variables de sesion (USUARIO)
+            $id_usuario = $_SESSION['id'];
+            $nombre_usuario = $_SESSION['nombreUsuario'];
+            $nivel = $_SESSION['nivelUsuario'];
+            $habilitado = $_SESSION['habilitarUsuario'];
+            $correo_usuario = $_SESSION['correoUsuario'];
+
+
+            //variables dump para comprobar traida de datos (TESTING)
+            var_dump($id_usuario);
+            var_dump($nombre_usuario);
+            var_dump($nivel);
+            var_dump($habilitado);
+            var_dump($correo_usuario);
+
+    ?>
+
+    
 
 <body>
-    
-    <!-- CABECERA PROYECTO (LOGOUT)-->
-    <div class="" style="background-color: #ffffff;">
-        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../index.html"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
-    </div>
+
+    <header>
+        <div class="logo_banner" style="background-color: #ffffff;">
+            
+            <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../php/logout.php"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
+        </div>
+    </header>
     <div>
 
         <!-- NAV BAR -->
@@ -35,9 +66,10 @@
             <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home_admin.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="archiveroadmin.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="lista_de_usuarios_admin.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Lista de usuarios</a></li>
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="misarchivos.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="subir_Archivo.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="ayuda.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,15 +84,16 @@
             <div class="row">
                <!-- COLUMNA 1 --> 
                 <div class="col-xl " style="display:inline; border-radius: 20px;box-shadow: 5px 5px 5px rgba(33,37,41,0.39);border-style: solid;border-color: #98bd9d;margin-top: 15px; background-color: #ffffff;">
-                    <h1 style="font-family: 'Red Rose', serif;text-align: center;font-size: 30px;margin-top: 10px;">BIENVENIDO ADMINISTRADOR</h1>
-                    <p style="text-align: center;font-family: 'Red Rose', serif;color: #57638f;font-size: 18px;">¡Comienza a administrar desde ahora!</p>
+                    <h1 style="font-family: 'Red Rose', serif;text-align: center;font-size: 30px;margin-top: 10px;">BIENVENID@ <?php echo $nombre_usuario?></h1>
+                    <h3 style="font-family: 'Red Rose', serif;text-align: center;color:#98bd9d;font-size: 20px;margin-top: 10px;">Nivel: <?php echo $nivel?></h3>
+                    <p style="text-align: center;font-family: 'Red Rose', serif;color: #57638f;font-size: 18px;">¡Comienza a subir archivos desde ahora!</p>
                     
                     
 
                     <div class="container">
-                        <a href="lista_de_usuarios_admin.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">LISTA DE USUARIOS</button></a>
+                        <a href="subir_Archivo.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">SUBIR ARCHIVO</button></a>
                         <br><br>
-                        <a href="archiveroadmin.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">IR A ARCHIVERO</button></a>
+                        <a href="misarchivos.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">IR A ARCHIVERO</button></a>
                     </div>    
                     
                     
@@ -78,7 +111,7 @@
                             descargarlos en cualquier momento y en cualquier lugar. </p> 
 
                         <p>Siempre y cuando cuentes con una conexion por supuesto ;)
-                            Ante cualquier duda, no dudes en ponerte en contacto con el administrador en turno a travé
+                            Ante cualquier duda, no dudes en ponerte en contacto con el administrador en turno a través
                             de la sección de "Ayuda".</p> 
                         
                     </div>

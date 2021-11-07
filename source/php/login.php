@@ -26,17 +26,19 @@
     }
     else
     {
+        $_SESSION['id']= $fila['idUsuario'];
         $_SESSION['correoUsuario'] = $fila['correoUsuario'];
+        $_SESSION['password'] = $fila['passwordUsuario'];
         $_SESSION['nombreUsuario'] = $fila['nombreUsuario'];
         $_SESSION['nivelUsuario'] = $fila['nivelUsuario'];
         $_SESSION['habilitarUsuario'] = $fila['habilitarUsuario'];
 
         if($nivel == 4 && $habilitado == 1){
-            header("Location: ../vistasadmin/home_admin.html");
+            header("Location: ../vistasadmin/home_admin.php");
         }
 
         else if($nivel <=3 && $nivel > 0 && $habilitado == 1){
-            header("Location: ../vistasusser/home.html");
+            header("Location: ../vistasusser/home.php");
         }
 
         else{
