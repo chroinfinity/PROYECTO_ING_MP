@@ -40,12 +40,12 @@
             $correo_usuario = $_SESSION['correoUsuario'];
 
 
-            //variables dump para comprobar traida de datos (TESTING)
+            /*variables dump para comprobar traida de datos (TESTING)
             var_dump($id_usuario);
             var_dump($nombre_usuario);
             var_dump($nivel);
             var_dump($habilitado);
-            var_dump($correo_usuario);
+            var_dump($correo_usuario);*/
 
     ?>
 
@@ -66,10 +66,10 @@
             <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="misarchivos.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="subir_Archivo.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="ayuda.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="misarchivos.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="subir_Archivo.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="ayuda.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
                 </div>
             </div>
@@ -91,9 +91,9 @@
                     
 
                     <div class="container">
-                        <a href="subir_Archivo.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">SUBIR ARCHIVO</button></a>
+                        <a href="subir_Archivo.php"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">SUBIR ARCHIVO</button></a>
                         <br><br>
-                        <a href="misarchivos.html"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">IR A ARCHIVERO</button></a>
+                        <a href="misarchivos.php"><button class="btn-outline-primary" style="font-family: 'Red Rose', serif;font-size: 13px;">IR A ARCHIVERO</button></a>
                     </div>    
                     
                     

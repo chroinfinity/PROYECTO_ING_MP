@@ -4,6 +4,8 @@
     //Se hace la conexión con la BDD:
     require 'connection.php';
 
+    $passwordAdmin = $_SESSION['password'];
+
     //Se reciben los datos mandados a través del formulario:
         $nombre = $_POST['name'];
         $correo = $_POST['email'];
@@ -48,7 +50,7 @@
     //si la sesión es de admnistrador:
     if($sesion == 'admin'){
         //Se valida la clave de administrador:
-        if($clave_admin == '1111'){
+        if($clave_admin == $passwordAdmin){
             //validación de existencia de correo ocupado:
             if(($nr >= 1) && ($correo == $buscar_correo['correoUsuario'])){
                 echo "<script>alert('No ha sido posible registrar a usuario: $nombre por favor elija otro correo'); window.location='../vistasadmin/registro.php'</script>";
@@ -63,7 +65,7 @@
 
                 //Redireccionamiento:
                 if($resultado){
-                    echo "<script>alert('Usuario registrado: $nombre'); window.location='../vistasadmin/lista_de_usuarios_admin.html'</script>";
+                    echo "<script>alert('Usuario registrado: $nombre'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
                 }else{
                     echo"Error: ".$sql."<br>".mysqli_error($link);
                 }
@@ -71,7 +73,7 @@
             }
         }else{
             //contraseña de admin incorrecta
-            echo "<script>alert('Contraseña de administrador incorrecta, operacion rechazada'); window.location='../vistasadmin/lista_de_usuarios_admin.html'</script>";
+            echo "<script>alert('Contraseña de administrador incorrecta, operacion rechazada'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
         }
     }
 

@@ -48,19 +48,11 @@
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
 
-
-    //variables dump para comprobar traida de datos (TESTING)
-    var_dump($id_usuario);
-    var_dump($nombre_usuario);
-    var_dump($nivel);
-    var_dump($habilitado);
-    var_dump($correo_usuario);
-
 ?>
 
 <header>
     <div class="logo_banner" style="background-color: white;">
-        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../index.html"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
+        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../php/logout.php"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
         <button
                     type="button"
                     data-bs-toggle="collapse"
@@ -79,9 +71,9 @@
         <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home_admin.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="archiveroadmin.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Archivos</a></li>
-                    <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="lista_de_usuarios_admin.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Lista de usuarios</a></li>
+                    <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="home_admin.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="archiveroadmin.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Archivos</a></li>
+                    <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="lista_de_usuarios_admin.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Lista de usuarios</a></li>
                 </ul>
             </div>
         </div>
@@ -101,7 +93,7 @@
                     <div class="table-responsive text-start" style="width: 600.4px;font-family: Roboto, sans-serif;margin-left: auto;margin-right: auto;">
                         
                         <!-- TABLA DE USUARIOS-->
-                        <table class="table">
+                        <table>
                             <thead>
                                 <tr>
                                     <th style="border-radius: 10px;border-width: 3px;border-color: #747474;">NOMBRE</th>
@@ -118,7 +110,7 @@
 
                                     
                                     //Se realiza query: Toma todos los registros habilitados, excepto el del usuario administraor en cuestión, y los acomoda en orden ascendente:
-                                    $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passwordUsuario, nivelUsuario, habilitarUsuario FROM usuarios WHERE habilitarUsuario = 1 AND idUsuario != $id_usuario ORDER BY idUsuario ASC";
+                                    $sql = "SELECT * FROM usuarios WHERE habilitarUsuario = 1 AND idUsuario != $id_usuario ORDER BY idUsuario ASC";
                                     $rta = mysqli_query($link, $sql);
 
                                     $usuarios = mysqli_query($link, $sql);
@@ -138,17 +130,17 @@
                                 ?>
 
                                 <tr style="border-color: #747474;border-radius: 68px;">
-                                    <td style="background: #ffffff;border-radius: 10px;width: 230px;border-width: 3px;"><?php echo $mostrar['1'];?></td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 200px;border-width: 3px;"><?php echo $mostrar['2'];?></td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 57px;text-align: center;border-width: 3px;"><?php echo $mostrar['4'];?></td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 57px;height: 42px;border-width: 3px;">
+                                    <td style="background: #ffffff;border-radius: 10px;width: 230px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['1'];?></td>
+                                    <td style="border-radius: 10px;background: #ffffff;width: 200px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['2'];?></td>
+                                    <td style="border-radius: 10px;background: #ffffff;width: 10%;text-align: center;border-width: 3px;"><?php echo $mostrar['4'];?></td>
+                                    <td style="border-radius: 10px;background: #ffffff;width: 10%;height: 42px;border-width: 3px;">
                                         <a href="editar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
-                                                <button class="btn btn-primary" type="button" style="background: url('../resources/img/icons/edit.png');background-size: cover;width: 30px;height: 28px;margin-left: 6px;margin-top: -6px;border-color: rgb(255,255,255);"></button>
+                                                <button class="btn btn-primary" type="button" style="background: url('../resources/img/icons/edit.png');background-size: cover;width: 30px;height: 28px;margin-left: 25%;margin-top: -6px;border-color: rgb(255,255,255);"></button>
                                         </a>
                                     </td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 57px;height: 42px;border-width: 3px;">
+                                    <td style="border-radius: 10px;background: #ffffff;width: 10%;height: 42px;border-width: 3px;">
                                         <a href="../php/deshabilitar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
-                                            <button class="btn btn-primary" type="button" style="margin-left: 15%;background: url('../resources/img/icons/cross-flat.png') no-repeat;background-size: contain;width: 30px;height: 28px;margin-top: -8%;border-color: rgb(255,255,255);padding-left: 12px;"></button>
+                                            <button class="btn btn-primary" type="button" style="margin-left: 25%;background: url('../resources/img/icons/cross-flat.png') no-repeat;background-size: contain;width: 30px;height: 28px;margin-top: -8%;border-color: rgb(255,255,255);padding-left: 12px;"></button>
                                         </a>
                                     </td>
                                 </tr>
@@ -158,6 +150,70 @@
                                     }
                                 }
                                 ?>
+
+                        </table>
+
+                                <!--Solicitudes de usuarios -->
+
+                                <table>
+                                <thead>
+                                    <tr>
+                                        <h5 style="padding-top:2%">SOLICITUDES DE REGISTRO</h5>
+                                        <th style="border-radius: 10px;border-width: 3px;border-color: #747474;">NOMBRE</th>
+                                        <th style="border-radius: 10px;border-width: 3px;border-color: #747474;">CORREO</th>
+                                        <th style="border-radius: 10px;border-width: 3px;border-color: #747474;">NIVEL</th>
+                                        <th style="border-radius: 10px;border-width: 3px;border-color: #747474;" colspan="2">ACCIONES</th>
+                                        
+                                    </tr>
+                                </thead>
+
+                                <?php 
+
+                                                                    
+                                //Se realiza query: Toma todos los registros habilitados, excepto el del usuario administraor en cuestión, y los acomoda en orden ascendente:
+                                $sql = "SELECT * FROM usuarios WHERE habilitarUsuario = 0 AND idUsuario != $id_usuario ORDER BY idUsuario ASC";
+                                $rta = mysqli_query($link, $sql);
+
+                                $usuarios = mysqli_query($link, $sql);
+
+                                $existencia_usuarios = mysqli_fetch_row($rta);
+                                //despliegue de tabla:
+                                if($existencia_usuarios == null){
+                                    ?> 
+                                    <tr style="border-color: #747474;border-radius: 68px;">
+                                    <td style="background: #ffffff;border-radius: 10px;width: 125%;height: 50px; border-width: 3px; padding-left: 1%" colspan="5"><i class="fas fa-exclamation-triangle"></i>  Sin usuarios inactivos por mostrar</td>
+                                    </tr>
+
+                                <?php
+                                }else{
+                                while ($mostrar = mysqli_fetch_row($usuarios)){
+
+                                ?>
+
+                                <tr style="border-color: #747474;border-radius: 68px;">
+                                <td style="background: #ffffff;border-radius: 10px;width: 230px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['1'];?></td>
+                                <td style="border-radius: 10px;background: #ffffff;width: 200px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['2'];?></td>
+                                <td style="border-radius: 10px;background: #ffffff;width: 10%;text-align: center;border-width: 3px;"><?php echo $mostrar['4'];?></td>
+                                <td style="border-radius: 10px;background: #ffffff;width: 10%;height: 42px;border-width: 3px;">
+                                    <a href="editar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
+                                            <button class="btn btn-primary" type="button" style="background: url('../resources/img/icons/edit.png');background-size: cover;width: 30px;height: 28px;margin-left: 25%;margin-top: -6px;border-color: rgb(255,255,255);"></button>
+                                    </a>
+                                </td>
+                                <td style="border-radius: 10px;background: #ffffff;width: 10%;height: 42px;border-width: 3px;">
+                                    <a href="../php/habilitar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
+                                        <button class="btn btn-primary" type="button" style="margin-left: 25%;background: url('../resources/img/icons/palomita.png') no-repeat;background-size: contain;width: 30px;height: 28px;margin-top: -8%;border-color: rgb(255,255,255);padding-left: 12px;"></button>
+                                    </a>
+                                </td>
+                                </tr>
+
+
+                                <?php 
+                                }
+                                }
+                                ?>
+
+
+
                             </tbody>
 
                         </table>
@@ -165,7 +221,7 @@
                     </div>
                 </div>
             </div>
-            <a href="registro.html"><div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="text-align: center;border-color: rgb(255,255,255);margin-left: auto;margin-right: auto;"><button class="btn btn-primary shadow d-xxl-flex justify-content-xxl-center align-items-xxl-end" type="button" style="margin-left: auto;margin-top: 1%;background: #98bd9d;color: rgb(255,255,255);border-width: 0px;text-align: center;margin-right: auto;border-radius: 7px;">AGREGAR USUARIO</button></div></a>
+            <a href="registro.php"><div class="text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center" style="text-align: center;border-color: rgb(255,255,255);margin-left: auto;margin-right: auto;"><button class="btn btn-primary shadow d-xxl-flex justify-content-xxl-center align-items-xxl-end" type="button" style="margin-left: auto;margin-top: 1%;background: #98bd9d;color: rgb(255,255,255);border-width: 0px;text-align: center;margin-right: auto;border-radius: 7px;">AGREGAR USUARIO</button></div></a>
         </div>
     </div>
 

@@ -43,7 +43,7 @@
 
         else{
             echo '<script language = javascript>
-                    alert("La cuenta ingresada ha sido deshabilitada indefinidamente. Intente con otra cuenta.")
+                    alert("La cuenta ingresada no ha sido aprobada aún o ha sido deshabilitada indefinidamente. Intente con otra cuenta.")
             </script>';
 
             echo '<script language = javascript> 

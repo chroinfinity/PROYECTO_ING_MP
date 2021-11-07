@@ -46,14 +46,6 @@
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
 
-
-    //variables dump para comprobar traida de datos (TESTING)
-    var_dump($id_usuario);
-    var_dump($nombre_usuario);
-    var_dump($nivel);
-    var_dump($habilitado);
-    var_dump($correo_usuario);
-
 ?>
 
 

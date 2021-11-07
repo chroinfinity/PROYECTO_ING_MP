@@ -10,7 +10,7 @@
     if($link->connect_error){
         die("Connection failed: " . $link->connect_error);
     }else{
-        echo "Connected successfully";
+        /* echo "Connected successfully"; */
     }
     
 
