@@ -56,6 +56,7 @@
         var_dump($_SESSION['nombreUsuario']);
         var_dump($_SESSION['nivelUsuario']);
         var_dump($_SESSION['habilitarUsuario']);
+
 ?>
 
 
@@ -96,7 +97,7 @@
                         <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
                         <!-- FORMULARIO -->
                         
-                        <form action="../php/editar_usser.php" method="get" id="form" class="form">
+                        <form action="../php/editar_usser.php" method="post" id="form" class="form">
                             
                             <!-- GRUPO DE NOMBRE DE USUARIO -->
                             
@@ -114,7 +115,7 @@
                             <label for="email" class="form-label">* Correo:</label>
                             <div class="formulario__grupo" id="grupo__emailusser">
                                 <div class="mb-4">
-                                    <input type="email" class="form-control formulario__input" name="email" id="email" placeholder="Correo de usuario" value="<?php echo $correo_usuario_c?>" >
+                                    <input type="email" class="form-control formulario__input" name="email" id="email" placeholder="Correo de usuario" value="<?php echo $correo_usuario_c?>" disabled >
                                 </div>
                                 <p class="formulario__input-error">Ingresa un correo válido-</p>
                             </div>

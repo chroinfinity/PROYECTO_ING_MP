@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="../css/admin/styles.css">
     <link rel="stylesheet" href="../css/admin/btn.css">
    
+    <!--FONTAWESOME -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+
+    <!-- DATATABES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/r-2.2.9/datatables.min.css"/>
+ 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/r-2.2.9/datatables.min.js"></script>
 
    <!-- <script src="../assets/bootstrap/js/bootstrap.min.js"></script> -->
 
@@ -110,12 +117,23 @@
                                 <?php 
 
                                     
-                                    //Se realiza query
-                                    $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passwordUsuario, nivelUsuario, habilitarUsuario FROM usuarios WHERE habilitarUsuario = 1 ORDER BY idUsuario ASC";
+                                    //Se realiza query: Toma todos los registros habilitados, excepto el del usuario administraor en cuestión, y los acomoda en orden ascendente:
+                                    $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passwordUsuario, nivelUsuario, habilitarUsuario FROM usuarios WHERE habilitarUsuario = 1 AND idUsuario != $id_usuario ORDER BY idUsuario ASC";
                                     $rta = mysqli_query($link, $sql);
 
+                                    $usuarios = mysqli_query($link, $sql);
+
+                                    $existencia_usuarios = mysqli_fetch_row($rta);
                                     //despliegue de tabla:
-                                    while ($mostrar = mysqli_fetch_row($rta)){
+                                    if($existencia_usuarios == null){
+                                        ?> 
+                                        <tr style="border-color: #747474;border-radius: 68px;">
+                                        <td style="background: #ffffff;border-radius: 10px;width: 230px;border-width: 3px; " colspan="5"><i class="fas fa-exclamation-triangle"></i>  Sin usuarios activos por mostrar</td>
+                                        </tr>
+
+                                    <?php
+                                    }else{
+                                    while ($mostrar = mysqli_fetch_row($usuarios)){
 
                                 ?>
 
@@ -128,12 +146,17 @@
                                                 <button class="btn btn-primary" type="button" style="background: url('../resources/img/icons/edit.png');background-size: cover;width: 30px;height: 28px;margin-left: 6px;margin-top: -6px;border-color: rgb(255,255,255);"></button>
                                         </a>
                                     </td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 57px;height: 42px;border-width: 3px;"><button class="btn btn-primary" type="button" style="margin-left: 15%;background: url('../resources/img/icons/cross-flat.png') no-repeat;background-size: contain;width: 30px;height: 28px;margin-top: -8%;border-color: rgb(255,255,255);padding-left: 12px;"></button></td>
+                                    <td style="border-radius: 10px;background: #ffffff;width: 57px;height: 42px;border-width: 3px;">
+                                        <a href="../php/deshabilitar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
+                                            <button class="btn btn-primary" type="button" style="margin-left: 15%;background: url('../resources/img/icons/cross-flat.png') no-repeat;background-size: contain;width: 30px;height: 28px;margin-top: -8%;border-color: rgb(255,255,255);padding-left: 12px;"></button>
+                                        </a>
+                                    </td>
                                 </tr>
                                 
 
                                 <?php 
                                     }
+                                }
                                 ?>
                             </tbody>
 

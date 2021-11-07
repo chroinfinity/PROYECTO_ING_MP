@@ -9,35 +9,43 @@
     }
 
     //Se reciben los datos mandados a través del formulario:
-        $id_usuario_c = $_GET['id'];
-        $nombre_usuario_c = $_GET['name'];
-        $correo_usuario_c = $_GET['email'];
+        $id_usuario_c = $_POST['id'];
+        $nombre_usuario_c = $_POST['name'];
+        $correo_usuario_c = $_POST['email'];
         //se usa validacion con isset, en caso de realizarse el registro y no se percibe un nivel, se asigna automaticamente 1:
         /*Si se recibe el dato del nivel, se le asigna el valor a la variable, de caso contrario, se le asigna automaticamente
         un 1, de primer nivel */
-        $nivel_usuario_c = $_GET['level'];
+        $nivel_usuario_c = $_POST['level'];
         //Si se recibe una instrucción de estado, estará activo/inactivo, de caso contrario se asigna un inactivo (0) por default:
-        $estado_usuario_c = $_GET['estado'];
+        $estado_usuario_c = $_POST['estado'];
 
         //clave administrador:
-        $clave_admin_confirmacion = $_GET['password'];
+        $clave_admin_confirmacion = $_POST['password'];
 
 
-        //validacion de clave administrativa:
-        
-                $sql = "UPDATE INTO usuarios(nombreUsuario, nivelUsuario, habilitarUsuario) VALUES ($nombre_usuario_c,$nivel_usuario_c,$estado_usuario_c)";
+        //validacion de existencia de clave administrativa:
+        if(isset($clave_admin_confirmacion)){
+            //Se hace confirmación de clave administrativa:
+            if($clave_admin_confirmacion == $_SESSION['password']){
+                $sql = "UPDATE usuarios set nombreUsuario='$nombre_usuario_c',nivelUsuario= '$nivel_usuario_c' ,habilitarUsuario='$estado_usuario_c'  WHERE idUsuario= $id_usuario_c";
                 $rta = mysqli_query($link, $sql);
 
-                if(!$rta){
-                    echo "<script>alert('Se ha actualizado al usuario: $nombre_usuario_c ')";
+                var_dump($sql);
+                var_dump($rta);
 
-                    echo '<script language = javascript> 
-                                window.location.href = "../vistasadmin/lista_de_usuarios_admin.php";
-                        </script>';
+                if($rta){
+                    echo "<script>alert('Usuario Actualizado: $nombre_usuario_c'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
 
                 }else{
-                    echo "<script>alert('No ha sido posible actualizar al usuario: $nombre_usuario_c ')";
+                    echo "<script>alert(''Usuario: $nombre_usuario_c' no fue posible de actualizar. Intente más tarde'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
                 }
+            }else{
+                echo "<script>alert('Error de autentificación, clave administrativa incorrecta'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
+            }
+        }else{
+            echo "<script>alert('Por favor ingrese confirmación de clave administrativa'); window.location='../vistasadmin/lista_de_usuarios_admin.php'</script>";
+        }
+               
             
         
     
