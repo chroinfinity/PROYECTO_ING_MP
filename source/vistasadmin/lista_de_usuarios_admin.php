@@ -21,27 +21,32 @@
     <!--FONTAWESOME -->
     <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
 
-    <!-- DATATABES -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/r-2.2.9/datatables.min.css"/>
- 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/r-2.2.9/datatables.min.js"></script>
-
-   <!-- <script src="../assets/bootstrap/js/bootstrap.min.js"></script> -->
 
 </head>
 
 <!-- CODIGO PHP-->
 <?php
 
-    //Se hace la conexión con la BDD:
+    //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
-    //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
-    if (!isset($_SESSION['id'])) {
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] <= 3){
+                header("Location: ../vistasusser/home.php");
+            }
+        }
+    }else{
         header("Location: ../index.php");
     }
 
 
-    //Catura de variables de sesion (USUARIO-ADMIN)
+    //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];
@@ -181,7 +186,7 @@
                                 if($existencia_usuarios == null){
                                     ?> 
                                     <tr style="border-color: #747474;border-radius: 68px;">
-                                    <td style="background: #ffffff;border-radius: 10px;width: 125%;height: 50px; border-width: 3px; padding-left: 1%" colspan="5"><i class="fas fa-exclamation-triangle"></i>  Sin usuarios inactivos por mostrar</td>
+                                    <td style="color:#98bd9d; background: #ffffff;border-radius: 10px;width: 125%;height: 50px; border-width: 3px; padding-left: 1%" colspan="5"><i class="fa fa-check" aria-hidden="true"></i> Sin usuarios inactivos por mostrar</td>
                                     </tr>
 
                                 <?php

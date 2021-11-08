@@ -65,8 +65,41 @@
     </style>
 
 </head>
-<body>
 
+<!-- CODIGO PHP-->
+<?php
+
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] == 4){
+                header("Location: ../vistasadmin/home_admin.php");
+            }
+        }
+    }else{
+        header("Location: ../registro_usuario.php");
+    }
+
+
+    //Captura de variables de sesion (USUARIO-ADMIN)
+    $id_usuario = $_SESSION['id'];
+    $nombre_usuario = $_SESSION['nombreUsuario'];
+    $nivel = $_SESSION['nivelUsuario'];
+    $habilitado = $_SESSION['habilitarUsuario'];
+    $correo_usuario = $_SESSION['correoUsuario'];
+
+?>
+
+
+
+<body>
 
     <div class="container w-75 bg-light mt-5 shadow-lg rounded-3" style="border: 2px solid #57638f">
         <div class="row align-items-stretch">
@@ -115,7 +148,7 @@
                                 <input type="password" class="form-control formulario__input" name="password_usser" id="password_usser">
                             </div>
 
-                        <p class="formulario__input-error">La clave debe tener de 4 a 12 digitos.</p>
+                        <p class="formulario__input-error">La clave debe tener de 4 a 12 caracteres.</p>
                         
                     </div>
 
@@ -135,7 +168,7 @@
                 
 
             <div class="container" style="text-align: center; margin-top: 10px;">
-                <h6>¿Ya tienes una cuenta? <a href="../index.html">¡Inicia sesión!</a></h6>
+                <h6>¿Ya tienes una cuenta? <a href="../index.php">¡Inicia sesión!</a></h6>
             </div>
             </div>
         </div>

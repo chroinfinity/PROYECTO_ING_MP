@@ -22,32 +22,36 @@
 
 </head>
 
-<!-- CODIGO PHP -->
-    <?php
+<!-- CODIGO PHP-->
+<?php
 
-            session_start();
-            //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
-            if(!isset($_SESSION['id'])){
-                header("Location: ../index.php");
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] == 4){
+                header("Location: ../vistasadmin/home_admin.php");
             }
+        }
+    }else{
+        header("Location: ../index.php");
+    }
 
 
-            //Catura de variables de sesion (USUARIO)
-            $id_usuario = $_SESSION['id'];
-            $nombre_usuario = $_SESSION['nombreUsuario'];
-            $nivel = $_SESSION['nivelUsuario'];
-            $habilitado = $_SESSION['habilitarUsuario'];
-            $correo_usuario = $_SESSION['correoUsuario'];
+    //Captura de variables de sesion (USUARIO-ADMIN)
+    $id_usuario = $_SESSION['id'];
+    $nombre_usuario = $_SESSION['nombreUsuario'];
+    $nivel = $_SESSION['nivelUsuario'];
+    $habilitado = $_SESSION['habilitarUsuario'];
+    $correo_usuario = $_SESSION['correoUsuario'];
 
-
-            /*variables dump para comprobar traida de datos (TESTING)
-            var_dump($id_usuario);
-            var_dump($nombre_usuario);
-            var_dump($nivel);
-            var_dump($habilitado);
-            var_dump($correo_usuario);*/
-
-    ?>
+?>
 
     
 

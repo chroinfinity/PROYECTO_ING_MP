@@ -32,14 +32,26 @@
 <!-- CODIGO PHP-->
 <?php
 
-    session_start();
-    //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
-    if (!isset($_SESSION['id'])) {
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] <= 3){
+                header("Location: ../vistasusser/home.php");
+            }
+        }
+    }else{
         header("Location: ../index.php");
     }
 
 
-    //Catura de variables de sesion (USUARIO-ADMIN)
+    //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];

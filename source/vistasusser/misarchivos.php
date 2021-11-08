@@ -32,14 +32,26 @@
 <!-- CODIGO PHP-->
 <?php
 
-    session_start();
-    //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
-    if (!isset($_SESSION['id'])) {
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] == 4){
+                header("Location: ../vistasadmin/home_admin.php");
+            }
+        }
+    }else{
         header("Location: ../index.php");
     }
 
 
-    //Catura de variables de sesion (USUARIO-ADMIN)
+    //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];
@@ -216,8 +228,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
         
@@ -227,8 +239,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
         
@@ -238,8 +250,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
         
@@ -250,8 +262,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
         
@@ -261,18 +273,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
     
                                 <tr>
@@ -281,8 +283,18 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>archivoX.doc</td>
+                                    <td>18/09/2021</td>
+                                    <td>PDF</td>
+                                    <td>3.5 MB</td>
+                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
     

@@ -64,7 +64,24 @@
 
 <header>
     <?php
-        //CODIGO PHP
+
+        //coneccion a la BDD
+        include 'php/connection.php';
+
+        /* var_dump($_SESSION['id']);
+        var_dump($_SESSION['nivelUsuario']); */
+
+
+        //se realiza validación en caso de que ya exista una sesión, evitar pueda volver al index.
+        if (isset($_SESSION['id'])) {
+            if(isset($_SESSION['nivelUsuario'] )){
+                if($_SESSION['nivelUsuario'] == 4){
+                    header("Location: vistasadmin/home_admin.php");
+                }else{
+                    header("Location: vistasusser/home.php");
+                }
+            }
+        }
     ?>
 </header>
 
