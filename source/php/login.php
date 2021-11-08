@@ -46,6 +46,9 @@
                     alert("La cuenta ingresada no ha sido aprobada aún o ha sido deshabilitada indefinidamente. Intente con otra cuenta.")
             </script>';
 
+            //e destruye sesión:
+            session_destroy();
+
             echo '<script language = javascript> 
                         window.location.href = "../index.php";
                 </script>';

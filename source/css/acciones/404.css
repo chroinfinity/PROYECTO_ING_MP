@@ -1,0 +1,65 @@
+body{
+    padding-top: 0px;
+    background-image: url("../../resources/img/img/background.png");
+    background-size:cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: 130% 0%;
+    
+}
+
+
+@media only screen and (min-width : 300px) and (max-width : 700px) {
+    body{
+    padding-top: 0px;
+    background-image: url("../../resources/img/img/background_cell.png");
+    background-size:cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: 130% 0%;
+    }
+}
+
+
+h1{
+    margin: 0px;
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+   
+    height: calc(100vh - 100px);
+    width: 100%;
+}
+
+.error-message__container {
+    text-align: center;
+    color: white;
+    margin-top: 20%;
+}
+
+.error-message__container h1{
+    font-size: 60px;
+}
+
+.error-message__container p{
+    font-size: 18px;
+}
+
+.animated {
+    animation-duration: 2.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+    0%, 30%, 50%, 80%, 100% {transform: translate(0);}
+    40% {transform: translateY(-30px);}
+    60% {transform: translateY(-15px);}
+}
+
+.bounce {
+    animation-name: bounce;
+}

@@ -81,19 +81,19 @@
         if(isset($_SESSION['nivelUsuario'] )){
             if($_SESSION['nivelUsuario'] == 4){
                 header("Location: ../vistasadmin/home_admin.php");
+            }else{
+                header("Location: ../vistasusser/home_.php");
             }
         }
-    }else{
-        header("Location: ../registro_usuario.php");
     }
 
 
-    //Captura de variables de sesion (USUARIO-ADMIN)
+   /*  //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];
     $habilitado = $_SESSION['habilitarUsuario'];
-    $correo_usuario = $_SESSION['correoUsuario'];
+    $correo_usuario = $_SESSION['correoUsuario']; */
 
 ?>
 

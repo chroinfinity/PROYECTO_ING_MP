@@ -144,7 +144,7 @@
 
                     <!-- FORMULARIO: BOTON DE ENVIAR-->
                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
-                        <button  type="submit" id="submitButton">Enviar</button>
+                        <button  type="submit" id="submitButton" name="submit">Enviar</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Gracias por contactarnos, nos pondremos en contacto contigo cuando antes.</p>
                     </div>
                     
