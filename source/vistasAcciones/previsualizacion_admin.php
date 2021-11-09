@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="../css/ussers/btn.css">
     <link rel="stylesheet" href="../css/acciones/previsualizacion.css">
 
+    <!--FONTAWESOME -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+
     <!-- CHART JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../scripts/js/prev_doc.js"></script>
@@ -42,6 +45,7 @@
                 header("Location: ../vistasusser/home.php");
             }
         }
+
     }else{
         header("Location: ../index.php");
     }
@@ -58,8 +62,9 @@
 
 <body>
     
+    <!-- CABECERA PROYECTO (LOGOUT)-->
     <div class="" style="background-color: #ffffff;">
-        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="index.html"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
+        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../php/logout.php"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
     </div>
     <div>
 
@@ -68,15 +73,15 @@
             <div class="container-fluid"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/home.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/misarchivos.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/subirArchivos.html" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Subir archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/ayuda.html" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
+                        <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasadmin/home_admin.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasadmin/archiveroadmin.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasadmin/lista_de_usuarios_admin.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Lista de usuarios</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+
 
     <!-- CANVAS DE GRÁFICAS-->
 
@@ -90,10 +95,10 @@
                         Nombre del archivo: ejemplo.pdf <br>
                         Tipo: PDF <br><br>
 
-                        <a href="../vistasadmin/archiveroadmin.php"><button class="btn-outline-primary formulario__btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</button> </a>
-                    <br>
-                    <br>
                     </p>
+                    <a href="../vistasadmin/archiveroadmin.php"><button class="btn-outline-primary formulario__btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</button> </a>
+                    <br>
+                    <br>
                 </div>
             </div>
 

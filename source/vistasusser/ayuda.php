@@ -90,7 +90,7 @@
             </div>
             <div class="col-md-6">
                 <!-- login form -->
-                <form action="#" id="form" class="form">
+                <form action="../php/email.php" method="post" id="form" class="form">
                     <div class="mb-4">
                         <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
                         
@@ -144,7 +144,7 @@
 
                     <!-- FORMULARIO: BOTON DE ENVIAR-->
                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
-                        <button  type="submit" id="submitButton" name="submit">Enviar</button>
+                        <button  type="submit" id="submitButton" name="enviar">Enviar</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Gracias por contactarnos, nos pondremos en contacto contigo cuando antes.</p>
                     </div>
                     
@@ -153,12 +153,14 @@
         </div>
     </div>
 
+
+    <!-- SCRIPT VALIDACIONES -->
+    <script src="../scripts/js/formulario_ayuda.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
-    <!-- SCRIPT VALIDACIONES -->
-    <script src="../scripts/js/formulario_ayuda.js"></script>
+    
     <!-- FOOTER -->
     <footer class="container" style="text-align: center; color:#57638F">
         <br>

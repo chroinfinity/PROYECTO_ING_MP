@@ -14,7 +14,7 @@ const expresiones = {
 
 //campos validos o no (valor booleano)
 const campos = {
-    correo: false,
+    email: false,
     password: false
 }
 

@@ -119,7 +119,7 @@ const validateForm = () =>{
         }, 10000); */
 
         //OPCION DE MODAL:
-        alert('Formulario enviado')
+        alert('Enviando correo')
         //ENVIO DE FORMULARIO
         form.submit()
         

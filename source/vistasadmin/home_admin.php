@@ -93,6 +93,7 @@
                 <!-- COLUMNA 1 -->
                 <div class="col-xl " style="display:inline; border-radius: 20px;box-shadow: 5px 5px 5px rgba(33,37,41,0.39);border-style: solid;border-color: #98bd9d;margin-top: 15px; background-color: #ffffff;">
                     <h1 style="font-family: 'Red Rose', serif;text-align: center;font-size: 30px;margin-top: 10px;">BIENVENIDO ADMINISTRADOR</h1>
+                    <h3 style="font-family: 'Red Rose', serif;color:#57638f; text-align: center;font-size: 20px;margin-top: 10px;"><em><?php echo $nombre_usuario?></em></h3>
                     <p style="text-align: center;font-family: 'Red Rose', serif;color: #57638f;font-size: 18px;">¡Comienza a administrar desde ahora!</p>
 
 
@@ -104,7 +105,7 @@
                     </div>
 
 
-                    <p style="text-align: center;font-family: 'Red Rose', serif;color: #98bd9d;font-size: 18px;margin-top: 30px;">¿Tienes dudas? Contáctanos</p>
+                    
                 </div>
 
                 <!-- COLUMNA DOS -->

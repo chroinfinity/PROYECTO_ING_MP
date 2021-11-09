@@ -219,8 +219,8 @@
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
                                     <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion_admin.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis_admin.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
         
         
