@@ -90,7 +90,7 @@
             </div>
             <div class="col-md-6">
                 <!-- login form -->
-                <form action="../php/email.php" method="post" id="form" class="form">
+                <form action="../php/email.php" method="get" id="form" class="form">
                     <div class="mb-4">
                         <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
                         
@@ -144,7 +144,7 @@
 
                     <!-- FORMULARIO: BOTON DE ENVIAR-->
                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
-                        <button  type="submit" id="submitButton" name="enviar">Enviar</button>
+                        <button  type="submit" id="submitButton" name="submitButton">Enviar</button>
                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Gracias por contactarnos, nos pondremos en contacto contigo cuando antes.</p>
                     </div>
                     
