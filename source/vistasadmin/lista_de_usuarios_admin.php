@@ -137,7 +137,7 @@
                                 <tr style="border-color: #747474;border-radius: 68px;">
                                     <td style="background: #ffffff;border-radius: 10px;width: 230px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['1'];?></td>
                                     <td style="border-radius: 10px;background: #ffffff;width: 200px;border-width: 3px; padding-left: 1%;"><?php echo $mostrar['2'];?></td>
-                                    <td style="border-radius: 10px;background: #ffffff;width: 10%;text-align: center;border-width: 3px;"><?php echo $mostrar['4'];?></td>
+                                    <td style="border-radius: 10px;background: #ffffff;width: 10%;text-align: center;border-width: 3px;"><?php if($mostrar['4']==4){echo "Adm";}else{echo $mostrar['4'];}?></td>
                                     <td style="border-radius: 10px;background: #ffffff;width: 10%;height: 42px;border-width: 3px;">
                                         <a href="editar_usuario.php?id=<?php echo $mostrar['0']?>&nom=<?php echo $mostrar['1']?> &correo=<?php echo $mostrar['2']?>&nivel=<?php echo $mostrar['4']?>&estado=<?php echo $mostrar['5']?>">
                                                 <button class="btn btn-primary" type="button" style="background: url('../resources/img/icons/edit.png');background-size: cover;width: 30px;height: 28px;margin-left: 25%;margin-top: -6px;border-color: rgb(255,255,255);"></button>
