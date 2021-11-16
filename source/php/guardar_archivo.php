@@ -20,22 +20,32 @@
     //Validacion de sesión de usuario, si en dado caso no existe, redirecciona a index.php:
     if ($_FILES["file"]["error"]>0) {
         echo "<script>alert('El archivo presenta un error, por facor cargue otro...'); window.location='../vistasusser/subir_Archivo.php'</script>";
-        
     }
 
 
     $nombre_original_archivo= $_FILES["file"]["name"];
     $nombre_nuevo_archivo = $_POST["nameFile"] . "." . strtolower(pathinfo($nombre_original_archivo,PATHINFO_EXTENSION));
-    $permitidos = array("image/gif", "image/png","image/jpg","audio/*","audio/mpeg","audio/ogg","video/mp4","application/octet-stream", "text/plain", "text/x-php", "application/pdf", "application/x-httpd-php","application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel","application/x-httpd-php-source");
+    $permitidos = array("image/gif", "image/png","image/jpg","image/jpeg","audio/*","audio/mpeg","audio/ogg","video/mp4","application/octet-stream", "text/plain", "text/x-php", "application/pdf", "application/x-httpd-php","application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel","application/x-httpd-php-source");
     $limite_kb= 10000; //10 MB
 
-    $dir= "../files/";  //directorio a donde se almacenan archivos
+    $dir= "../files/".$id_usuario ."/";  //directorio a donde se almacenan archivos
     $ruta = $dir. $nombre_nuevo_archivo ; // ../files/nombre_archivo.jpg
     $ruta_tmp= $_FILES["file"]["tmp_name"]; // c//:home/usser/img/archivo.png
 
 
+    var_dump($nombre_nuevo_archivo);
+    var_dump($nombre_original_archivo);
+    var_dump($_FILES["file"]["type"]);
+    var_dump($dir);
+    var_dump($id_usuario);
+    var_dump($ruta_tmp); 
+    var_dump($ruta); 
+    var_dump($_FILES);
+    var_dump(!in_array($_FILES["file"]["type"], $permitidos));
+
     //var_dump($_FILES);
-    if( (in_array($_FILES["file"]["type"], $permitidos))) {
+    if((in_array($_FILES["file"]["type"], $permitidos))) {
+        echo("validacion q pasada");
         if(($_FILES["file"]["size"] <= $limite_kb*1024)){
 
             //$_FILES["file"]["name"]= $nombre_archivo;
@@ -43,11 +53,16 @@
 
             $tipo_archivo = strtolower(pathinfo($nombre_original_archivo,PATHINFO_EXTENSION));
             $tam_archivo = $_FILES["file"]["size"];
-            /* var_dump($nombre_nuevo_archivo);
+            var_dump($nombre_nuevo_archivo);
             var_dump($tipo_archivo);
             var_dump($tam_archivo);
             var_dump($id_usuario);
-            var_dump($ruta); */
+            var_dump($ruta); 
+
+            //se crea ruta en caso de no existir:
+            if(!file_exists($dir)){
+                mkdir($dir, 0777); //0777 para poder darle todos los permisos a la carpeta. 
+            }
 
             if(!file_exists($ruta)){
                 //subida de archivo:
@@ -57,7 +72,7 @@
                 //Ejecución de query:
                 
                 $resultado = $link->query($sql); //verifiación de ejecucion de query
-                //var_dump($sql);
+                var_dump($sql);
 
                 //Redireccionamiento:
                 if($resultado){
