@@ -76,21 +76,76 @@
         </nav>
     </div>
 
+
+
+    <div class="container" >
+
+        <div class="container" style="background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
+            <div class="row">
+                
+                <div class="container">
+                    <a href="lista_de_usuarios_admin.php"><button class="btn-outline-danger" style="border-radius: 5px; margin-top: 5px;"><</button></a>
+                    <H1 style="text-align: center;">SUBIR ARCHIVO</H1>
+                    <div class="col-sm">
+                        
+                        <i style="font-size: small; color:#57638F"><b>NOTA:</b> Todos los campos marcados con (*) son obligatorios.</i><br>
+                       
+                        
+                        <!-- FORMULARIO SUBIR ARCHIVO -->
+                        
+                        <form action="../php/guardar_archivo.php" method= "POST" id="form" class="form" enctype="multipart/form-data" autocomplete="off">
+                            
+                            
+                            <!-- GRUPO DE NOMBRE DE USUARIO -->
+                            <label for="nameFile" class="form-label">* Nombre de Archivo:</label>
     
-    <div class="container" style="background-color: #ffffff; border-radius: 10px; margin-bottom: 10px;">
-            <div class="container" style="margin-left: 19px;margin-top: 25px;"> 
-                <h1 style="font-family: Roboto, sans-serif;font-weight: bold;color: #57638f;">SUBIR ARCHIVO</h1>
-                <p style="font-family: 'Red Rose', serif;font-size: 20px;color: #98bd9d;margin-top: 15px;">Nombre del archivo</p><input type="text" class="w-50" style="background: #DDD;border-color: rgba(0,0,0,0);border-radius: 6px;">
-                <p style="font-family: 'Red Rose', serif;font-size: 20px;color: #98bd9d;margin-top: 20px;">Dirección del archivo</p><input type="text" class="w-50" style="background: #DDD;border-color: rgba(0,0,0,0);border-radius: 6px;">
+                            <div class="formulario__grupo" id="grupo__nameFile">
+                                <div class="mb-4">
+                                    <input type="text" class="form-control formulario__input" name="nameFile" id="nameFile" placeholder="Nombre de Archivo">
+                                </div>
+                                <p class="formulario__input-error">*El nombre solo debe contener letras y espacios. </p>
+                            </div>
+    
+                            <!-- GRUPO DE ARCHIVO -->
+                            <label for="file" class="form-label">* Archivo:</label>
+    
+                            <div class="formulario__file" id="grupo__name">
+                                <div class="mb-4">
+                                    <input type="file" class="form-control formulario__input" name="file" id="file" >
+                                </div>
+                                <p class="formulario__input-error">* Archivo subido. </p>
+                            </div>
+
+                            <div class="container row">
+                                <div class="col-6">
+                                    <!-- BOTON DE RESET -->
+                                    <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
+                                        <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
+                                        <button  type="reset" id="resetButton">Limpiar</button>
+                                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario limpio!</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <!-- BOTON DE SUBMIT -->
+                                    <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
+                                        <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
+                                        <button  type="submit" id="submitButton">Subir</button>
+                                        <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Archivo subido correctamente</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            
+                        </form>
+                    </div>
+                </div>
             </div>
-        <div class="drag-area">
-            <div class="icon"><i class="fas fa-file-upload"></i></div>
-            <header>Arrastre y suelte para subir el archivo</header>
-            <span>o</span>
-            <button>Busque su archivo</button>
-            <input type="file" hidden>
         </div>
-    </div>
+
+    
+    
 
     <script src="../scripts/js/upload.js"></script>
     

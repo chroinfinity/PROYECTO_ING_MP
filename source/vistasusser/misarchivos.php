@@ -21,7 +21,11 @@
     <link rel="stylesheet" href="../css/ussers/btn.css">
 
     <!-- JQUERY / AJAX -->
+    <script src="../scripts/jquery/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- DATA TABLES -->
+    <link rel="stylesheet" href="../librerias/datatable/dataTables.bootstrap5.min.css">
 
     <!-- VUE JS -->
     <!-- versión de producción, optimizada para tamaño y velocidad -->
@@ -196,114 +200,40 @@
 
             </div>
 
+<!-- TABLAAAAAAAAAAAA   -->
+
             <!-- TABLA DE ARCHIVOS -->
             <div class="col-md-9">
-                <!-- login form -->
-                <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; ">
+                <!-- SEGUNO CONTAINER-->
+                <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; background-color:#57638F; color:#ffffff; ">
 
-                    <h2>Lista de Archivos</h2>
-                    <div class="container">
-                        <table class="table">
+                    <h2 style="margin-top:10px;">Lista de Archivos</h2>
+                    <div class="container" style="margin-bottom: 10px;">
+                        <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px;">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Fecha</th>
                                     <th>Tipo</th>
                                     <th>Tamaño</th>
-                                    <th colspan="3" style="text-align: center;">ACCIONES</th>
-                                    
+                                    <th>Descargar</th>
+                                    <th>Previsualizar</th>
+                                    <th>Analizar</th>
                                 </tr>
                             </thead>
-    
+                            <tr>
+                                    <td>archivoX.doc</td>
+                                    <td>18/09/2021</td>
+                                    <td>PDF</td>
+                                    <td>3.5 MB</td>
+                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                </tr>
                         </table>
                     </div>
 
-                    <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; overflow-y: scroll; height: 400px;">
-                        <table class="table" >
-
-                            <tbody>
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoXxxxx.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-    
-                            </tbody>
-                            
-                            
-                        </table>
                     
-                    </div>
                     
                 </div>
 
@@ -318,10 +248,25 @@
         </div>
     </div>
 
+    <!-- funciones datatable -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#tablaGestorDataTable').DataTable();
+
+        });
+
+    </script>
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
+
+    <!-- DATA TABLES -->
+    <script src="../librerias/datatable/jquery.dataTables.min.js"></script>
+    <script src="../librerias/datatable/dataTables.bootstrap5.min.js"></script>
+    
+
     <!-- JQUERY -->
     <script src="../scripts/js/filtros_usuario.js"></script>
     <!-- FOOTER -->
