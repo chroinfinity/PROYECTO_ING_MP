@@ -204,29 +204,120 @@
                 <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; background-color:#57638F; color:#ffffff; ">
 
                     <h2 style="margin-top:10px;">Lista de Archivos</h2>
-                    <div class="container" style="margin-bottom: 10px;">
-                        <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px;">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Tamaño</th>
-                                    <th>Descargar</th>
-                                    <th>Previsualizar</th>
-                                    <th>Analizar</th>
+                    <div class="container" style="margin-bottom: 10px; ">
+                        <div class="container" style="border: 0px solid #d0d0d0;; border-radius: 5px; overflow-y: scroll; height: 400px; ">
+                            <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px; ">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Tamaño</th>
+                                        <th>Descargar</th>
+                                        <th>Previsualizar</th>
+                                        <th>Analizar</th>
+                                    </tr>
+                                </thead>
+
+                                <?php
+
+                                    switch($nivel){
+                                        case 1:
+                                            $sql = "SELECT  archivos.idArchivos,
+                                                            usuarios.nombreUsuario, 
+                                                            usuarios.nivelUsuario,
+                                                            usuarios.idUsuario,
+                                                            archivos.ruta,
+                                                            archivos.nombreArchivo, 
+                                                            archivos.tipoArchivo, 
+                                                            archivos.sizeArchivo, 
+                                                            archivos.fechaArchivo
+                                                             
+                                                            
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.idUsuario = $id_usuario;";
+                                            break;
+                                        case 2:
+                                            $sql = "SELECT  archivos.idArchivos,
+                                                            usuarios.nombreUsuario, 
+                                                            usuarios.nivelUsuario,
+                                                            usuarios.idUsuario,
+                                                            archivos.ruta,
+                                                            archivos.nombreArchivo, 
+                                                            archivos.tipoArchivo, 
+                                                            archivos.sizeArchivo, 
+                                                            archivos.fechaArchivo 
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario;";
+                                            break;
+                                        case 3:
+                                            "SELECT  archivos.idArchivos, 
+                                                            archivos.nombreArchivo, 
+                                                            archivos.tipoArchivo, 
+                                                            archivos.sizeArchivo, 
+                                                            archivos.fechaArchivo, 
+                                                            archivos.ruta, 
+                                                            usuarios.nombreUsuario, 
+                                                            usuarios.nivelUsuario 
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario";
+                                            break;
+
+                                        case 4:
+                                            "SELECT  archivos.idArchivos,
+                                                    usuarios.nombreUsuario, 
+                                                    usuarios.nivelUsuario,
+                                                    usuarios.idUsuario,
+                                                    archivos.ruta,
+                                                    archivos.nombreArchivo, 
+                                                    archivos.tipoArchivo, 
+                                                    archivos.sizeArchivo, 
+                                                    archivos.fechaArchivo
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.nivelUsuario <= 3;";
+                                            break;
+                                    }
+
+                                    $result = mysqli_query($link, $sql);
+                                    //var_dump($sql);
+                                    //var_dump($result);
+
+                                    while($mostrar = mysqli_fetch_array($result)){
+                                        $idArchivo = $mostrar["idArchivos"];
+                                        $nombreUsuario_query = $mostrar["nombreUsuario"];
+                                        $nivelUsuario_query = $mostrar["nivelUsuario"];
+                                        $idUsuario_query = $mostrar["idUsuario"];
+                                        $rutaArchivo_query = $mostrar["ruta"];
+                                        $nombreArchivo = $mostrar["nombreArchivo"];
+                                        $fechaArchivo = $mostrar["fechaArchivo"]; 
+                                        $tipoArchivo = $mostrar["tipoArchivo"];
+                                        $sizeArchivo = round($mostrar["sizeArchivo"]/1000000,3).' MB';
+                                ?>
+
+
+                                <tr style="text-align:center;">
+                                        <td><?php echo $nombreArchivo; ?></td>
+                                        <td><?php echo $fechaArchivo; ?></td>
+                                        <td><?php echo $tipoArchivo; ?></td>
+                                        <td><?php echo $sizeArchivo; ?></td>
+                                        <td><a href="../php/descarga.php?idArchivo=<?php echo $idArchivo?>&idUsuario=<?php echo $idUsuario_query?>&rutaFile=<?php  echo $rutaArchivo_query ?>&nameFile=<?php echo $nombreArchivo?>"><button class="btn_descarga"  type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                        
+                                        <?php if($tipoArchivo == "pdf" || $tipoArchivo == "docx" || $tipoArchivo == "txt") {?>
+                                            <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <?php }else{?>
+                                            <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <?php } ?>
+                                        
                                 </tr>
-                            </thead>
-                            <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><a href="../php/descarga.php"><button class="btn_descarga"  type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-                        </table>
+
+                                <?php } ?>
+                            </table>
+                        </div>
                     </div>
 
                     
