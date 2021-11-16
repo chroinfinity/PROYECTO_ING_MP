@@ -84,7 +84,7 @@
             <div class="row">
                 
                 <div class="container">
-                    <a href="lista_de_usuarios_admin.php"><button class="btn-outline-danger" style="border-radius: 5px; margin-top: 5px;"><</button></a>
+                    
                     <H1 style="text-align: center;">SUBIR ARCHIVO</H1>
                     <div class="col-sm">
                         
