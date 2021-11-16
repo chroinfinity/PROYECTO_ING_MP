@@ -101,10 +101,6 @@
                 <!--BUSCADOR -->
                 <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
                     <form action="#" id="form" name="form">
-                        <input type="text" placeholder="Busqueda..." name="nombre" id="nombre" class="input_filtro" style="background-color:rgb(201, 201, 201); border-radius: 5px; border-color: #98bd9d;">
-                        <button type="submit" name="btnsubmitt" class="btn-filtro">Enviar</button>
-
-                        <hr>
 
                         <!-- FILTROS -->
                         
@@ -226,7 +222,7 @@
                                     <td>18/09/2021</td>
                                     <td>PDF</td>
                                     <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
+                                    <td><a href="../php/descarga.php"><button class="btn_descarga"  type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></a></td>
                                     <td><a href="../vistasAcciones/previsualizacion.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
                                     <td><a href="../vistasAcciones/analisis.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                 </tr>
