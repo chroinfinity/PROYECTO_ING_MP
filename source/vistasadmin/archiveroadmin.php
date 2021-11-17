@@ -24,6 +24,17 @@
     <!-- versión de producción, optimizada para tamaño y velocidad -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
+    <!-- JQUERY / AJAX -->
+    <script src="../scripts/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- DATA TABLES -->
+    <link rel="stylesheet" href="../librerias/datatable/dataTables.bootstrap5.min.css">
+
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <!-- CODIGO PHP-->
@@ -81,32 +92,34 @@
 
 
     <!-- FILTROS -->
+    
     <div class="cuadro_filtros">
+        
         <div class="row">
 
-            <div class="col-md-3 cuadro_filtros_2">
-                <h4 style="font-family: 'Red Rose', serif;">BUSCADOR</h4>
+            <div class="col-md-2 cuadro_filtros_2">
+
+                
+
+                <hr>
+                <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
 
                 <!--BUSCADOR -->
                 <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
-                    <form>
-                        <input type="text" placeholder="Busqueda..." class="input_filtro" style="background-color:rgb(201, 201, 201); border-radius: 5px; border-color: #98bd9d;">
-                        <button type="submit" class="btn-filtro">Enviar</button>
-
-                        <hr>
+                    <form action="#" id="form" name="form">
 
                         <!-- FILTROS -->
                         
                         <div style="text-align: left;">
-                            <h6 style="font-family: 'Red Rose', serif;">FILTROS</h6>
+                           
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="titulo" checked>
                                 <label class="form-check-label" for="exampleRadios1">
                                   Titulo
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="contenido">
                                 <label class="form-check-label" for="exampleRadios2">
                                   Contenido
                                 </label>
@@ -121,7 +134,7 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="pdf" name="checks[]">
                                         <label class="form-check-label" for="flexCheckDefault">
                                           PDF
                                         </label>
@@ -130,7 +143,7 @@
 
                                 <div class="col-sm">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="txt" name="checks[]" >
                                         <label class="form-check-label" for="flexCheckDefault">
                                           Txt
                                         </label>
@@ -143,7 +156,7 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="word" name="checks[]" >
                                         <label class="form-check-label" for="flexCheckDefault">
                                           Word
                                         </label>
@@ -152,7 +165,7 @@
 
                                 <div class="col-sm">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="all" name="checks[]" >
                                         <label class="form-check-label" for="flexCheckDefault">
                                           Todos
                                         </label>
@@ -160,17 +173,19 @@
                                 </div>
                             </div>
 
-
+                            <!-- LISTA DE CHECKBOX SELECCIONADOS -->
+                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
+                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
                             <hr>
                             
 
                             <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
                             <div class="multi_select_box">
-                                <select class="multi_select">
+                                <select class="multi_select" id="nivel_select">
                                     <option value="1">1</option>
-                                    <option value="2" disabled>2</option>
-                                    <option value="3" >3</option>
-                                  </select>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
 
                         
@@ -184,117 +199,91 @@
                     
                 </div>
 
-                
+
             </div>
 
+<!-- TABLAAAAAAAAAAAA   -->
+
             <!-- TABLA DE ARCHIVOS -->
-            <div class="col-md-9">
-                <!-- login form -->
-                <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; ">
+            <div class="col-md-10">
+                <!-- SEGUNO CONTAINER-->
+                <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; background-color:#57638F; color:#ffffff; ">
 
-                    <h2>Lista de Archivos</h2>
-                    <div class="container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Tamaño</th>
-                                    <th colspan="3" style="text-align: center;">ACCIONES</th>
-                                    
+                    <h2 style="margin-top:10px;">Lista de Archivos <i class="fa fa-question-circle" id="help" aria-hidden="true" style="cursor: pointer" onclick="ayuda();"></i></h2>
+                    <div class="container" style="margin-bottom: 10px; ">
+                        <div class="container" style="border: 0px solid #d0d0d0;; border-radius: 5px; overflow-y: scroll; height: 400px; ">
+                            <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px; ">
+                                <thead style="text-align:center; background-color:#98bd9d; color:#ffffff">
+                                    <tr>
+                                        <th width="30%">Nombre</th>
+                                        <th width="10%">Fecha</th>
+                                        <th width="5%">Tipo</th>
+                                        <th width="10%">Tamaño</th>
+                                        <th width="5%">Nivel</th>
+                                        <th width="20%">Usuario</th>
+                                        <th width="5%">D</th>
+                                        <th width="5%">P</th>
+                                        <th width="5%">A</th>
+                                    </tr>
+                                </thead>
+
+                                <?php
+
+                                    $sql= "SELECT  archivos.idArchivos,
+                                                    usuarios.nombreUsuario, 
+                                                    usuarios.nivelUsuario,
+                                                    usuarios.idUsuario,
+                                                    archivos.ruta,
+                                                    archivos.nombreArchivo, 
+                                                    archivos.tipoArchivo, 
+                                                    archivos.sizeArchivo, 
+                                                    archivos.fechaArchivo
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.nivelUsuario <= 3;";
+                                            
+
+                                    $result = mysqli_query($link, $sql);
+                                    //var_dump($sql);
+                                    //var_dump($result);
+
+                                    while($mostrar = mysqli_fetch_array($result)){
+                                        $idArchivo = $mostrar["idArchivos"];
+                                        $nombreUsuario_query = $mostrar["nombreUsuario"];
+                                        $nivelUsuario_query = $mostrar["nivelUsuario"];
+                                        $idUsuario_query = $mostrar["idUsuario"];
+                                        $rutaArchivo_query = $mostrar["ruta"];
+                                        $nombreArchivo = $mostrar["nombreArchivo"];
+                                        $fechaArchivo = $mostrar["fechaArchivo"]; 
+                                        $tipoArchivo = $mostrar["tipoArchivo"];
+                                        $sizeArchivo = round($mostrar["sizeArchivo"]/1000000,3).' MB';
+                                ?>
+
+
+                                <tr style="text-align:center;">
+                                        <td><b><?php echo $nombreArchivo; ?></b></td>
+                                        <td><?php echo $fechaArchivo; ?></td>
+                                        <td><?php echo $tipoArchivo; ?></td>
+                                        <td><?php echo $sizeArchivo; ?></td>
+                                        <td><?php echo $nivelUsuario_query; ?></td>
+                                        <td><?php echo $nombreUsuario_query; ?></td>
+                                        <td><a href="../php/descarga.php?idArchivo=<?php echo $idArchivo?>&idUsuario=<?php echo $idUsuario_query?>&rutaFile=<?php  echo $rutaArchivo_query ?>&nameFile=<?php echo $nombreArchivo?>"><button class="btn_descarga"  type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <td><a href="../vistasAcciones/previsualizacion_admin.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
+                                        
+                                        <?php if($tipoArchivo == "pdf" || $tipoArchivo == "docx" || $tipoArchivo == "txt") {?>
+                                            <td><a href="../vistasAcciones/analisis_admin.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <?php }else{?>
+                                            <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <?php } ?>
+                                        
                                 </tr>
-                            </thead>
-    
-                        </table>
+
+                                <?php } ?>
+                            </table>
+                        </div>
                     </div>
 
-                    <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; overflow-y: scroll; height: 400px;">
-                        <table class="table" >
-
-                            <tbody>
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><a href="../vistasAcciones/previsualizacion_admin.php"><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
-                                    <td><a href="../vistasAcciones/analisis_admin.php"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoXxxxx.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-        
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-        
-        
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-    
-                                <tr>
-                                    <td>archivoX.doc</td>
-                                    <td>18/09/2021</td>
-                                    <td>PDF</td>
-                                    <td>3.5 MB</td>
-                                    <td><button class="btn_descarga" type="button"><img src="../resources/img/icons/download.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_prev" type="button"><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></td>
-                                    <td><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></td>
-                                </tr>
-        
-    
-                            </tbody>
-                            
-                            
-                        </table>
                     
-                    </div>
                     
                 </div>
 
@@ -305,14 +294,84 @@
             
         </div>
 
-
         </div>
     </div>
+
+    <!-- funciones datatable -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var table = $('#tablaGestorDataTable').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+
+
+            /*//Se crea una fila en el head de la tabla y se cloma para caa columna
+            $('#tablaGestorDataTable thead tr').clone(true).appendTo('#tablaGestorDataTable thead');
+
+            //funciones de busqueda por columna
+            $('#tablaGestorDataTable thead tr:eq(1) th').each(function(i) {
+                var title = $(this).text(); //es el nombre de la columna
+                $(this).html('<input type="text" placeholder="Buscar..." />');
+
+                $( 'input', this).on('keyup change',function (){
+                    if(table.column(i).search() !== this.value){
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+
+            });*/
+
+        });
+
+        
+
+    </script>
+
+    <!-- AYUDA -->
+    <script>
+        function ayuda(){
+            swal("¡Bienvenido al Archivero Administrativo!", "Este espacio te permitirá ver los archivos que han subido los usuarios, he aqui algunos tips: \n\n - Podrás buscar archivos rapidamente con la barra de busqueda. \n\n Las acciones disponibles para los archivos son: \n\n * D: Descargar \n * A: Analizar \n * P: Previsualizar \n\n OJO: Hay tipos de archivos que no contaran con todas las opciones disponibles", "info");
+        }
+
+
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
+
+    <!-- DATA TABLES -->
+    <script src="../librerias/datatable/jquery.dataTables.min.js"></script>
+    <script src="../librerias/datatable/dataTables.bootstrap5.min.js"></script>
+    
+
+    <!-- JQUERY -->
+    <script src="../scripts/js/filtros_usuario.js"></script>
+
+
     <!-- FOOTER -->
     <footer class="container" style="text-align: center; color:#57638F">
         <br>
