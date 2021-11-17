@@ -153,7 +153,7 @@
                             </div>
                             
                             <!-- CLAVE USUARIO -->
-                            <label for="clave_usuario" class="form-label">* Clave- Usuario:</label>
+                            <label for="clave_usuario" class="form-label">* Contraseña - Usuario:</label>
                             <div class="formulario__grupo" id="grupo__claveusser">
                                 <div class="mb-4">
                                     <input type="password" class="form-control formulario__input" id="password_usser" name="password_usser" placeholder="Inserte la clave para el usuario">
@@ -164,7 +164,7 @@
                             </div>
     
                             <!-- CLAVE DE CONFIRMACIÓN -->
-                            <label for="email" class="form-label">* Clave- Administrador:</label>
+                            <label for="email" class="form-label">* Contraseña - Administrador:</label>
                             <div class="formulario__grupo" id="grupo__claveadm">
                                 <div class="mb-4">
                                     <input type="password" class="form-control formulario__input" id="password" name="password" placeholder="Inserte la clave administrativa">

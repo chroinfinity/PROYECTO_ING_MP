@@ -17,7 +17,15 @@
      
      <link rel="stylesheet" href="../css/ussers/btn.css">
     <link rel="stylesheet" href="../css/ussers/subir_archivo.css">
+    <link rel="stylesheet" href="../css/ussers/login.css">
 
+    <!-- JQUERY / AJAX -->
+    <script src="../scripts/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    
     
 </head>
 
@@ -109,11 +117,11 @@
                             <!-- GRUPO DE ARCHIVO -->
                             <label for="file" class="form-label">* Archivo:</label>
     
-                            <div class="formulario__file" id="grupo__name">
+                            <div class="formulario__file" id="grupo__file">
                                 <div class="mb-4">
                                     <input type="file" class="form-control formulario__input" name="file" id="file" >
                                 </div>
-                                <p class="formulario__input-error">* Archivo subido. </p>
+                                <p class="formulario__input-error">* Por favor sube un archivo </p>
                             </div>
 
                             <div class="container row">
@@ -130,7 +138,7 @@
                                     <!-- BOTON DE SUBMIT -->
                                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
                                         <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
-                                        <button  type="submit" id="submitButton">Subir</button>
+                                        <button  type="submit" id="submitButton" class="enviar_archivo">Subir</button>
                                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Archivo subido correctamente</p>
                                     </div>
                                 </div>
@@ -147,8 +155,8 @@
     
     
 
-    <script src="../scripts/js/upload.js"></script>
-    
+    <!-- <script src="../scripts/js/upload.js"></script> -->
+    <script src="../scripts/js/formulario_subir_archivo.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

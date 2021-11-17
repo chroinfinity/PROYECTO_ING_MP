@@ -57,9 +57,17 @@
 
 }
 
+.btn_x_file { 
+    color: white;
+    background-color:#d42954;
+    border-radius: 10px;
+
+}
+
 .btn_analizar { 
     color: white;
     background-color:#364c9b;
     border-radius: 10px;
 
 }
+

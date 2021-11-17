@@ -31,6 +31,7 @@
     <!-- versión de producción, optimizada para tamaño y velocidad -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
+    <!--FONTAWESOME -->
     <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -96,115 +97,113 @@
     </div>
 
     <!-- FILTROS -->
-    
     <div class="cuadro_filtros">
-        
         <div class="row">
 
-            <div class="col-md-2 cuadro_filtros_2">
+        <div class="col-md-2 cuadro_filtros_2">
 
-                <a href="micarpeta.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Mi Carpeta</button></a>
+            <a href="misarchivos.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Archivero</button></a>
+            
+            <hr>
+            <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
 
-                <hr>
-                <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
+            <!--BUSCADOR -->
+            <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
+                <form action="#" id="form" name="form">
 
-                <!--BUSCADOR -->
-                <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
-                    <form action="#" id="form" name="form">
+                    <!-- FILTROS -->
+                    
+                    <div style="text-align: left;">
+                    
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="titulo" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                            Titulo
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="contenido">
+                            <label class="form-check-label" for="exampleRadios2">
+                            Contenido
+                            </label>
+                        </div>
+                    </div>
 
-                        <!-- FILTROS -->
-                        
-                        <div style="text-align: left;">
-                           
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="titulo" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                  Titulo
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="contenido">
-                                <label class="form-check-label" for="exampleRadios2">
-                                  Contenido
-                                </label>
-                              </div>
+                    <hr>
+
+                    <!-- FILTROS -->
+                    <div style="text-align: left;">
+                        <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="pdf" name="checks[]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    PDF
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="txt" name="checks[]" >
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    Txt
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
+
+                        <!-- SEGUNDA FILA DE TIPOS -->
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="word" name="checks[]" >
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    Word
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="all" name="checks[]" >
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                    Todos
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LISTA DE CHECKBOX SELECCIONADOS -->
+                        <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
+                        <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
                         <hr>
-
-                        <!-- FILTROS -->
-                        <div style="text-align: left;">
-                            <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="pdf" name="checks[]">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          PDF
-                                        </label>
-                                      </div>
-                                </div>
-
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="txt" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Txt
-                                        </label>
-                                      </div>
-                                </div>
-                            </div>
-
-
-                            <!-- SEGUNDA FILA DE TIPOS -->
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="word" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Word
-                                        </label>
-                                      </div>
-                                </div>
-
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="all" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Todos
-                                        </label>
-                                      </div>
-                                </div>
-                            </div>
-
-                            <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
-                            <hr>
-                            
-
-                            <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
-                            <div class="multi_select_box">
-                                <select class="multi_select" id="nivel_select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-
                         
-                              
+
+                        <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
+                        <div class="multi_select_box">
+                            <select class="multi_select" id="nivel_select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
                         </div>
+
+                    
                         
-
-
-                    </form>
+                    </div>
                     
-                    
-                </div>
 
 
+                </form>
+                
+                
             </div>
+
+
+        </div>
 
 <!-- TABLAAAAAAAAAAAA   -->
 
@@ -213,28 +212,34 @@
                 <!-- SEGUNO CONTAINER-->
                 <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; background-color:#57638F; color:#ffffff; ">
 
-                    <h2 style="margin-top:10px;">Lista de Archivos <i class="fa fa-question-circle" id="help" aria-hidden="true" style="cursor: pointer" onclick="ayuda();"></i></h2>
+                   
+                    <h2 style="margin-top:10px; margin-bottom:15px">Mi Carpeta <i class="fa fa-question-circle" id="help" aria-hidden="true" style="cursor: pointer" onclick="ayuda();"></i></h2>
+                       
+                   
+                    
                     <div class="container" style="margin-bottom: 10px; ">
                         <div class="container" style="border: 0px solid #d0d0d0;; border-radius: 5px; overflow-y: scroll; height: 400px; ">
                             <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px; ">
+
                                 <thead style="text-align:center; background-color:#98bd9d; color:#ffffff">
                                     <tr>
                                         <th width="20%">Nombre</th>
                                         <th width="10%">Fecha</th>
-                                        <th width="10%">Tipo</th>
+                                        <th width="5%">Tipo</th>
                                         <th width="10%">Tamaño</th>
-                                        <th width="10%">Nivel</th>
-                                        <th width="10%">Usuario</th>
-                                        <th width="10%">Descargar</th>
-                                        <th width="10%">Previsualizar</th>
-                                        <th width="10%">Analizar</th>
+                                        <th width="5%">Nivel</th>
+                                        <th width="20%">Usuario</th>
+                                        <th width="5%">D</th>
+                                        <th width="5%">P</th>
+                                        <th width="5%">A</th>
+                                        <th width="5%">I</th>
                                     </tr>
                                 </thead>
+                                
 
                                 <?php
 
-                                    switch($nivel){
-                                        case 1:
+                                    
                                             $sql = "SELECT  archivos.idArchivos,
                                                             usuarios.nombreUsuario, 
                                                             usuarios.nivelUsuario,
@@ -249,51 +254,7 @@
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
                                                     WHERE usuarios.idUsuario = $id_usuario;";
-                                            break;
-                                        case 2:
-                                            $sql = "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo 
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario;";
-                                            break;
-                                        case 3:
-                                            $sql= "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo 
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario";
-                                            break;
-
-                                        case 4:
-                                            "SELECT  archivos.idArchivos,
-                                                    usuarios.nombreUsuario, 
-                                                    usuarios.nivelUsuario,
-                                                    usuarios.idUsuario,
-                                                    archivos.ruta,
-                                                    archivos.nombreArchivo, 
-                                                    archivos.tipoArchivo, 
-                                                    archivos.sizeArchivo, 
-                                                    archivos.fechaArchivo
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 3;";
-                                            break;
-                                    }
+                                           
 
                                     $result = mysqli_query($link, $sql);
                                     //var_dump($sql);
@@ -313,7 +274,7 @@
 
 
                                 <tr style="text-align:center;">
-                                        <td><b><?php echo $nombreArchivo; ?></b></td>
+                                        <td><?php echo $nombreArchivo; ?></td>
                                         <td><?php echo $fechaArchivo; ?></td>
                                         <td><?php echo $tipoArchivo; ?></td>
                                         <td><?php echo $sizeArchivo; ?></td>
@@ -327,6 +288,7 @@
                                         <?php }else{?>
                                             <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                         <?php } ?>
+                                        <td><a href="#"><button class="btn_x_file" type="button" style="background-color:crimson; border-radius:10px;"><img src="../resources/img/icons/cross-flat.png" width="30px" height="32px" alt=""></button></a></td>
                                         
                                 </tr>
 
@@ -345,8 +307,6 @@
 
             
         </div>
-
-        
 
 
         </div>
@@ -407,7 +367,7 @@
     <!-- AYUDA -->
     <script>
         function ayuda(){
-            swal("¡Bienvenido al Archivero!", "Este espacio te permitirá ver los archivos que han subido tus compañeros, he aqui algunos tips: \n\n - Podrás buscar archivos rapidamente con la barra de busqueda. \n\n Las acciones disponibles para los archivos son: \n\n * D: Descargar \n * A: Analizar \n * P: Previsualizar \n\n OJO: Hay tipos de archivos que no contaran con todas las opciones disponibles", "info");
+            swal("Bienvenido a tu carpeta", "Este espacio es exclusivo para que puedas ver los archivos que has subido, he aqui algunos tips: \n\n - Podrás buscar tus archivos rapidamente con la barra de busqueda. \n\n Las acciones disponibles para tus archivos son: \n\n* I: Inhabilitar \n * D: Descargar \n * A: Analizar \n * P: Previsualizar \n\n OJO: Hay tipos de archivos que no contaran con todas las opciones disponibles", "info");
         }
 
 

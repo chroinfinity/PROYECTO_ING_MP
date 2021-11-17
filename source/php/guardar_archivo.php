@@ -22,9 +22,17 @@
         echo "<script>alert('El archivo presenta un error, por facor cargue otro...'); window.location='../vistasusser/subir_Archivo.php'</script>";
     }
 
+    //tratamiento de nombre:
+    $text= $_POST["nameFile"];
+    $text_lower= strtolower($text);
+    $replace = array(".", " ", ",", ";");
+    $new_text = str_replace($replace, "", $text_lower);
+
+    echo($new_text);
+    //fin tratamiento:
 
     $nombre_original_archivo= $_FILES["file"]["name"];
-    $nombre_nuevo_archivo = $_POST["nameFile"] . "." . strtolower(pathinfo($nombre_original_archivo,PATHINFO_EXTENSION));
+    $nombre_nuevo_archivo = $new_text . "." . strtolower(pathinfo($nombre_original_archivo,PATHINFO_EXTENSION));
     $permitidos = array("image/gif", "image/png","image/jpg","image/jpeg","audio/*","audio/mpeg","audio/ogg","video/mp4","application/octet-stream", "text/plain", "text/x-php", "application/pdf", "application/x-httpd-php","application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel","application/x-httpd-php-source");
     $limite_kb= 10000; //10 MB
 
