@@ -219,15 +219,15 @@
                             <table class="table table-hover bg-white" id="tablaGestorDataTable" style="border-radius: 5px; ">
                                 <thead style="text-align:center; background-color:#98bd9d; color:#ffffff">
                                     <tr>
-                                        <th width="20%">Nombre</th>
+                                        <th width="30%">Nombre</th>
                                         <th width="10%">Fecha</th>
-                                        <th width="10%">Tipo</th>
+                                        <th width="5%">Tipo</th>
                                         <th width="10%">Tamaño</th>
-                                        <th width="10%">Nivel</th>
-                                        <th width="10%">Usuario</th>
-                                        <th width="10%">Descargar</th>
-                                        <th width="10%">Previsualizar</th>
-                                        <th width="10%">Analizar</th>
+                                        <th width="5%">Nivel</th>
+                                        <th width="20%">Usuario</th>
+                                        <th width="5%">D</th>
+                                        <th width="5%">P</th>
+                                        <th width="5%">A</th>
                                     </tr>
                                 </thead>
 
