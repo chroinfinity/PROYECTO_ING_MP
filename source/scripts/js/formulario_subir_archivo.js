@@ -45,7 +45,7 @@ function cargarArchivoCSV()
         $('#file').focus();
     }else{
         if(!expresiones.nombre.test(nombre_archivo)){
-            swal("Por favor escribe bien el nombre");
+            swal("Cuidado con el nombre", "Por favor escribe bien el nombre, los siguientes caracteres son válidos: \n\n - Letras\n -Numeros \n -Guion bajo y guión medio", "warning");
             
             returnError= true;
             $('#nameFile').focus();
