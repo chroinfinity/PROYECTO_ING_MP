@@ -1,3 +1,33 @@
+<?php
+
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] == 4){
+                header("Location: ../vistasadmin/home_admin.php");
+            }
+        }
+    }else{
+        header("Location: ../index.php");
+    }
+
+
+    //Captura de variables de sesion (USUARIO-ADMIN)
+    $id_usuario = $_SESSION['id'];
+    $nombre_usuario = $_SESSION['nombreUsuario'];
+    $nivel = $_SESSION['nivelUsuario'];
+    $habilitado = $_SESSION['habilitarUsuario'];
+    $correo_usuario = $_SESSION['correoUsuario'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,35 +68,7 @@
 </head>
 
 <!-- CODIGO PHP-->
-<?php
 
-    //conexion a la BDD e inicio de sesión.
-    include '../php/connection.php';
-
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
-    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
-    if (isset($_SESSION['id'])) {
-        if(isset($_SESSION['nivelUsuario'] )){
-            if($_SESSION['nivelUsuario'] == 4){
-                header("Location: ../vistasadmin/home_admin.php");
-            }
-        }
-    }else{
-        header("Location: ../index.php");
-    }
-
-
-    //Captura de variables de sesion (USUARIO-ADMIN)
-    $id_usuario = $_SESSION['id'];
-    $nombre_usuario = $_SESSION['nombreUsuario'];
-    $nivel = $_SESSION['nivelUsuario'];
-    $habilitado = $_SESSION['habilitarUsuario'];
-    $correo_usuario = $_SESSION['correoUsuario'];
-
-?>
 
 
 <body>
@@ -248,7 +250,7 @@
                                                             
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario;";
+                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1;";
                                             break;
                                         case 2:
                                             $sql = "SELECT  archivos.idArchivos,
@@ -262,7 +264,7 @@
                                                             archivos.fechaArchivo 
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario;";
+                                                    WHERE (usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario) AND archivos.estado = 1;";
                                             break;
                                         case 3:
                                             $sql= "SELECT  archivos.idArchivos,
@@ -276,7 +278,7 @@
                                                             archivos.fechaArchivo 
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario";
+                                                    WHERE archivos.estado = 1 AND (usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario) ;";
                                             break;
 
                                         case 4:
@@ -291,7 +293,7 @@
                                                     archivos.fechaArchivo
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 3;";
+                                                    WHERE usuarios.nivelUsuario <= 3 AND archivos.estado = 1;";
                                             break;
                                     }
 

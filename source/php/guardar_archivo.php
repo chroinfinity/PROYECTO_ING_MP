@@ -77,9 +77,9 @@
                 $subida= move_uploaded_file($ruta_tmp,$ruta); // <--- subida de archivo
                 //registro de información en BDD:
                 $sql= "INSERT INTO archivos 
-                        (nombreArchivo,tipoArchivo,sizeArchivo,fk_usuarios_idUsuario,ruta) 
+                        (nombreArchivo,tipoArchivo,sizeArchivo,fk_usuarios_idUsuario,ruta,estado) 
                         VALUES 
-                        ('$nombre_nuevo_archivo','$tipo_archivo','$tam_archivo','$id_usuario','$ruta')";
+                        ('$nombre_nuevo_archivo','$tipo_archivo','$tam_archivo','$id_usuario','$ruta',1)";
                 
                 
                 //Ejecución de query:

@@ -20,16 +20,18 @@
             $asunto = $_GET['asunto'];
             $email = $_GET['email'];
             $mensaje = $_GET['mensaje_correo'];
+            
+            $email_envio= "a19310188@ceti.mx";
 
             //construccion de correo:
             $header = "From: noreply@example.com" . "\r\n";
-            $header.= "Reply-To: noreply@exmaple.com" . "\r\n";
+            $header.= "Reply-To: '$email'" . "\r\n";
             $header.= "Enviado desde PACKFILE- Ussers" . "\r\n";
             $header.= "X-Mailer: PHP/" . phpversion();
 
-            $mensajecompleto = $mensaje . "\n Datos de Usuario: \n Nombre de usuario: ". $_SESSION['nombreUsuario'] . "\nEmail: " . $_SESSION['correoUsuario'];
+            $mensajecompleto = "HAS RECIBIDO UN MENSAJE DE SOLICITUD DE AYUDA DE PACKFILE: \n\n".$mensaje . "\n\n Datos de Usuario: \n Nombre de usuario: ". $_SESSION['nombreUsuario'] . "\nEmail de usuario: " . $_SESSION['correoUsuario'];
             $asuntofinal = "PACK-FILE: " . $asunto;
-            $mail = @mail($email,$asuntofinal,$mensajecompleto,$header);
+            $mail = @mail($email_envio,$asuntofinal,$mensajecompleto,$header);
 
             if($mail){
                 echo "<script>alert('Gracias por enviarnos mensaje, un administrador se pondrá pronto en contacto contigo')</script>";

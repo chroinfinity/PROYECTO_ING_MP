@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../resources/img/icons/logo_ico.ico">
-    <title>Ayuda</title>
-
-      <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- FONTS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Rose&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
-
-    <!--STYLE SHEETS -->
-    <link rel="stylesheet" href="../css/ussers/styles.css">
-    <link rel="stylesheet" href="../css/ussers/btn.css">
-    <link rel="stylesheet" href="../css/ussers/ayuda.css">
-
-    <!--FONTAWESOME -->
-    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
-
-</head>
-
-<!-- CODIGO PHP-->
 <?php
 
     //conexion a la BDD e inicio de sesión.
@@ -56,6 +27,38 @@
     $correo_usuario = $_SESSION['correoUsuario'];
 
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../resources/img/icons/logo_ico.ico">
+    <title>Ayuda</title>
+
+      <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Red+Rose&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap">
+
+    <!--STYLE SHEETS -->
+    <link rel="stylesheet" href="../css/ussers/styles.css">
+    <link rel="stylesheet" href="../css/ussers/btn.css">
+    <link rel="stylesheet" href="../css/ussers/ayuda.css">
+
+    <!--FONTAWESOME -->
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css">
+
+</head>
+
+<!-- CODIGO PHP-->
+
 
 
 <body>
