@@ -1,3 +1,41 @@
+
+<?php
+
+    //conexion a la BDD e inicio de sesión.
+    include '../php/connection.php';
+
+    /* var_dump($_SESSION['id']);
+    var_dump($_SESSION['nivelUsuario']); */
+
+
+    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
+    if (isset($_SESSION['id'])) {
+        if(isset($_SESSION['nivelUsuario'] )){
+            if($_SESSION['nivelUsuario'] == 4){
+                header("Location: ../vistasadmin/home_admin.php");
+            }
+        }
+    }else{
+        header("Location: ../index.php");
+    }
+
+
+    //Captura de variables de sesion (USUARIO-ADMIN)
+    $id_usuario = $_SESSION['id'];
+    $nombre_usuario = $_SESSION['nombreUsuario'];
+    $nivel = $_SESSION['nivelUsuario'];
+    $habilitado = $_SESSION['habilitarUsuario'];
+    $correo_usuario = $_SESSION['correoUsuario'];
+
+    //obtención de información de archivos a previsualizar:
+    if(isset($_GET['idArchivo'])){
+        $idArchivo = $_GET['idArchivo'];
+        $rutaArhivo = $_GET['ruta'];
+        $tipoArchivo = $_GET['tipo'];
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -29,35 +67,7 @@
 </head>
 
 <!-- CODIGO PHP-->
-<?php
 
-    //conexion a la BDD e inicio de sesión.
-    include '../php/connection.php';
-
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
-    //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
-    if (isset($_SESSION['id'])) {
-        if(isset($_SESSION['nivelUsuario'] )){
-            if($_SESSION['nivelUsuario'] == 4){
-                header("Location: ../vistasadmin/home_admin.php");
-            }
-        }
-    }else{
-        header("Location: ../index.php");
-    }
-
-
-    //Captura de variables de sesion (USUARIO-ADMIN)
-    $id_usuario = $_SESSION['id'];
-    $nombre_usuario = $_SESSION['nombreUsuario'];
-    $nivel = $_SESSION['nivelUsuario'];
-    $habilitado = $_SESSION['habilitarUsuario'];
-    $correo_usuario = $_SESSION['correoUsuario'];
-
-?>
 
 <body>
     
@@ -89,9 +99,22 @@
                 <div class="container" style="background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
                     <br>
                     <h3>Informacion de Archivo</h3>
+
+                    <?php 
+
+                        $sql = "SELECT nombreArchivo, sizeArchivo from archivos WHERE idArchivos = $idArchivo";
+                        $resultado = mysqli_query($link,$sql);
+                        $info = mysqli_fetch_assoc($resultado);
+
+                        $nombreArchivo = $info['nombreArchivo'];
+                        $tamArchivo = $info['sizeArchivo'];
+                    
+                    
+                    ?>
                     <p>
-                        Nombre del archivo: ejemplo.pdf <br>
-                        Tipo: PDF <br><br>
+                        <b>Nombre del archivo:</b> <?php echo $nombreArchivo?> <br>
+                        <b>Tipo:</b> <?php echo $tipoArchivo ?> <br>
+                        <b>Tamaño: </b><?php echo round($tamArchivo/1000000,4).'MB'; ?> <br><br>
 
                     </p>
                     <a href="../vistasusser/misarchivos.php"><button class="btn-outline-primary formulario__btn"><i class="fa fa-arrow-left" aria-hidden="true"></i> Volver</button> </a>
@@ -104,14 +127,56 @@
                 <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
                     <h1> Previsualización</h1>
 
+                    <!-- PDF -->
+                    <?php  if($tipoArchivo == "pdf") { ?>
                     <div class="container">
                         <!-- https://www.kyocode.com/2019/08/visualizar-pdfs-html/ -->
-                    <iframe src="../files/carta_test.pdf"class="responsive-iframe" style="width:500px; height:600px;min-width:200px; min-height:300px;border-radius: 5px;" frameborder="0" ></iframe>
+                    <iframe src="<?php echo $rutaArhivo; ?>"class="responsive-iframe" style="width:500px; height:600px;min-width:200px; min-height:300px;border-radius: 5px;" frameborder="0" ></iframe>
                     </div>
+
+                    <?php } ?>
+
+                    <!--- TXT -->
+                    <?php  if($tipoArchivo == "txt") { 
+                        $archivotxt = fopen($rutaArhivo, "r") or die ("Error al leer archivo"); //apertura de archivo solo lectura
+
+                    ?>
+                        
+                    <div class="container" style="text-align:justify; background-color:antiquewhite; border-radius: 5px;">
+                    <br>
+
+                        <?php
+                        while(!feof($archivotxt)){
+
+                            $linea= fgets($archivotxt);
+                            $saltodelinea = nl2br($linea);
+                            
+                    ?>
+                        <h6><?php echo $saltodelinea; ?></h6>
+                        
+                    <?php
+                
+                        }
+                    ?> <br></div>
+                    <?php 
+
+                        fclose($archivotxt); //cierre de archivo
+                    }
+                    ?>
+
+                    <!-- IMAGENES -->
+                    <?php  if($tipoArchivo == "jpg" || $tipoArchivo == "jpeg" || $tipoArchivo == "png") { ?>
+                    <div class="container">
+                        <img src="<?php echo $rutaArhivo; ?>" alt="<?php echo $nombreArchivo; ?>" class="img-thumbnail">
+                    </div>
+
+                    <?php } ?>
+
+
                     
                     
                 
-                    
+                <br>
                 </div>
             </div>
         </div>
