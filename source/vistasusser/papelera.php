@@ -101,19 +101,19 @@
 
     <!-- MODAL DELETE -->
         <!-- Modal -->
-        <div class="modal fade" id="del_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="act_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel" style="font: size 30px; color:red"><i class="fas fa-exclamation-circle" ></i> Deshabilitacion de archivo</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" style="font: size 30px; color:green"><i class="fas fa-exclamation-circle" ></i> Deshabilitacion de archivo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <form action="../php/del_file.php" method="POST">
                     <div class="modal-body">
-                        <input type="hidden" name="del_id" id="del_id">
+                        <input type="hidden" name="act_id" id="act_id">
 
-                        <h5>¿Realmente quieres deshabilitar este archivo?</h5>
+                        <h5>¿Realmente quieres habilitar este archivo?</h5>
 
                         
                     </div>
@@ -122,7 +122,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" name="delete_file" class="btn btn-danger">Si, quiero borrarlo</button>
+                        <button type="submit" name="delete_file" class="btn btn-danger">Si, quiero habilitarlo</button>
                     </div>
 
                 </form>
@@ -248,17 +248,17 @@
                 <!-- SEGUNO CONTAINER-->
                 <div class="container" style="border: 1px solid #d0d0d0;; border-radius: 5px; background-color:#57638F; color:#ffffff; ">
 
+                   
                 <div class="container row">
                     <div class="col-6">
-                    <h2 style="margin-top:10px; margin-bottom:15px">Mi Carpeta <i class="fa fa-question-circle" id="help" aria-hidden="true" style="cursor: pointer" onclick="ayuda();"></i></h2>
+                    <h2 style="margin-top:10px; margin-bottom:15px">Mi Papelera <i class="fa fa-question-circle" id="help" aria-hidden="true" style="cursor: pointer" onclick="ayuda();"></i></h2>
                     </div>
+                    
                     
                     <div class="col-6">
-                        <h2 style="margin-top:10px; margin-bottom:15px; text-align:end"><i class="fas fa-trash-restore" id="trash" style="cursor: pointer" onclick="trash();"></i></h2>
+                        <h2 style="margin-top:10px; margin-bottom:15px; text-align:end"><i class="far fa-folder-open" id="carpeta" style="cursor: pointer" onclick="mycarpeta();"></i></h2>
                     </div>
                 </div>
-                    
-                       
                    
                     
                     <div class="container" style="margin-bottom: 10px; ">
@@ -298,7 +298,7 @@
                                                             
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1;";
+                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=0;";
                                            
 
                                     $result = mysqli_query($link, $sql);
@@ -317,11 +317,9 @@
                                         $sizeArchivo = round($mostrar["sizeArchivo"]/1000000,3).' MB';
                                 ?>
 
-                                <tbody>
+                                
                                 <tr style="text-align:center;">
 
-                                        
-                                        
                                         <td><?php echo $nombreArchivo; ?></td>
                                         <td><?php echo $fechaArchivo; ?></td>
                                         <td><?php echo $tipoArchivo; ?></td>
@@ -336,13 +334,13 @@
                                         <?php }else{?>
                                             <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                         <?php } ?>
-                                        <td><a href="#"><button class="btn_x_file del_btn" id="del_btn" type="button" onclick="del_modal_id(<?php echo $idArchivo; ?>)" style="background-color:crimson; border-radius:10px;"><img src="../resources/img/icons/cross-flat.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <td><a href="#"><button class="btn_y_file act_btn" id="act_btn" type="button" onclick="act_modal_id(<?php echo $idArchivo; ?>)" style="background-color:green; border-radius:10px;"><img src="../resources/img/icons/palomita.png" width="30px" height="32px" alt=""></button></a></td>
                                         
                                 </tr>
                                 
 
                                 <?php } ?>
-                                </tbody>
+                                
                             </table>
                         </div>
                     </div>
@@ -386,11 +384,11 @@
         }); */
 
 
-        function del_modal_id(id_archivo){
-            $('#del_modal').modal('show');
+        function act_modal_id(id_archivo){
+            $('#act_modal').modal('show');
             console.log(id_archivo);
 
-            $('#del_id').val(id_archivo);
+            $('#act_id').val(id_archivo);
         }
     </script>
 
@@ -449,12 +447,13 @@
     <!-- AYUDA -->
     <script>
         function ayuda(){
-            swal("Bienvenido a tu carpeta", "Este espacio es exclusivo para que puedas ver los archivos que has subido, he aqui algunos tips: \n\n - Podrás buscar tus archivos rapidamente con la barra de busqueda. \n\n Las acciones disponibles para tus archivos son: \n\n* I: Inhabilitar \n * D: Descargar \n * A: Analizar \n * P: Previsualizar \n\n OJO: Hay tipos de archivos que no contaran con todas las opciones disponibles", "info");
+            swal("Bienvenido a tu papelera", "Este espacio es exclusivo para que puedas ver tus archivos inactivos, he aqui algunos tips: \n\n - Podrás buscar tus archivos rapidamente con la barra de busqueda. \n\n Las acciones disponibles para tus archivos son: \n\n* H: Habilitar \n * D: Descargar \n * A: Analizar \n * P: Previsualizar \n\n OJO: Hay tipos de archivos que no contaran con todas las opciones disponibles \n\n * Los archivos que se encuentran en esta sección no son visibles a los demás usuarios.", "info");
         }
-        
-        function trash(){
-            window.location='papelera.php';
+
+        function mycarpeta(){
+            window.location='micarpeta.php';
         }
+
 
     </script>
 
