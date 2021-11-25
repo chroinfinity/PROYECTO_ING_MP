@@ -14,7 +14,7 @@
 
     //metodo de envio de correo
     //if(isset($_POST['submit'])){
-        if(!empty($_GET['name']) && !empty($_GET['asunto']) && !empty($_GET['email']) && !empty($_GET['mensaje_correo'])){
+        if(!empty($_GET['name']) && !empty($_GET['asunto']) && !empty($_GET['mensaje_correo'])){
             //rescate de variables:
             $nombre = $_GET['name'];
             $asunto = $_GET['asunto'];

@@ -110,10 +110,9 @@
                         <!-- FORMULARIO: CORREO-->
                         
                         <div class="formulario__grupo" id="grupo__email">
-                        <label for="email" class="form-label">* Correo:</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Introduce tu correo...">
-
-                        <p class="formulario__input-error">El correo no es válido.</p>
+                            El correo se enviará de parte de la cuenta: <b><?php echo $correo_usuario?></b>
+                        <!-- <label for="email" class="form-label">* Correo:</label> -->
+                
                         </div>
                     </div>
 

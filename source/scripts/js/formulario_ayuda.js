@@ -4,7 +4,8 @@ const button = document.getElementById('submitButton')
 
 //Rescate de variables:
 const nombre= document.getElementById('name');
-const email= document.getElementById('email');
+
+//const email= document.getElementById('email');
 const asunto_var= document.getElementById('asunto');
 const mensaje_correo= document.getElementById('mensaje_correo');
 
@@ -23,10 +24,11 @@ const expresiones = {
 //campos validos o no (valor booleano)
 //OBJETO:
 const formIsValid = {
-    correo: false,
+    
     mensaje: false,
     name: false,
     asunto: false,
+    //correo: true
 }
 
 //se evita que el formulario se envie
@@ -55,7 +57,7 @@ nombre.addEventListener('change', (e) =>{
 })
 
 //validación correo
-email.addEventListener('change', (e) =>{
+/*email.addEventListener('change', (e) =>{
     //console.log(e.target)
 
     if(expresiones.correo.test(email.value)){
@@ -69,7 +71,7 @@ email.addEventListener('change', (e) =>{
         document.getElementById('grupo__email').classList.add('formulario__grupo-incorrecto');
         document.querySelector('#grupo__email .formulario__input-error').classList.add('formulario__input-error-activo');
     }
-})
+}) */
 
 //validación descripción
 mensaje_correo.addEventListener('change', (e) =>{
@@ -86,7 +88,7 @@ mensaje_correo.addEventListener('change', (e) =>{
         document.getElementById('grupo__descripcion').classList.add('formulario__grupo-incorrecto');
         document.querySelector('#grupo__descripcion .formulario__input-error').classList.add('formulario__input-error-activo');
     }
-})
+}) 
 
 //validación asunto
 asunto_var.addEventListener('change', (e) =>{

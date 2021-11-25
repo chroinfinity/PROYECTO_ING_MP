@@ -122,7 +122,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" name="delete_file" class="btn btn-danger">Si, quiero borrarlo</button>
+                        <button type="submit" name="delete_file" class="btn btn-danger">Si, quiero deshabilitarlo</button>
                     </div>
 
                 </form>
