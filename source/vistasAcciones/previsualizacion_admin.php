@@ -40,6 +40,12 @@
         $idArchivo = $_GET['idArchivo'];
         $rutaArhivo = $_GET['ruta'];
         $tipoArchivo = $_GET['tipo'];
+
+
+        $sql = "SELECT fk_usuarios_idUsuario FROM archivos WHERE idArchivos = $idArchivo";
+        $resultado = mysqli_query($link, $sql);
+        $info = mysqli_fetch_assoc($resultado);
+        $idUsuarioArchivo = $info['fk_usuarios_idUsuario'];
     }
 
 ?>
@@ -142,10 +148,10 @@
                     <iframe src="<?php echo $rutaArhivo; ?>"class="responsive-iframe" style="width:500px; height:600px;min-width:200px; min-height:300px;border-radius: 5px;" frameborder="0" ></iframe>
                     </div>
 
-                    <?php } ?>
+                    <?php } 
 
-                    <!--- TXT -->
-                    <?php  if($tipoArchivo == "txt") { 
+                    //  TXT
+                     elseif ($tipoArchivo == "txt") { 
                         $archivotxt = fopen($rutaArhivo, "r") or die ("Error al leer archivo"); //apertura de archivo solo lectura
 
                     ?>
@@ -170,17 +176,32 @@
 
                         fclose($archivotxt); //cierre de archivo
                     }
-                    ?>
+                    
 
-                    <!-- IMAGENES -->
-                    <?php  if($tipoArchivo == "jpg" || $tipoArchivo == "jpeg" || $tipoArchivo == "png") { ?>
+                    // IMAGENES
+                    elseif($tipoArchivo == "jpg" || $tipoArchivo == "jpeg" || $tipoArchivo == "png") { ?>
                     <div class="container">
                         <img src="<?php echo $rutaArhivo; ?>" alt="<?php echo $nombreArchivo; ?>" class="img-thumbnail">
                     </div>
 
+                    <?php }
+
+                    //otro tipo de archivos no compatibles
+                    else { ?>
+                    <div class="container" style="color:white; background-color:#57638F; ">
+
+                        <?php if($tipoArchivo == "doc" || $tipoArchivo =="docx"){ ?>
+                            <i class="fas fa-file-word fa-4x" style="margin-top:20px; margin-bottom:10px;"></i>
+                            
+
+                        <?php }elseif($tipoArchivo == "ppt" || $tipoArchivo =="pptx"){ ?>
+                            <i class="fas fa-file-powerpoint fa-4x" style="margin-top:20px; margin-bottom:10px;"></i>
+                        <?php } ?>
+                     
+                     <h4> Archivo no compatible para visualizar</h4>
+                     <br>
+                    </div>
                     <?php } ?>
-
-
                     
                     
                 

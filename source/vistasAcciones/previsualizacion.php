@@ -72,7 +72,7 @@
 <body>
     
     <div class="" style="background-color: #ffffff;">
-        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="index.html"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
+        <img src="../resources/img/icons/LOGO_LARGE.png" style="width: 200px;margin-left: 23px; margin-top: auto;"><a href="../php/logout.php"><img class="float-end" src="../resources/img/icons/logout.png" style="width: 50px;margin-top: 10px;margin-right: 10px;"></a>
     </div>
     <div>
 
@@ -82,8 +82,8 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/home.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/misarchivos.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Mis archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/subirArchivos.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Subir archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/misarchivos.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Mis archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/subir_Archivo.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/ayuda.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
                 </div>
@@ -124,7 +124,7 @@
             </div>
 
             <div class="col-md">
-                <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
+            <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
                     <h1> Previsualización</h1>
 
                     <!-- PDF -->
@@ -134,10 +134,10 @@
                     <iframe src="<?php echo $rutaArhivo; ?>"class="responsive-iframe" style="width:500px; height:600px;min-width:200px; min-height:300px;border-radius: 5px;" frameborder="0" ></iframe>
                     </div>
 
-                    <?php } ?>
+                    <?php } 
 
-                    <!--- TXT -->
-                    <?php  if($tipoArchivo == "txt") { 
+                    //  TXT
+                     elseif ($tipoArchivo == "txt") { 
                         $archivotxt = fopen($rutaArhivo, "r") or die ("Error al leer archivo"); //apertura de archivo solo lectura
 
                     ?>
@@ -162,17 +162,32 @@
 
                         fclose($archivotxt); //cierre de archivo
                     }
-                    ?>
+                    
 
-                    <!-- IMAGENES -->
-                    <?php  if($tipoArchivo == "jpg" || $tipoArchivo == "jpeg" || $tipoArchivo == "png") { ?>
+                    // IMAGENES
+                    elseif($tipoArchivo == "jpg" || $tipoArchivo == "jpeg" || $tipoArchivo == "png") { ?>
                     <div class="container">
                         <img src="<?php echo $rutaArhivo; ?>" alt="<?php echo $nombreArchivo; ?>" class="img-thumbnail">
                     </div>
 
+                    <?php }
+
+                    //otro tipo de archivos no compatibles
+                    else { ?>
+                    <div class="container" style="color:white; background-color:#57638F; ">
+
+                        <?php if($tipoArchivo == "doc" || $tipoArchivo =="docx"){ ?>
+                            <i class="fas fa-file-word fa-4x" style="margin-top:20px; margin-bottom:10px;"></i>
+                            
+
+                        <?php }elseif($tipoArchivo == "ppt" || $tipoArchivo =="pptx"){ ?>
+                            <i class="fas fa-file-powerpoint fa-4x" style="margin-top:20px; margin-bottom:10px;"></i>
+                        <?php } ?>
+                     
+                     <h4> Archivo no compatible para visualizar</h4>
+                     <br>
+                    </div>
                     <?php } ?>
-
-
                     
                     
                 

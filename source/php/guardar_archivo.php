@@ -33,7 +33,7 @@
 
     $nombre_original_archivo= $_FILES["file"]["name"];
     $nombre_nuevo_archivo = $new_text . "." . strtolower(pathinfo($nombre_original_archivo,PATHINFO_EXTENSION));
-    $permitidos = array("image/gif", "image/png","image/jpg","image/jpeg","audio/*","audio/mpeg","audio/ogg","video/mp4","application/octet-stream", "text/plain", "text/x-php", "application/pdf", "application/x-httpd-php","application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel","application/x-httpd-php-source");
+    $permitidos = array("image/gif", "image/png","image/jpg","image/jpeg","audio/*","audio/mpeg","audio/ogg","video/mp4","application/octet-stream", "text/plain", "text/x-php", "application/pdf","application/vnd.ms-powerpoint","application/msword","application/vnd.openxmlformats-officedocument.presentationml.presentation","application/x-httpd-php","application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel","application/x-httpd-php-source");
     $limite_kb= 10000; //10 MB
 
     $dir= "../files/".$id_usuario ."/";  //directorio a donde se almacenan archivos
@@ -97,9 +97,7 @@
             }
 
             
-            
-
-
+    
         }else{
             echo "<script>alert('El archivo es demasiado pesado (+10MB)'); window.location='../vistasusser/subir_Archivo.php'</script>"; 
         }
