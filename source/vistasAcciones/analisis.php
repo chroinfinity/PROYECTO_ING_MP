@@ -189,8 +189,7 @@
                 //echo $arrayListo[$i].'NOP </br>';
             }
         }
-
-        
+ 
 
         //Palabra sobrante 
         if(strlen($temp)>0){
@@ -317,9 +316,6 @@
         $diccionario = $diccionario;
     }
 
-    
-
-
 
     ############## ANALIZAR DOCX ##########################################
 
@@ -350,50 +346,43 @@
 
 
             //=========DOCX===========
+
+
+            /* $phpWord = \PhpOffice\PhpWord\IOFactory::createReader('Word2007'); 
+    $phpword = $phpWord->load('text.doc'); */
+
+    function docx2text($filename) {
+        return readZippedXML($filename, "word/document.xml");
+    }
     
-
-            /*Name of the document file*/
-            $document = $ruta;
-
-            /**Function to extract text*/
-            function extracttext($filename) {
-                //Check for extension
-                $ext = end(explode('.', $filename));
-            
-
-                //if its docx file
-                if($ext == 'docx'){
-                    $dataFile = "word/document.xml";
-                }
-            
-                //else it must be odt file
-                else
-                $dataFile = "content.xml";     
-
-                //Create a new ZIP archive object
-                $zip = new ZipArchive;
-
-                // Open the archive file
-                if (true === $zip->open($filename)) {
-                    // If successful, search for the data file in the archive
-                    if (($index = $zip->locateName($dataFile)) !== false) {
-                        // Index found! Now read it to a string
-                        $text = $zip->getFromIndex($index);
-                        // Load XML from a string
-                        // Ignore errors and warnings
-                        $xml = DOMDocument::loadXML($text, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
-                        // Remove XML formatting tags and return the text
-                        return strip_tags($xml->saveXML());
-                    }
-                    //Close the archive file
-                    $zip->close();
-                }
-
-                // In case of failure return a message
-                return "File not found";
+    function readZippedXML($archiveFile, $dataFile) {
+        // Create new ZIP archive
+        $zip = new ZipArchive;
+    
+        // Open received archive file
+        if (true === $zip -> open($archiveFile)) {
+        // If done, search for the data file in the archive
+        if (($index = $zip -> locateName($dataFile)) !== false) {
+            // If found, read it to the string
+            $data = $zip -> getFromIndex($index);
+            // Close archive file
+            $zip -> close();
+            // Load XML from a string
+            // Skip errors and warnings
+            $xml = new DOMDocument();
+            $xml -> loadXML($data, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+            // Return data without XML formatting tags
+            return strip_tags($xml -> saveXML());
         }
-
-        echo extracttext($document);
+        $zip -> close();
+        }
+    
+        // In case of failure return empty string
+        return "";
+    }
+    
+    echo docx2text($ruta); // Save this contents to file
+           
     }
 
 

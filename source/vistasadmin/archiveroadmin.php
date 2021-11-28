@@ -297,12 +297,13 @@
         </div>
 
         </div>
-    </div>
+    
 
     <!-- funciones datatable -->
     <script type="text/javascript">
         $(document).ready(function(){
             var table = $('#tablaGestorDataTable').DataTable({
+
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
@@ -326,7 +327,7 @@
             });
 
 
-            /*//Se crea una fila en el head de la tabla y se cloma para caa columna
+            //Se crea una fila en el head de la tabla y se cloma para caa columna
             $('#tablaGestorDataTable thead tr').clone(true).appendTo('#tablaGestorDataTable thead');
 
             //funciones de busqueda por columna
@@ -343,7 +344,7 @@
                     }
                 });
 
-            });*/
+            });
 
         });
 
