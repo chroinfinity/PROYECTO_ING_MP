@@ -138,6 +138,12 @@
 
         //Caracteres y palabras
         $texto = file_get_contents($ruta);
+
+        echo "<prev>";
+        echo $texto;
+        echo "</prev>";
+
+
         $limpia = eliminar_acentos($texto);
         $minusculas = mb_strtolower($limpia, 'UTF-8');
         $arrayListo = str_split($minusculas);
@@ -148,6 +154,114 @@
         
         //Número de caracteres
         $numeroCaracteres =  count($arrayListo);
+
+        //Palabras
+        $diccionario = array();
+        $temp = "";
+
+        $flag = false;
+        for ($i=0; $i < count($arrayListo); $i++) { 
+            if(in_array($arrayListo[$i], $letras)){
+                //echo $arrayListo[$i].' -> Agregado</br>';
+                $temp = $temp.$arrayListo[$i];
+                $flag = true;
+            }else{
+    
+                //Al menos contiene un caracter valido
+    
+                if($flag){
+                    //echo "Recolectado: ".$temp.'</br>';
+                    $flag = false;
+                    $numeroPalabras = $numeroPalabras + 1;
+                    //Agregamos la palbra 
+    
+                    //Primera vez
+                    if(!isset($diccionario[$temp])){
+                        $diccionario[$temp] = 1;
+                    }else{
+                        //Ya existe
+                        $diccionario[$temp] = $diccionario[$temp] + 1;
+                    }
+    
+                    $temp = "";
+    
+                }
+                //echo $arrayListo[$i].'NOP </br>';
+            }
+        }
+
+        
+
+        //Palabra sobrante 
+        if(strlen($temp)>0){
+            //echo "Recolectado: ".$temp.'</br>';
+            //Agregamos la palbra 
+            $numeroPalabras = $numeroPalabras + 1;
+            //Primera vez
+            if(!isset($diccionario[$temp])){
+                $diccionario[$temp] = 1;
+            }else{
+                //Ya existe
+                $diccionario[$temp] = $diccionario[$temp] + 1;
+            }
+            $temp = "";
+        }
+
+
+        $diccionario_acomodado = arsort($diccionario);
+        $diccionario = $diccionario;
+
+        
+
+        
+    }
+
+    ### ANALIZAR PDF ###################################################################################33
+
+    if($extensionArchivo == 'pdf'){
+
+        //Caracteres y palabras
+        $parseador = new \Smalot\PdfParser\Parser();
+        $documentoPDF = $parseador->parseFile($ruta);
+        $contenidoPDF = $documentoPDF->getText();
+
+        //test de parrafos y lineas:
+         //Lineas y parrafos
+         /*
+         for($i=0;$i<strlen($contenidoPDF);$i++)
+         {
+             // Mostramos cada uno de los caracteres...
+             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
+             echo "<br>".$contenidoPDF[$i];
+         } //fin test */
+
+
+        //impresion de contenido puro SIN PROCESAR del parsser: El Elemento HTML <pre> (o Texto HTML Preformateado) representa texto preformateado
+        /*$texto = $documentoPDF->getText();
+        echo "<pre>";
+        echo $texto;
+        echo "</pre>"; */
+
+
+        $arrayPDF = str_split($contenidoPDF);
+
+
+        $array_contenido= $arrayPDF ;
+
+
+       /* //impresion de contenido inicio
+        for ($i=0; $i < count($array_contenido); $i++){
+            echo ("linea: ".$i.":".$array_contenido[$i]);
+        } //impresion de contenido - fin */
+
+        //Caracteres
+        $numeroCaracteres =  count($arrayPDF);
+
+        //Palabras y recurrencia
+        $pegado = implode($arrayPDF);
+        $limpia = eliminar_acentos($pegado);
+        $minusculas = mb_strtolower($limpia, 'UTF-8');
+        $arrayListo = str_split($minusculas);
 
         //Palabras
         $diccionario = array();
@@ -199,9 +313,116 @@
             $temp = "";
         }
 
-        
+        $diccionario_acomodado = arsort($diccionario);
+        $diccionario = $diccionario;
+    }
 
+    
+
+
+
+    ############## ANALIZAR DOCX ##########################################
+
+    if($extensionArchivo == 'docx'){
+        //echo "Not Available";
+
+        $path_to_file = $ruta;
+
+        /*$fileHandle = fopen($path_to_file, 'r');
+        $line       = @fread($fileHandle, filesize($path_to_file));
+        $lines      = explode(chr(0x0D), $line);
+        $response   = '';
         
+        foreach ($lines as $current_line) {
+            
+            $pos = strpos($current_line, chr(0x00));
+            
+            if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
+                
+            } else {
+                $response .= $current_line . ' ';
+            }
+        }
+        
+        $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
+
+        echo $response; */ //VERSION 1
+
+
+            //=========DOCX===========
+    
+
+            /*Name of the document file*/
+            $document = $ruta;
+
+            /**Function to extract text*/
+            function extracttext($filename) {
+                //Check for extension
+                $ext = end(explode('.', $filename));
+            
+
+                //if its docx file
+                if($ext == 'docx'){
+                    $dataFile = "word/document.xml";
+                }
+            
+                //else it must be odt file
+                else
+                $dataFile = "content.xml";     
+
+                //Create a new ZIP archive object
+                $zip = new ZipArchive;
+
+                // Open the archive file
+                if (true === $zip->open($filename)) {
+                    // If successful, search for the data file in the archive
+                    if (($index = $zip->locateName($dataFile)) !== false) {
+                        // Index found! Now read it to a string
+                        $text = $zip->getFromIndex($index);
+                        // Load XML from a string
+                        // Ignore errors and warnings
+                        $xml = DOMDocument::loadXML($text, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+                        // Remove XML formatting tags and return the text
+                        return strip_tags($xml->saveXML());
+                    }
+                    //Close the archive file
+                    $zip->close();
+                }
+
+                // In case of failure return a message
+                return "File not found";
+        }
+
+        echo extracttext($document);
+    }
+
+
+     ############## ANALIZAR DOC ##########################################
+
+     if($extensionArchivo == 'doc'){
+        //echo "Not Available";
+
+        $path_to_file = $ruta;
+
+        $fileHandle = fopen($path_to_file, 'r');
+        $line       = @fread($fileHandle, filesize($path_to_file));
+        $lines      = explode(chr(0x0D), $line);
+        $response   = '';
+        
+        foreach ($lines as $current_line) {
+            
+            $pos = strpos($current_line, chr(0x00));
+            
+            if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
+                
+            } else {
+                $response .= $current_line . ' ';
+            }
+        }
+        
+        $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
+
+        echo $response;
     }
 
 ?>
@@ -234,7 +455,31 @@
 </head>
 
 <!-- CODIGO PHP-->
+<style>
 
+    table {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+    }
+
+    thead {
+        flex: 0 0 auto;
+    }
+
+    tbody {
+        flex: 1 1 auto;
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+</style>
 
 <body>
     
@@ -292,18 +537,20 @@
 
 
     <!-- TABLA DE PALABRAS -->
+    <h2 style="margin-top:20px; text-align:center;">ANALISIS DE CONTENIDO</h2>
      <!--Tabla con el analisis-->
-     <div class="container-fluid" style="margin-top:20px">
-    	<div class="row justify-content-center">
+     <div class="container" style="margin-top:20px; background-color:#ffffff; border-radius:5px; margin-top:20px; height: 600px;overflow: scroll;">
+    	<div class="row justify-content-center" >
     		<div class="col-10">
 
-    			<table class="table table-bordered table-hover">
+                 
+    			<table class="table table-fixed" style="margin-top:20px;">
 
                     <thead>
                         <tr>
 
                             <th>Palabra</th>
-                            <th>Número de veces que aparece</th>
+                            <th># Repeticiones</th>
                             
                         </tr>
                     </thead>
