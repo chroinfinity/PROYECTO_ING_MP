@@ -119,6 +119,8 @@
 
         //Lineas y parrafos
 
+        //var_dump(file($ruta));
+
         foreach(file($ruta) as $linea) {
             $actual = strlen($linea);
             if($actual == 2 and $anterior > 2){
@@ -139,9 +141,9 @@
         //Caracteres y palabras
         $texto = file_get_contents($ruta);
 
-        echo "<prev>";
+        /*echo "<prev>";
         echo $texto;
-        echo "</prev>";
+        echo "</prev>";*/
 
 
         $limpia = eliminar_acentos($texto);
@@ -207,15 +209,47 @@
         }
 
 
-        $diccionario_acomodado = arsort($diccionario);
-        $diccionario = $diccionario;
+
 
         
+        //FILTRADO DE PLABRAS QUE SOLO APARECEN UNA VEZ:
+        $diccionariofiltrado = array();
+        foreach ($diccionariofiltrado as $key => $value) {
+            
+            echo($value);
+        }
+
+
+        foreach($diccionario as $key => $value){
+            if($value > 1){
+                $diccionariofiltrado[$key] = $value;
+            }
+        }
+
+        
+
+        foreach ($diccionario as $key => $value) {
+            echo ("Key:".$key);
+            echo("Value:".$value."\n\n");
+        }
+
+        foreach ($diccionariofiltrado as $key => $value) {
+            echo ("Key:".$key);
+            echo($value);
+        }
+        //----
+        
+        
+
+        //acomodo de diccionario acomodado:
+        $diccionario_acomodado = arsort($diccionario);
+
+        $diccionario = $diccionario;
 
         
     }
 
-    ### ANALIZAR PDF ###################################################################################33
+    ### ANALIZAR PDF ###################################################################################
 
     if($extensionArchivo == 'pdf'){
 
@@ -223,6 +257,9 @@
         $parseador = new \Smalot\PdfParser\Parser();
         $documentoPDF = $parseador->parseFile($ruta);
         $contenidoPDF = $documentoPDF->getText();
+
+
+        var_dump($contenidoPDF);
 
         //test de parrafos y lineas:
          //Lineas y parrafos
@@ -243,6 +280,8 @@
 
 
         $arrayPDF = str_split($contenidoPDF);
+
+        var_dump($arrayPDF);
 
 
         $array_contenido= $arrayPDF ;
@@ -313,6 +352,8 @@
         }
 
         $diccionario_acomodado = arsort($diccionario);
+
+        
         $diccionario = $diccionario;
     }
 
@@ -381,7 +422,73 @@
         return "";
     }
     
-    echo docx2text($ruta); // Save this contents to file
+
+    $contenido_word = docx2text($ruta); // Save this contents into a string
+    echo $contenido_word; 
+
+    $limpia = eliminar_acentos($contenido_word);
+    $minusculas = mb_strtolower($limpia, 'UTF-8');
+    //impresion de contenido "limpio"
+    echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+
+    $arraylisto = str_split($minusculas);
+
+    $array_tmp= array(); //arreglo temporal para vaciar espacios
+    echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
+    foreach ($arraylisto as $key => $value) {
+        if($value != " " && $value != ""){
+            $array_tmp[]= $value;
+        }
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n"); 
+    }
+
+    /* echo("IMPRESION DE ARREGLO TRABAJADO SIN ESPACIOS, DOCX");
+    foreach ($array_tmp as $key => $value) {
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");
+    } */
+
+
+    $numeroCaracteres = count($arraylisto);
+
+    //Palabras
+    $diccionario = array();
+    $temp = "";
+
+    $flag = false;
+    for ($i=0; $i < count($arraylisto); $i++) { 
+        if(in_array($arraylisto[$i], $letras)){
+            //echo $arrayListo[$i].' -> Agregado</br>';
+            $temp = $temp.$arraylisto[$i];
+            $flag = true;
+        }else{
+
+            //Al menos contiene un caracter valido
+
+            if($flag){
+                //echo "Recolectado: ".$temp.'</br>';
+                $flag = false;
+                $numeroPalabras = $numeroPalabras + 1;
+                //Agregamos la palbra 
+
+                //Primera vez
+                if(!isset($diccionario[$temp])){
+                    $diccionario[$temp] = 1;
+                }else{
+                    //Ya existe
+                    $diccionario[$temp] = $diccionario[$temp] + 1;
+                }
+
+                $temp = "";
+
+            }
+            //echo $arrayListo[$i].'NOP </br>';
+        }
+    }
+        //Acomodo de diccionario de palabras:
+        $diccionario_acomodado = arsort($diccionario);
+        
            
     }
 
