@@ -259,7 +259,14 @@
         $contenidoPDF = $documentoPDF->getText();
 
 
-        var_dump($contenidoPDF);
+        var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
+        $contenidobreakeadoPDF = $documentoPDF->getText();
+        
+
+        //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
+        $pdfText= nl2br($contenidobreakeadoPDF);
+
+        echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
         //test de parrafos y lineas:
          //Lineas y parrafos
@@ -392,6 +399,8 @@
             /* $phpWord = \PhpOffice\PhpWord\IOFactory::createReader('Word2007'); 
     $phpword = $phpWord->load('text.doc'); */
 
+
+    //FUNCION PARA CONTAR PALABRAS REPETIDAS:
     function docx2text($filename) {
         return readZippedXML($filename, "word/document.xml");
     }
@@ -425,6 +434,7 @@
 
     $contenido_word = docx2text($ruta); // Save this contents into a string
     echo $contenido_word; 
+
 
     $limpia = eliminar_acentos($contenido_word);
     $minusculas = mb_strtolower($limpia, 'UTF-8');
@@ -489,9 +499,57 @@
         //Acomodo de diccionario de palabras:
         $diccionario_acomodado = arsort($diccionario);
         
-           
-    }
 
+
+        //FUNCION PARA DATOS DE ANALISIS
+
+    $source= 'archivodocxtest_limpio.docx';
+
+    $zip = new ZipArchive;
+    $doc_file = $ruta;
+    $zip->open($doc_file);
+    $zip->extractTo('./tmp');
+
+
+    // CARGA DE ARCHIVO:
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load("./tmp/docProps/app.xml");
+
+    //print $xmlDoc->saveXML();
+
+    //
+    $x = $xmlDoc->documentElement;
+    foreach ($x->childNodes AS $item) {
+        if($item->nodeName == "Lines"){
+            echo "NUMERO DE LINEAS: ".$item->nodeValue;
+            $numeroLineas = $item->nodeValue;
+            
+    
+    
+        }
+
+        if($item->nodeName == "Words"){
+            echo "NUMERO DE PALABRAS: ".$item->nodeValue;
+            $numeroPalabras = $item->nodeValue;
+        }
+
+        if($item->nodeName == "Characters"){
+            echo "NUMERO DE CARACTERES: ".$item->nodeValue;
+            $numeroCaracteres = $item->nodeValue;
+    
+        }
+
+        if($item->nodeName == "Paragraphs"){
+            echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
+            $numeroParrafos = $item->nodeValue;
+
+        }
+    //print $item->nodeName . " = " . $item->nodeValue . "<br>";
+    }
+           
+    } //FIN DOC
+
+    
 
      ############## ANALIZAR DOC ##########################################
 
@@ -504,21 +562,24 @@
         $line       = @fread($fileHandle, filesize($path_to_file));
         $lines      = explode(chr(0x0D), $line);
         $response   = '';
+        $contador_lineas = 0;
         
         foreach ($lines as $current_line) {
+            $contador_lineas++;
             
             $pos = strpos($current_line, chr(0x00));
             
             if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
                 
             } else {
-                $response .= $current_line . ' ';
+                $response .= $current_line . ' -PITO';
             }
         }
         
         $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
 
         echo $response;
+        echo "numero de lineas:".$contador_lineas; 
     }
 
 ?>
