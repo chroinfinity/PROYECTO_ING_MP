@@ -1,7 +1,10 @@
 <?php
 
     //conexion a la BDD e inicio de sesión.
-    include '../php/connection.php';
+
+use function PHPSTORM_META\type;
+
+include '../php/connection.php';
 
     /* var_dump($_SESSION['id']);
     var_dump($_SESSION['nivelUsuario']); */
@@ -259,14 +262,51 @@
         $contenidoPDF = $documentoPDF->getText();
 
 
-        var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
+        //var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
         $contenidobreakeadoPDF = $documentoPDF->getText();
         
 
         //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
         $pdfText= nl2br($contenidobreakeadoPDF);
 
-        echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
+
+        //test conteo de parrafos:
+        for($i=0;$i<strlen($pdfText);$i++)
+        {
+            //contar saltos de linea:
+            if(strpos($pdfText[$i],'n')){
+                echo "linea #".$i."contiene doble salto de linea";
+            }
+        }
+
+
+        //separacin por saltos de linea
+        $arreglo_lineas = explode("\n",$contenidoPDF);
+        $numeroLineas = 0;
+        // Recorremos cada carácter de la cadena
+        for($i=0;$i<count($arreglo_lineas);$i++)
+        {
+            // Mostramos cada uno de los caracteres...
+            // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
+            echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
+            $numeroLineas++;
+
+            /* //contar saltos de linea:
+            if(strpos($arreglo_lineas[$i],'\r')){
+                echo "linea #".$i."contiene doble salto de linea";
+            }
+
+            if($i == 43){
+                echo "LINEA 43 CONTENIDO: ".$arreglo_lineas[$i];
+                echo gettype($arreglo_lineas[$i]);
+            } */
+
+            
+        }
+
+
+
+        //echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
         //test de parrafos y lineas:
          //Lineas y parrafos
@@ -288,7 +328,7 @@
 
         $arrayPDF = str_split($contenidoPDF);
 
-        var_dump($arrayPDF);
+        //var_dump($arrayPDF);
 
 
         $array_contenido= $arrayPDF ;
