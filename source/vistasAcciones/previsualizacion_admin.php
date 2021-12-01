@@ -186,6 +186,13 @@
 
                     <?php }
 
+                    // WORD (.docx)
+                    elseif($tipoArchivo == "docx"){ ?>
+
+                    <a href="prueba.docx">My Word Document</a>
+
+                    <?php }
+
                     //otro tipo de archivos no compatibles
                     else { ?>
                     <div class="container" style="color:white; background-color:#57638F; ">
