@@ -26,6 +26,15 @@
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
 
+    //VARIABLES PARA QUERYS INICIALES: Nivel - Tipo (Si en dado caso no recibe datos se ponen datos default)
+    $type_query= "";
+
+    if(isset($_GET['type_query'])){
+        $type_query= $_GET['type_query'];
+    }
+
+    var_dump("TYPE: ".$type_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -138,108 +147,89 @@
 
         <div class="col-md-2 cuadro_filtros_2">
 
-            <a href="misarchivos.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Archivero</button></a>
-            
-            <hr>
-            <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
+                <a href="micarpeta.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Archivero</button></a>
 
-            <!--BUSCADOR -->
-            <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
-                <form action="#" id="form" name="form">
+                <hr>
+                <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
 
-                    <!-- FILTROS -->
-                    
-                    <div style="text-align: left;">
-                    
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="titulo" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                            Titulo
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="contenido">
-                            <label class="form-check-label" for="exampleRadios2">
-                            Contenido
-                            </label>
-                        </div>
-                    </div>
+                <!--BUSCADOR FORMULARIO -->
+                <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
+                    <form action="micarpeta.php" id="form" name="form" method="get">
 
-                    <hr>
-
-                    <!-- FILTROS -->
-                    <div style="text-align: left;">
-                        <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="pdf" name="checks[]">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    PDF
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="col-sm">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="txt" name="checks[]" >
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Txt
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- SEGUNDA FILA DE TIPOS -->
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="word" name="checks[]" >
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Word
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="col-sm">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="all" name="checks[]" >
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                    Todos
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                        <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                        <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
+                        <!-- FILTROS -->
                         <hr>
-                        
 
-                        <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
-                        <div class="multi_select_box">
-                            <select class="multi_select" id="nivel_select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
+                        <!-- FILTROS -->
+                        <div style="text-align: left;">
+                            <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="type_query" value="" name="type_query" <?php if($type_query == ""){?>checked<?php } ?> >
+                                        <label class="form-check-label" for="All">
+                                          Todos
+                                        </label>
+                                      </div>
+                                </div>
+
+                                <div class="col-sm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="type_query" value="pdf" name="type_query" <?php if($type_query == "pdf"){?>checked<?php } ?> >
+                                        <label class="form-check-label" for="Pdf">
+                                          PDF
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+
+
+                            <!-- SEGUNDA FILA DE TIPOS -->
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="type_query" value="docx" name="type_query" <?php if($type_query == "docx"){?>checked<?php } ?> >
+                                        <label class="form-check-label" for="Word">
+                                          Word
+                                        </label>
+                                      </div>
+                                </div>
+
+                                <div class="col-sm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="type_query" value="txt" name="type_query" <?php if($type_query == "txt"){?>checked<?php } ?> >
+                                        <label class="form-check-label" for="txt">
+                                          TXT
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <!-- LISTA DE CHECKBOX SELECCIONADOS -->
+                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
+                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
+                            <hr>
+                            
+
+                            
+
+                            <br>
+                            <div class="btn_enviar">
+                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                            </div>
+
+                        
+                              
                         </div>
-
-                    
                         
-                    </div>
+
+
+                    </form>
                     
+                    
+                </div>
 
 
-                </form>
-                
-                
             </div>
-
-
-        </div>
 
 <!-- TABLAAAAAAAAAAAA   -->
 
@@ -284,8 +274,15 @@
 
                                 <?php
 
-                                    
-                                            $sql = "SELECT  archivos.idArchivos,
+                                //AQUI COMIENZA LA MAGIA DE LAS QUERYS: CONDICIONES DE BUSCADOR Y NIVELES DE ACCESO
+
+                                    //NOTA!: LA QUERY POR DEFAULT SE EJECUTA EN CASO DE NO TENER DATOS DE TYPE NI LEVEL
+
+                                    //No se ha seleccionado ningun filtro: QUERY DEFAULT
+                                    if($type_query == ""){
+                                        
+                                            //USUARIO NIVEL 1: SIN FILTROS
+                                                $sql = "SELECT  archivos.idArchivos,
                                                             usuarios.nombreUsuario, 
                                                             usuarios.nivelUsuario,
                                                             usuarios.idUsuario,
@@ -298,7 +295,54 @@
                                                             
                                                     FROM archivos 
                                                     INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1;";
+                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1 ;";
+                                                
+
+                                    }
+
+                                    //sSe ha seleccionado un nivel, pero no un tipo:
+                                    
+                                    if($type_query != ""){
+                                        
+                                        //USUARIO NIVEL 1: SIN FILTROS
+                                            $sql = "SELECT  archivos.idArchivos,
+                                                        usuarios.nombreUsuario, 
+                                                        usuarios.nivelUsuario,
+                                                        usuarios.idUsuario,
+                                                        archivos.ruta,
+                                                        archivos.nombreArchivo, 
+                                                        archivos.tipoArchivo, 
+                                                        archivos.sizeArchivo, 
+                                                        archivos.fechaArchivo
+                                                         
+                                                        
+                                                FROM archivos 
+                                                INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1 AND archivos.tipoArchivo = '$type_query';";
+                                            
+
+                                } 
+
+
+
+
+
+                                //AQUI TERMINA LA IMPLEMENTACIÓN
+                                    
+                                            /* $sql = "SELECT  archivos.idArchivos,
+                                                            usuarios.nombreUsuario, 
+                                                            usuarios.nivelUsuario,
+                                                            usuarios.idUsuario,
+                                                            archivos.ruta,
+                                                            archivos.nombreArchivo, 
+                                                            archivos.tipoArchivo, 
+                                                            archivos.sizeArchivo, 
+                                                            archivos.fechaArchivo
+                                                             
+                                                            
+                                                    FROM archivos 
+                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1;"; */
                                            
 
                                     $result = mysqli_query($link, $sql);

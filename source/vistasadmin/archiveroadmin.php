@@ -26,6 +26,22 @@
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
 
+
+    //VARIABLES PARA QUERYS INICIALES: Nivel - Tipo (Si en dado caso no recibe datos se ponen datos default)
+    $level_query=0;
+    $type_query= "";
+
+    if(isset($_GET['level_query'])){
+        $level_query= $_GET['level_query'];
+    }
+
+    if(isset($_GET['type_query'])){
+        $type_query= $_GET['type_query'];
+    }
+
+    var_dump("LEVEL_QUERY: ".$level_query);
+    var_dump("TYPE: ".$type_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -99,110 +115,110 @@
         
         <div class="row">
 
-            <div class="col-md-2 cuadro_filtros_2">
+        <div class="col-md-2 cuadro_filtros_2">
 
-                
+            <a href="#"><button class="btn_analizar" type="button" style="background-color:red; margin-top:10px; margin-bottom:10px; width:100%;">Papelera</button></a>
 
-                <hr>
-                <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
+            <hr>
+            <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
 
-                <!--BUSCADOR -->
-                <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
-                    <form action="#" id="form" name="form">
+            <!--BUSCADOR FORMULARIO -->
+            <div class="container" style="background-color: rgb(255, 255, 255); display:flex; justify-content: left;">
+                <form action="archiveroadmin.php" id="form" name="form" method="get">
 
-                        <!-- FILTROS -->
-                        
-                        <div style="text-align: left;">
-                           
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="titulo" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                  Titulo
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="busqueda" id="busqueda" value="contenido">
-                                <label class="form-check-label" for="exampleRadios2">
-                                  Contenido
-                                </label>
-                              </div>
+                    <!-- FILTROS -->
+                    <hr>
+
+                    <!-- FILTROS -->
+                    <div style="text-align: left;">
+                        <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="type_query" value="" name="type_query" <?php if($type_query == ""){?>checked<?php } ?> >
+                                    <label class="form-check-label" for="All">
+                                    Todos
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="type_query" value="pdf" name="type_query" <?php if($type_query == "pdf"){?>checked<?php } ?> >
+                                    <label class="form-check-label" for="Pdf">
+                                    PDF
+                                    </label>
+                                </div>
+                            </div>
                         </div>
 
+
+                        <!-- SEGUNDA FILA DE TIPOS -->
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="type_query" value="docx" name="type_query" <?php if($type_query == "docx"){?>checked<?php } ?> >
+                                    <label class="form-check-label" for="Word">
+                                    Word
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="type_query" value="txt" name="type_query" <?php if($type_query == "txt"){?>checked<?php } ?> >
+                                    <label class="form-check-label" for="txt">
+                                    TXT
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LISTA DE CHECKBOX SELECCIONADOS -->
+                        <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
+                        <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
                         <hr>
-
-                        <!-- FILTROS -->
-                        <div style="text-align: left;">
-                            <h6 style="font-family: 'Red Rose', serif;">FORMATO</h6>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="pdf" name="checks[]">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          PDF
-                                        </label>
-                                      </div>
-                                </div>
-
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="txt" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Txt
-                                        </label>
-                                      </div>
-                                </div>
-                            </div>
-
-
-                            <!-- SEGUNDA FILA DE TIPOS -->
-                            <div class="row">
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="word" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Word
-                                        </label>
-                                      </div>
-                                </div>
-
-                                <div class="col-sm">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="all" name="checks[]" >
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                          Todos
-                                        </label>
-                                      </div>
-                                </div>
-                            </div>
-
-                            <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
-                            <hr>
-                            
-
-                            <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
-                            <div class="multi_select_box">
-                                <select class="multi_select" id="nivel_select">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-
                         
-                              
+
+                        <h6 style="font-family: 'Red Rose', serif;">NIVEL</h6>
+                        <div class="multi_select_box">
+                            <select class="multi_select" name="level_query" id="level_query">
+                                <option value="0" <?php if($level_query == 0){?>selected<?php } ?> >Todos</option>
+
+                                <?php //LIMITACION DE SELECTOR PARA USUARIOS ?>
+                                <?php if($nivel > 1){?>
+                                <option id="level_query" value="1" <?php if($level_query == 1){?>selected<?php } ?> >1</option>
+                                <?php } ?>
+
+                                <?php if($nivel> 2){?>
+                                <option id="level_query" value="2" <?php if($level_query == 2){?>selected<?php } ?>>2</option>
+                                <?php } ?>
+
+                                <?php if($nivel > 3){?>
+                                <option id="level_query" value="3" <?php if($level_query == 3){?>selected<?php } ?> >3</option>
+                                <?php } ?>
+
+                            </select>
                         </div>
+
+                        <br>
+                        <div class="btn_enviar">
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
+
+                    
                         
-
-
-                    </form>
+                    </div>
                     
-                    
-                </div>
 
 
+                </form>
+                
+                
             </div>
+
+
+        </div>
 
 <!-- TABLAAAAAAAAAAAA   -->
 
@@ -231,18 +247,313 @@
 
                                 <?php
 
-                                    $sql= "SELECT  archivos.idArchivos,
-                                                    usuarios.nombreUsuario, 
-                                                    usuarios.nivelUsuario,
-                                                    usuarios.idUsuario,
-                                                    archivos.ruta,
-                                                    archivos.nombreArchivo, 
-                                                    archivos.tipoArchivo, 
-                                                    archivos.sizeArchivo, 
-                                                    archivos.fechaArchivo
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 3 AND archivos.estado = 1;";
+                                      //AQUI COMIENZA LA MAGIA DE LAS QUERYS: CONDICIONES DE BUSCADOR Y NIVELES DE ACCESO
+
+                                    //NOTA!: LA QUERY POR DEFAULT SE EJECUTA EN CASO DE NO TENER DATOS DE TYPE NI LEVEL
+
+                                    //No se ha seleccionado ningun filtro: QUERY DEFAULT
+                                    if($type_query == "" && $level_query == 0){
+                                        switch($nivel){
+                                            //USUARIO NIVEL 1: SIN FILTROS
+                                            case 1:
+                                                $sql = "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                 
+                                                                
+                                                        FROM archivos 
+                                                        INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                        WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1;";
+                                                break;
+
+                                                //USUARIO NIVEL 2: SIN FILTROS 
+                                                case 2:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE (usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario) AND archivos.estado = 1;";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: SIN FILTROS 
+                                                case 3:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE archivos.estado = 1 AND (usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario) ;";
+                                                    break;
+
+                                                //USUARIO NIVEL 4: SIN FILTROS
+                                                case 4:
+                                                     $sql =  "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                FROM archivos 
+                                                                INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                                WHERE usuarios.nivelUsuario <= 3 AND archivos.estado = 1;";
+                                                    break;
+                                        }
+                                    }
+
+                                    //sSe ha seleccionado un nivel, pero no un tipo:
+                                    if($type_query == "" && $level_query != 0){
+                                        switch($nivel){
+                                            //USUARIO NIVEL 1: Siempre verá todos los archivos que son solo suyos
+                                            case 1:
+                                                $sql = "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                 
+                                                                
+                                                        FROM archivos 
+                                                        INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                        WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1;";
+                                                break;
+
+                                                //USUARIO NIVEL 2: Selecciona nivel 1 
+                                                case 2:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE (usuarios.nivelUsuario = $level_query) AND archivos.estado = 1;";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: Selecciona nivel 1 o 2
+                                                case 3:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE (usuarios.nivelUsuario = $level_query) AND archivos.estado = 1;";
+                                                    break;
+
+                                                //USUARIO NIVEL 4: Selecciona nivel 1,2 o 3
+                                                case 4:
+                                                    $sql=  "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                FROM archivos 
+                                                                INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                                WHERE (usuarios.nivelUsuario = $level_query) AND archivos.estado = 1;";
+                                                    break;
+                                        }
+                                    }
+
+
+                                    //Se ha seleccionado un tipo, pero no un nivel:
+                                    if($type_query != "" && $level_query == 0){
+                                        //echo("SI TIENE ALGO EL PINCHE QUERY DE TYPE");
+                                        switch($nivel){
+                                            //USUARIO NIVEL 1: Todos los archivos de un solo tipo para el usuario
+                                            case 1:
+                                                $sql = "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                 
+                                                                
+                                                        FROM archivos 
+                                                        INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                        WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1 AND archivos.tipoArchivo = '$type_query';";
+                                                break;
+
+                                                //USUARIO NIVEL 2: Selecciona algun tipo, y puede visualizar cualquier nivel 1 y su propio nivel
+                                                case 2:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE (usuarios.nivelUsuario < 2 || usuarios.idUsuario = $id_usuario ) AND archivos.estado = 1 AND archivos.tipoArchivo ='$type_query';";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: Selecciona algun tipo y puede visualizar cualquier nivel 1,2 y su propio nivel
+                                                case 3:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE (usuarios.nivelUsuario < 3 || usuarios.idUsuario = $id_usuario ) AND archivos.estado = 1 AND archivos.tipoArchivo = '$type_query';";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: Selecciona algun tipo y puede visualizar cualquier nivel 1,2 y 3. 
+                                                case 4:
+                                                    $sql=  "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                FROM archivos 
+                                                                INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                                WHERE (usuarios.nivelUsuario <= 3 ) AND archivos.estado = 1 AND archivos.tipoArchivo = '$type_query';";
+                                                    break;
+                                        }
+                                    }
+
+
+                                    //Se ha seleccionado un tipo y un tipo nivel:
+                                    if($type_query != "" && $level_query != 0){
+                                        //echo("SI TIENE ALGO EL PINCHE QUERY DE TYPE");
+                                        switch($nivel){
+                                            //USUARIO NIVEL 1: Todos los archivos de un solo tipo para el usuario
+                                            case 1:
+                                                $sql = "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                 
+                                                                
+                                                        FROM archivos 
+                                                        INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                        WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1 AND archivos.tipoArchivo = '$type_query';";
+                                                break;
+
+                                                //USUARIO NIVEL 2: Selecciona algun tipo, y puede visualizar nivel 1 y su propio nivel
+                                                case 2:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE ((usuarios.nivelUsuario = $level_query ) AND (usuarios.nivelUsuario < 2)) AND archivos.estado = 1 AND archivos.tipoArchivo ='$type_query';";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: Selecciona algun tipo y puede visualizar cualquier nivel 1,2 y su propio nivel
+                                                case 3:
+                                                    $sql = "SELECT  archivos.idArchivos,
+                                                                    usuarios.nombreUsuario, 
+                                                                    usuarios.nivelUsuario,
+                                                                    usuarios.idUsuario,
+                                                                    archivos.ruta,
+                                                                    archivos.nombreArchivo, 
+                                                                    archivos.tipoArchivo, 
+                                                                    archivos.sizeArchivo, 
+                                                                    archivos.fechaArchivo
+                                                                     
+                                                                    
+                                                            FROM archivos 
+                                                            INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                            WHERE ((usuarios.nivelUsuario = $level_query ) AND (usuarios.nivelUsuario < 3)) AND archivos.estado = 1 AND archivos.tipoArchivo ='$type_query';";
+                                                    break;
+
+                                                //USUARIO NIVEL 3: Selecciona algun tipo y puede visualizar cualquier nivel 1,2 y 3. 
+                                                case 4:
+                                                    $sql=  "SELECT  archivos.idArchivos,
+                                                                usuarios.nombreUsuario, 
+                                                                usuarios.nivelUsuario,
+                                                                usuarios.idUsuario,
+                                                                archivos.ruta,
+                                                                archivos.nombreArchivo, 
+                                                                archivos.tipoArchivo, 
+                                                                archivos.sizeArchivo, 
+                                                                archivos.fechaArchivo
+                                                                FROM archivos 
+                                                                INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
+                                                                WHERE ((usuarios.nivelUsuario = $level_query )) AND archivos.estado = 1 AND archivos.tipoArchivo ='$type_query';";
+                                                    break;
+                                        }
+                                    }
                                             
 
                                     $result = mysqli_query($link, $sql);
@@ -327,24 +638,7 @@
             });
 
 
-            //Se crea una fila en el head de la tabla y se cloma para caa columna
-            $('#tablaGestorDataTable thead tr').clone(true).appendTo('#tablaGestorDataTable thead');
-
-            //funciones de busqueda por columna
-            $('#tablaGestorDataTable thead tr:eq(1) th').each(function(i) {
-                var title = $(this).text(); //es el nombre de la columna
-                $(this).html('<input type="text" placeholder="Buscar..." />');
-
-                $( 'input', this).on('keyup change',function (){
-                    if(table.column(i).search() !== this.value){
-                        table
-                            .column(i)
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-
-            });
+            
 
         });
 
