@@ -3,6 +3,7 @@ const dropArea = document.querySelector(".drag-area"),
 dragText = dropArea.querySelector("header"),
 button = dropArea.querySelector("button"),
 input = dropArea.querySelector("input");
+
 let file; //Variable global
 button.onclick = ()=>{
   input.click();

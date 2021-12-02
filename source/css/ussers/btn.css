@@ -12,6 +12,15 @@
     margin-right:10px;
 }
 
+.analisis_btn_back {
+    color: #57638f;
+    background-color: white;
+    background-image: none;
+    border-color: #57638f;
+    border-radius: 5px;
+   
+}
+
 .btn-outline-primary:hover {
     color: white;
     background-color:#98bd9c;
@@ -30,8 +39,8 @@
 
 .btn-filtro:hover {
     color: white;
-    background-color:#57638f;
-    border-color: #98bd9c;
+    filter: #98bd9c; 
+    border-color: #57638f;
 }
 
 .btn_descarga { 
@@ -48,9 +57,22 @@
 
 }
 
+.btn_x_file { 
+    color: white;
+    background-color:#d42954;
+    border-radius: 10px;
+
+}
+
 .btn_analizar { 
     color: white;
     background-color:#364c9b;
     border-radius: 10px;
 
 }
+
+
+
+
+
+

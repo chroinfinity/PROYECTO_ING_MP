@@ -14,7 +14,7 @@ const expresiones = {
 
 //campos validos o no (valor booleano)
 const campos = {
-    correo: false,
+    email: false,
     password: false
 }
 
@@ -75,7 +75,7 @@ formulario.addEventListener('submit',(e) => {
         console.log(e.target.email.value);
         console.log(e.target.password.value);
 
-        //Se reinicia formulario
+        //Se envía formulario
         formulario.submit();
 
         //return true;
