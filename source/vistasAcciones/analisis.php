@@ -146,6 +146,9 @@
         $minusculas = mb_strtolower($limpia, 'UTF-8');
         $arrayListo = str_split($minusculas);
 
+        //for ($i=0; $i < count($arrayListo); $i++) { 
+        //    echo $arrayListo[$i];
+        //}
         
         //Número de caracteres
         $numeroCaracteres =  count($arrayListo);
@@ -201,7 +204,6 @@
             $temp = "";
         }
 
-        
         //FILTRADO DE PLABRAS QUE SOLO APARECEN UNA VEZ:
         $diccionariofiltrado = array();
         /* foreach ($diccionariofiltrado as $key => $value) {
@@ -209,13 +211,13 @@
             echo($value);
         } */
 
-
         foreach($diccionario as $key => $value){
             if($value > 1){
                 $diccionariofiltrado[$key] = $value;
             }
         }
 
+        
         /* foreach ($diccionario as $key => $value) {
             echo ("Key:".$key);
             echo("Value:".$value."\n\n");
@@ -232,7 +234,6 @@
 
         $diccionario = $diccionario;
 
-        
     }
 
     ### ANALIZAR PDF ###################################################################################
@@ -244,18 +245,27 @@
         $documentoPDF = $parseador->parseFile($ruta);
         $contenidoPDF = $documentoPDF->getText();
 
-        //echo ($contenidoPDF);
-
 
         //var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
         $contenidobreakeadoPDF = $documentoPDF->getText();
 
+
         //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
         $pdfText= nl2br($contenidobreakeadoPDF);
 
+
+        //test conteo de parrafos:
+        /* for($i=0;$i<strlen($pdfText);$i++)
+        {
+            //contar saltos de linea:
+            if(strpos($pdfText[$i],'n')){
+                echo "linea #".$i."contiene doble salto de linea";
+            }
+        } */
+
+
         //separacin por saltos de linea
         $arreglo_lineas = explode("\n",$contenidoPDF);
-        
         $numeroLineas = 0;
         // Recorremos cada carácter de la cadena
         for($i=0;$i<count($arreglo_lineas);$i++)
@@ -264,20 +274,33 @@
             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
             //echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
             $numeroLineas++;
-
-
             
         }
 
-
-
         //echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
+        //test de parrafos y lineas:
+         //Lineas y parrafos
+         /*
+         for($i=0;$i<strlen($contenidoPDF);$i++)
+         {
+             // Mostramos cada uno de los caracteres...
+             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
+             echo "<br>".$contenidoPDF[$i];
+         } //fin test */
+
+
+        //impresion de contenido puro SIN PROCESAR del parsser: El Elemento HTML <pre> (o Texto HTML Preformateado) representa texto preformateado
+        /*$texto = $documentoPDF->getText();
+        echo "<pre>";
+        echo $texto;
+        echo "</pre>"; */
 
         $arrayPDF = str_split($contenidoPDF);
 
-        $array_contenido= $arrayPDF ;
+        //var_dump($arrayPDF);
 
+        $array_contenido= $arrayPDF ;
 
        /* //impresion de contenido inicio
         for ($i=0; $i < count($array_contenido); $i++){
@@ -378,34 +401,34 @@
             // Skip errors and warnings
             $xml = new DOMDocument();
             $xml -> loadXML($data, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
-
-
-            $xmldata = $xml->saveXML();
-            //reemplazo de saltos de línea:
-            $xmldata = str_replace("</w:p>", "\n", $xmldata);
-
             // Return data without XML formatting tags
-            return strip_tags($xmldata);
+            return strip_tags($xml -> saveXML());
         }
         $zip -> close();
         }
     
-
         // In case of failure return empty string
         return "";
     }
-    
 
     $contenido_word = docx2text($ruta); // Save this contents into a string
-    //echo $contenido_word;  
-
-
+    //echo $contenido_word; 
 
 
     $limpia = eliminar_acentos($contenido_word);
     $minusculas = mb_strtolower($limpia, 'UTF-8');
     //impresion de contenido "limpio"
-    //echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+    //echo ("ESTE ES EL CONTENIDO LIMPIO!!!!: ".$minusculas); 
+
+
+    //testing de break con word:////////////////////////////////////////////////
+   /*  $contenido_breakeado_word= nl2br($contenido_word);
+    $doc_conlineas = explode("\n",$contenido_breakeado_word);
+
+    foreach ($doc_conlineas as $key => $value) {
+        echo ("LINEA #".$key.":".$value."\n");
+    } */
+    //////////////////////////////////////////////////////777
 
     $arraylisto = str_split($minusculas);
 
@@ -416,10 +439,23 @@
             $array_tmp[]= $value;
         }
         /* echo ("Key:".$key);
-        echo("Value:".$value."/\n\n");  */
+        echo("Value:".$value."/\n\n"); */
     }
 
+
+    //ARREGLO SIN ESPACIOS
+    /* echo ("ARREGLO SIN ESPACIOS:");
+    foreach ($array_tmp as $key => $value) {
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");
+    } */
+
+    //ARREGLO SIN ESPACIOS SE PASA A ARREGLO LISTO
     $numeroCaracteres = count($arraylisto);
+    //echo "UNION DE ARREGLO LIMPIO:".(implode($array_tmp));
+
+    //var_dump($numeroCaracteres);
+
 
     //Palabras
     $diccionario = array();
@@ -458,31 +494,27 @@
         //Acomodo de diccionario de palabras:
         $diccionario_acomodado = arsort($diccionario);
         
+        //FUNCION PARA DATOS DE ANALISIS
+
+        $source= 'archivodocxtest_limpio.docx';
+
+        $zip = new ZipArchive;
+        $doc_file = $ruta;
+        $zip->open($doc_file);
+        $zip->extractTo('./tmp');
 
 
-    //FUNCION PARA DATOS DE ANALISIS -------------------- <METADATOS>
-    
-    $zip = new ZipArchive;
-    $doc_file = $ruta;
-    $zip->open($doc_file);
-    $zip->extractTo('./tmp');
+        // CARGA DE ARCHIVO:
+        $xmlDoc = new DOMDocument();
+        $xmlDoc->load("./tmp/docProps/app.xml");
 
+        //print $xmlDoc->saveXML();
 
-    // CARGA DE ARCHIVO:
-    $xmlDoc = new DOMDocument();
-    $xmlDoc->load("./tmp/docProps/app.xml");
-
-    //print $xmlDoc->saveXML();
-
-    //
-    $x = $xmlDoc->documentElement;
-    foreach ($x->childNodes AS $item) {
-        if($item->nodeName == "Lines"){
-            //echo "NUMERO DE LINEAS: ".$item->nodeValue;
-            $numeroLineas = $item->nodeValue;
-            
-    
-    
+        $x = $xmlDoc->documentElement;
+        foreach ($x->childNodes AS $item) {
+            if($item->nodeName == "Lines"){
+                //echo "NUMERO DE LINEAS: ".$item->nodeValue;
+                $numeroLineas = $item->nodeValue;
         }
 
         if($item->nodeName == "Words"){
@@ -492,7 +524,7 @@
 
         if($item->nodeName == "Characters"){
             //echo "NUMERO DE CARACTERES: ".$item->nodeValue;
-            $numeroCaracteres = $item->nodeValue;
+            //$numeroCaracteres = $item->nodeValue;
     
         }
 
@@ -501,7 +533,7 @@
             $numeroParrafos = $item->nodeValue;
 
         }
-    //print $item->nodeName . " = " . $item->nodeValue . "<br>";
+
     }
            
     } //FIN DOC
@@ -529,7 +561,7 @@
             if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
                 
             } else {
-                $response .= $current_line . ' -PITO';
+                $response .= $current_line . ' -TEST';
             }
         }
         

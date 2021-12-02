@@ -411,7 +411,17 @@
     $limpia = eliminar_acentos($contenido_word);
     $minusculas = mb_strtolower($limpia, 'UTF-8');
     //impresion de contenido "limpio"
-    //echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+    //echo ("ESTE ES EL CONTENIDO LIMPIO!!!!: ".$minusculas); 
+
+
+    //testing de break con word:////////////////////////////////////////////////
+   /*  $contenido_breakeado_word= nl2br($contenido_word);
+    $doc_conlineas = explode("\n",$contenido_breakeado_word);
+
+    foreach ($doc_conlineas as $key => $value) {
+        echo ("LINEA #".$key.":".$value."\n");
+    } */
+    //////////////////////////////////////////////////////777
 
     $arraylisto = str_split($minusculas);
 
@@ -422,10 +432,23 @@
             $array_tmp[]= $value;
         }
         /* echo ("Key:".$key);
-        echo("Value:".$value."/\n\n");  */
+        echo("Value:".$value."/\n\n"); */
     }
 
+
+    //ARREGLO SIN ESPACIOS
+    /* echo ("ARREGLO SIN ESPACIOS:");
+    foreach ($array_tmp as $key => $value) {
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");
+    } */
+
+    //ARREGLO SIN ESPACIOS SE PASA A ARREGLO LISTO
     $numeroCaracteres = count($arraylisto);
+    //echo "UNION DE ARREGLO LIMPIO:".(implode($array_tmp));
+
+    //var_dump($numeroCaracteres);
+
 
     //Palabras
     $diccionario = array();
@@ -494,7 +517,7 @@
 
         if($item->nodeName == "Characters"){
             //echo "NUMERO DE CARACTERES: ".$item->nodeValue;
-            $numeroCaracteres = $item->nodeValue;
+            //$numeroCaracteres = $item->nodeValue;
     
         }
 

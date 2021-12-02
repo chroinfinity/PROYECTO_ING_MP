@@ -214,7 +214,9 @@
                                     $xmldata = $xml->saveXML();
                                     
                                     $xmldata = str_replace("</w:p>", "\n", $xmldata);
-                                    $xmldata = str_replace("<w:tab/>", "+", $xmldata);
+                                    $xmldata = str_replace("<w:tab/>", "+", $xmldata); 
+                                 //   $xmldata = str_replace("<w:b/>", "¬", $xmldata);
+                                    $xmldata = str_replace("<w:lastRenderedPageBreak/>", "°", $xmldata);
                                     
 
                                     // Return data without XML formatting tags
@@ -231,6 +233,7 @@
                         $contenido_word = docx2text($rutaArhivo); // Save this contents into a string
                         $contenido_word = str_ireplace("\n","<br>",$contenido_word);
                         $contenido_word = str_ireplace("+","&nbsp &nbsp &nbsp &nbsp",$contenido_word);
+                        $contenido_word = str_ireplace("°","<hr color='black' noshade style='height:1px;border-width:0;color:#000000;background-color:#000000'>",$contenido_word);
                         echo '<div class="container"; style="padding-left:4%;"> <div class="container overflow-auto"; style=" padding-left: 46.3177px; padding-right: 46.3177px; padding-top: 32.3177px; padding-bottom: 46.3177px; text-align: justify; outline: 2px solid black; height: 517.64px; width: 400px; font-family:Arial; font-size:7.5px;">'.$contenido_word.'</div></div>'; 
                     }
 
