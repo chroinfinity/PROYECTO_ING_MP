@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -201,17 +197,12 @@
             $temp = "";
         }
 
-
-
-
-        
         //FILTRADO DE PLABRAS QUE SOLO APARECEN UNA VEZ:
         $diccionariofiltrado = array();
-        foreach ($diccionariofiltrado as $key => $value) {
+        /* foreach ($diccionariofiltrado as $key => $value) {
             
             echo($value);
-        }
-
+        } */
 
         foreach($diccionario as $key => $value){
             if($value > 1){
@@ -220,26 +211,22 @@
         }
 
         
-
-        foreach ($diccionario as $key => $value) {
+        /* foreach ($diccionario as $key => $value) {
             echo ("Key:".$key);
             echo("Value:".$value."\n\n");
-        }
+        } */
 
-        foreach ($diccionariofiltrado as $key => $value) {
+        /* foreach ($diccionariofiltrado as $key => $value) {
             echo ("Key:".$key);
             echo($value);
-        }
+        } */
         //----
         
-        
-
         //acomodo de diccionario acomodado:
         $diccionario_acomodado = arsort($diccionario);
 
         $diccionario = $diccionario;
 
-        
     }
 
     ### ANALIZAR PDF ###################################################################################
@@ -254,20 +241,20 @@
 
         //var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
         $contenidobreakeadoPDF = $documentoPDF->getText();
-        
+
 
         //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
         $pdfText= nl2br($contenidobreakeadoPDF);
 
 
         //test conteo de parrafos:
-        for($i=0;$i<strlen($pdfText);$i++)
+        /* for($i=0;$i<strlen($pdfText);$i++)
         {
             //contar saltos de linea:
             if(strpos($pdfText[$i],'n')){
                 echo "linea #".$i."contiene doble salto de linea";
             }
-        }
+        } */
 
 
         //separacin por saltos de linea
@@ -278,23 +265,10 @@
         {
             // Mostramos cada uno de los caracteres...
             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
-            echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
+            //echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
             $numeroLineas++;
-
-            /* //contar saltos de linea:
-            if(strpos($arreglo_lineas[$i],'\r')){
-                echo "linea #".$i."contiene doble salto de linea";
-            }
-
-            if($i == 43){
-                echo "LINEA 43 CONTENIDO: ".$arreglo_lineas[$i];
-                echo gettype($arreglo_lineas[$i]);
-            } */
-
             
         }
-
-
 
         //echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
@@ -315,14 +289,11 @@
         echo $texto;
         echo "</pre>"; */
 
-
         $arrayPDF = str_split($contenidoPDF);
 
         //var_dump($arrayPDF);
 
-
         $array_contenido= $arrayPDF ;
-
 
        /* //impresion de contenido inicio
         for ($i=0; $i < count($array_contenido); $i++){
@@ -402,34 +373,6 @@
 
         $path_to_file = $ruta;
 
-        /*$fileHandle = fopen($path_to_file, 'r');
-        $line       = @fread($fileHandle, filesize($path_to_file));
-        $lines      = explode(chr(0x0D), $line);
-        $response   = '';
-        
-        foreach ($lines as $current_line) {
-            
-            $pos = strpos($current_line, chr(0x00));
-            
-            if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
-                
-            } else {
-                $response .= $current_line . ' ';
-            }
-        }
-        
-        $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
-
-        echo $response; */ //VERSION 1
-
-
-            //=========DOCX===========
-
-
-            /* $phpWord = \PhpOffice\PhpWord\IOFactory::createReader('Word2007'); 
-    $phpword = $phpWord->load('text.doc'); */
-
-
     //FUNCION PARA CONTAR PALABRAS REPETIDAS:
     function docx2text($filename) {
         return readZippedXML($filename, "word/document.xml");
@@ -460,35 +403,27 @@
         // In case of failure return empty string
         return "";
     }
-    
 
     $contenido_word = docx2text($ruta); // Save this contents into a string
-    echo $contenido_word; 
+    //echo $contenido_word; 
 
 
     $limpia = eliminar_acentos($contenido_word);
     $minusculas = mb_strtolower($limpia, 'UTF-8');
     //impresion de contenido "limpio"
-    echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+    //echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
 
     $arraylisto = str_split($minusculas);
 
     $array_tmp= array(); //arreglo temporal para vaciar espacios
-    echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
+    //echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
     foreach ($arraylisto as $key => $value) {
         if($value != " " && $value != ""){
             $array_tmp[]= $value;
         }
-        echo ("Key:".$key);
-        echo("Value:".$value."/\n\n"); 
+        /* echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");  */
     }
-
-    /* echo("IMPRESION DE ARREGLO TRABAJADO SIN ESPACIOS, DOCX");
-    foreach ($array_tmp as $key => $value) {
-        echo ("Key:".$key);
-        echo("Value:".$value."/\n\n");
-    } */
-
 
     $numeroCaracteres = count($arraylisto);
 
@@ -529,52 +464,46 @@
         //Acomodo de diccionario de palabras:
         $diccionario_acomodado = arsort($diccionario);
         
-
-
         //FUNCION PARA DATOS DE ANALISIS
 
-    $source= 'archivodocxtest_limpio.docx';
+        $source= 'archivodocxtest_limpio.docx';
 
-    $zip = new ZipArchive;
-    $doc_file = $ruta;
-    $zip->open($doc_file);
-    $zip->extractTo('./tmp');
+        $zip = new ZipArchive;
+        $doc_file = $ruta;
+        $zip->open($doc_file);
+        $zip->extractTo('./tmp');
 
 
-    // CARGA DE ARCHIVO:
-    $xmlDoc = new DOMDocument();
-    $xmlDoc->load("./tmp/docProps/app.xml");
+        // CARGA DE ARCHIVO:
+        $xmlDoc = new DOMDocument();
+        $xmlDoc->load("./tmp/docProps/app.xml");
 
-    //print $xmlDoc->saveXML();
+        //print $xmlDoc->saveXML();
 
-    //
-    $x = $xmlDoc->documentElement;
-    foreach ($x->childNodes AS $item) {
-        if($item->nodeName == "Lines"){
-            echo "NUMERO DE LINEAS: ".$item->nodeValue;
-            $numeroLineas = $item->nodeValue;
-            
-    
-    
+        $x = $xmlDoc->documentElement;
+        foreach ($x->childNodes AS $item) {
+            if($item->nodeName == "Lines"){
+                //echo "NUMERO DE LINEAS: ".$item->nodeValue;
+                $numeroLineas = $item->nodeValue;
         }
 
         if($item->nodeName == "Words"){
-            echo "NUMERO DE PALABRAS: ".$item->nodeValue;
+            //echo "NUMERO DE PALABRAS: ".$item->nodeValue;
             $numeroPalabras = $item->nodeValue;
         }
 
         if($item->nodeName == "Characters"){
-            echo "NUMERO DE CARACTERES: ".$item->nodeValue;
+            //echo "NUMERO DE CARACTERES: ".$item->nodeValue;
             $numeroCaracteres = $item->nodeValue;
     
         }
 
         if($item->nodeName == "Paragraphs"){
-            echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
+            //echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
             $numeroParrafos = $item->nodeValue;
 
         }
-    //print $item->nodeName . " = " . $item->nodeValue . "<br>";
+
     }
            
     } //FIN DOC
@@ -602,7 +531,7 @@
             if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
                 
             } else {
-                $response .= $current_line . ' -PITO';
+                $response .= $current_line . ' -TEST';
             }
         }
         
@@ -638,10 +567,7 @@
     <!-- CHART JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-
 </head>
-
-<!-- CODIGO PHP-->
 
 
 <body>
@@ -681,8 +607,10 @@
                 <div class="container border-light" style="box-shadow: 5px 5px 5px rgba(33,37,41,0.39);text-align: center; background-color: #57638F;border-style: solid;border-color:#ffffff; border-radius: 5px; margin-top: 20px; color: white;">
                     <br>
                     <h3>Estadisticas</h3><br>
+                        <h6 style="color:#ffffff">Archivo: <div style="color:#98bd9d; padding:2px"><?php echo $nombreArchivo;?></div></h6>
+                        <hr>
                         Numero de Palabras: <h6 id="num_palabras"><?php echo $texto;?></h6> <br>
-                        Numero de Parrafos: <h6 id="num_parrafos"><?php echo $numeroParrafos;?></h6> <br>
+                        <?php if($extensionArchivo != "pdf"){  ?>Numero de Parrafos: <h6 id="num_parrafos"><?php echo $numeroParrafos;?></h6> <br> <?php } ?>
                         Numero de caracteres: <h6 id="num_caracteres"><?php echo $numeroCaracteres; ?></h6> <br>
                         Numero de Líneas: <h6 id="num_lineas"><?php echo $numeroLineas; ?></h6> <br>
                 </div>
@@ -700,7 +628,9 @@
     </div>
 
     <!-- TABLA DE PALABRAS -->
-    <h2 style="margin-top:20px; text-align:center;">ANALISIS DE CONTENIDO</h2>
+    <div class="container" style="background-color:#57638F; border-radius:5px;">
+        <h2 style="margin-top:20px; text-align:center; color:white;">ANALISIS DE CONTENIDO</h2>
+    </div>
      <!--Tabla con el analisis-->
      <div class="container" style="margin-top:20px; background-color:#ffffff; border-radius:5px; margin-top:20px; height: 600px;overflow: scroll;">
     	<div class="row justify-content-center" >
@@ -712,8 +642,8 @@
                     <thead>
                         <tr>
 
-                            <th>Palabra</th>
-                            <th># Repeticiones</th>
+                            <th style="color:#98bd9d;">Palabra</th>
+                            <th style="color:#98bd9d;"># Repeticiones</th>
                             
                         </tr>
                     </thead>
@@ -748,10 +678,11 @@
     
 </body>
 
+<?php if($extensionArchivo != "pdf"){?>
     <script>
 
-        //variables prueba:
-        num_palabras= <?php echo $numeroPalabras;?>;
+       //variables prueba:
+       num_palabras= <?php echo $numeroPalabras;?>;
         num_lineas = <?php echo $numeroLineas; ?>;
         num_parrafos = <?php echo $numeroParrafos;?>;
         num_caracteres = <?php echo $numeroCaracteres; ?>;
@@ -780,12 +711,24 @@
                     {
                         
                         backgroundColor: [
-                            '#DA380D',
-                            '#2ADA0D',
-                            '#0DDACC',
-                            '#0D12DA',
-                            '#E181EE',
-                        ],
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                        borderWidth: 1,
                         data:[num_palabras,num_lineas,num_parrafos,num_caracteres]
                     }
                 ]
@@ -797,7 +740,15 @@
                 title: {
                     display: true,
                     text: 'Analisis de documento'
-                }
+                },
+
+                legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                },
+
                 }
             },
         })
@@ -805,13 +756,89 @@
     
     </script>
 
+    <?php } ?>
+
+
+    <?php if($extensionArchivo == "pdf"){?>
+    <script>
+
+       //variables prueba:
+       num_palabras= <?php echo $numeroPalabras;?>;
+        num_lineas = <?php echo $numeroLineas; ?>;
+        num_caracteres = <?php echo $numeroCaracteres; ?>;
+
+        var label_palabras = document.getElementById('num_palabras');
+        var label_lineas = document.getElementById('num_lineas');
+        var label_caracteres = document.getElementById('num_caracteres');
+
+        //agregado de información
+        label_palabras.innerHTML= num_palabras;
+        label_lineas.innerHTML= num_lineas;
+        label_caracteres.innerHTML= num_caracteres;
+
+        //obtencion de canvas
+        let miCanvas=document.getElementById("miGrafica").getContext("2d");
+
+        //variable de libreri char: https://www.chartjs.org/docs/latest/samples/other-charts/radar-skip-points.html
+
+        var chart = new Chart(miCanvas,{
+            type: "bar",
+            data: {
+                
+                labels:["# de palabras","# de lineas","# de caracteres"],
+                datasets: [
+                    {
+                        
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                        borderWidth: 1,
+                        data:[num_palabras,num_lineas,num_caracteres]
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'Analisis de documento'
+                },
+                legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                }
+                },
+            },
+        })
+    
+    
+    </script>
+
+    <?php } ?>
+
     <!-- DO NOT TOUCH:  Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <!-- LIBRERIA CHART JS (CDN) -->
-    
-
-
 
 <footer class="container" style="text-align: center; color:#57638F">
     <br>

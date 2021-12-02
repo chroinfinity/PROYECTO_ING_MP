@@ -39,8 +39,8 @@
 
 .btn-filtro:hover {
     color: white;
-    background-color:#57638f;
-    border-color: #98bd9c;
+    filter: #98bd9c; 
+    border-color: #57638f;
 }
 
 .btn_descarga { 
@@ -70,4 +70,9 @@
     border-radius: 10px;
 
 }
+
+
+
+
+
 

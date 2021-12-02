@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -18,13 +14,12 @@
         header("Location: ../index.php");
     }
 
-
     //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
    
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];
-    echo("EL NIVEL DEL USUARIO ES: ".$nivel);
+    //echo("EL NIVEL DEL USUARIO ES: ".$nivel);
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
 
@@ -40,8 +35,8 @@
         $type_query= $_GET['type_query'];
     }
 
-    var_dump("LEVEL_QUERY: ".$level_query);
-    var_dump("TYPE: ".$type_query);
+    /* var_dump("LEVEL_QUERY: ".$level_query);
+    var_dump("TYPE: ".$type_query); */
 
 ?>
 
@@ -84,9 +79,9 @@
 
 </head>
 
+
+
 <!-- CODIGO PHP-->
-
-
 
 <body>
     <!-- PARTE SUPERIOR DE PAGE (LOGO) -->
@@ -180,8 +175,7 @@
                             </div>
 
                             <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
+                            
                             <hr>
                             
 
@@ -208,7 +202,7 @@
 
                             <br>
                             <div class="btn_enviar">
-                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                                <button type="submit" class="btn btn-filtro " style="margin-top:10px; margin-bottom:10px; width:100%;">Filtrar <i class="fas fa-filter"></i></button>
                             </div>
 
                         
@@ -560,76 +554,10 @@
                                         }
                                     }
 
-                                    
-
-                                    //AQUI TERMINÓ TU DESMADRE
-                                    /* switch($nivel){
-                                        case 1:
-                                            $sql = "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo
-                                                             
-                                                            
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado = 1;";
-                                            break;
-                                        case 2:
-                                            $sql = "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo 
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE (usuarios.nivelUsuario = 1 OR usuarios.idUsuario = $id_usuario) AND archivos.estado = 1;";
-                                            break;
-                                        case 3:
-                                            $sql= "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo 
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE archivos.estado = 1 AND (usuarios.nivelUsuario <= 2 OR usuarios.idUsuario = $id_usuario) ;";
-                                            break;
-
-                                        case 4:
-                                            $sql= "SELECT  archivos.idArchivos,
-                                                    usuarios.nombreUsuario, 
-                                                    usuarios.nivelUsuario,
-                                                    usuarios.idUsuario,
-                                                    archivos.ruta,
-                                                    archivos.nombreArchivo, 
-                                                    archivos.tipoArchivo, 
-                                                    archivos.sizeArchivo, 
-                                                    archivos.fechaArchivo
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.nivelUsuario <= 3 AND archivos.estado = 1;";
-                                            break;
-                                    } */
-
-                                    //var_dump($sql);
+                                    //resultado de query:
                                     $result = mysqli_query($link, $sql);
-                                    //var_dump($sql);
-                                    //var_dump($result);
 
+                                    //VOLCADO DE TABLAS:
                                     while($mostrar = mysqli_fetch_array($result)){
                                         $idArchivo = $mostrar["idArchivos"];
                                         $nombreUsuario_query = $mostrar["nombreUsuario"];
@@ -642,9 +570,8 @@
                                         $sizeArchivo = round($mostrar["sizeArchivo"]/1000000,3).' MB';
                                 ?>
 
-
                                 <tr style="text-align:center;">
-                                        <td><b><?php echo $nombreArchivo; ?></b></td>
+                                        <td style="font-size:small;"><b><?php echo $nombreArchivo; ?></b></td>
                                         <td><?php echo $fechaArchivo; ?></td>
                                         <td><?php echo $tipoArchivo; ?></td>
                                         <td><?php echo $sizeArchivo; ?></td>
@@ -666,8 +593,6 @@
                         </div>
                     </div>
 
-                    
-                    
                 </div>
 
             </div>
@@ -709,25 +634,6 @@
                 },
             });
 
-
-            /*//Se crea una fila en el head de la tabla y se cloma para caa columna
-            $('#tablaGestorDataTable thead tr').clone(true).appendTo('#tablaGestorDataTable thead');
-
-            //funciones de busqueda por columna
-            $('#tablaGestorDataTable thead tr:eq(1) th').each(function(i) {
-                var title = $(this).text(); //es el nombre de la columna
-                $(this).html('<input type="text" placeholder="Buscar..." />');
-
-                $( 'input', this).on('keyup change',function (){
-                    if(table.column(i).search() !== this.value){
-                        table
-                            .column(i)
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-
-            });*/
 
         });
 

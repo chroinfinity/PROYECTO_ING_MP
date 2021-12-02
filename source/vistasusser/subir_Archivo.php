@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -17,7 +13,6 @@
     }else{
         header("Location: ../index.php");
     }
-
 
     //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
@@ -58,9 +53,6 @@
     
     
 </head>
-
-<!-- CODIGO PHP-->
-
 
 <!-- PARTE SUPERIOR DE PAGE (LOGO) -->
 <header>
@@ -131,7 +123,7 @@
                                     <!-- BOTON DE RESET -->
                                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
                                         <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
-                                        <button  type="reset" id="resetButton">Limpiar</button>
+                                        <button  type="reset" id="resetButton" style="background-color:#98bd9d; border-radius: 10px; color:white;">Limpiar</button>
                                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario limpio!</p>
                                     </div>
                                 </div>
@@ -140,10 +132,11 @@
                                     <!-- BOTON DE SUBMIT -->
                                     <div class="d-grid formulario__grupo formulario__grupo-btn-enviar">
                                         <!-- <button type="submit" onclick="return validarRegistro();"  class="btn-outline-primary formulario__btn">Registrar</button> -->
-                                        <button  type="submit" id="submitButton" class="enviar_archivo">Subir</button>
+                                        <button  type="submit" id="submitButton" style="background-color:#98bd9d; border-radius: 10px; color:white;">Subir</button>
                                         <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Archivo subido correctamente</p>
                                     </div>
                                 </div>
+
 
                             </div>
                             

@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -126,6 +122,7 @@
                     
                     ?>
                     <p>
+                        
                         <b>Nombre del archivo:</b> <?php echo $nombreArchivo?> <br>
                         <b>Tipo:</b> <?php echo $tipoArchivo ?> <br>
                         <b>Tamaño: </b><?php echo round($tamArchivo/1000000,4).'MB'; ?> <br><br>
@@ -235,6 +232,16 @@
                         $contenido_word = str_ireplace("\n","<br>",$contenido_word);
                         $contenido_word = str_ireplace("+","&nbsp &nbsp &nbsp &nbsp",$contenido_word);
                         echo '<div class="container"; style="padding-left:4%;"> <div class="container overflow-auto"; style=" padding-left: 46.3177px; padding-right: 46.3177px; padding-top: 32.3177px; padding-bottom: 46.3177px; text-align: justify; outline: 2px solid black; height: 517.64px; width: 400px; font-family:Arial; font-size:7.5px;">'.$contenido_word.'</div></div>'; 
+                    }
+
+                    // ARCHIVOS MP3
+                    elseif($tipoArchivo == "mp3"){ 
+                        ?>
+                        
+                        <audio controls="controls"><source src=<?php echo $rutaArhivo; ?> type="audio/mp3"></audio> 
+                        
+                        <?php 
+                        
                     }
                     
                     //otro tipo de archivos no compatibles

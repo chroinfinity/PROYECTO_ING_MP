@@ -94,6 +94,18 @@
                         window.location.href = "../vistasAcciones/previsualizacion.php?idArchivo='.$id_archivo.'&ruta='.$ruta.'&tipo='.$tipo.'";
                     </script>';
                 }
+            }elseif($extension == "mp3"){
+                if($nivelUsuario == 4){
+                    //previsualizacion word de administrador:
+                    echo '<script language = javascript> 
+                        window.location.href = "../vistasAcciones/previsualizacion_admin.php?idArchivo='.$id_archivo.'&ruta='.$ruta.'&tipo='.$tipo.'";
+                    </script>';
+                }else{
+                    //previsualización word de usuario normal:
+                    echo '<script language = javascript> 
+                        window.location.href = "../vistasAcciones/previsualizacion.php?idArchivo='.$id_archivo.'&ruta='.$ruta.'&tipo='.$tipo.'";
+                    </script>';
+                }
             }else{
                 echo '<script language = javascript>
                     alert("Este documento no puede ser previsualizado.")

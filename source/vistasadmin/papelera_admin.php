@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -38,8 +34,8 @@
         $type_query= $_GET['type_query'];
     }
 
-    var_dump("LEVEL_QUERY: ".$level_query);
-    var_dump("TYPE: ".$type_query);
+    /* var_dump("LEVEL_QUERY: ".$level_query);
+    var_dump("TYPE: ".$type_query); */
 
 ?>
 
@@ -211,8 +207,7 @@
                         </div>
 
                         <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                        <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                        <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
+                        
                         <hr>
                         
 
@@ -239,7 +234,7 @@
 
                         <br>
                         <div class="btn_enviar">
-                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                            <button type="submit" class="btn btn-filtro " style="margin-top:10px; margin-bottom:10px; width:100%;">Filtrar <i class="fas fa-filter"></i></button>
                         </div>
 
                     
@@ -607,22 +602,8 @@
                             // aqui termina la nueva implementacion
 
                                     
-                                            /* $sql = "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo
-                                                             
-                                                            
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=0;"; */
                                            
-                                    var_dump($sql);
+                                    //var_dump($sql);
                                     $result = mysqli_query($link, $sql);
                                     
                                     //var_dump($result);
@@ -642,7 +623,7 @@
                                 
                                 <tr style="text-align:center;">
 
-                                        <td><?php echo $nombreArchivo; ?></td>
+                                        <td style="font-size:small;"><b><?php echo $nombreArchivo; ?></b></td>
                                         <td><?php echo $fechaArchivo; ?></td>
                                         <td><?php echo $tipoArchivo; ?></td>
                                         <td><?php echo $sizeArchivo; ?></td>
@@ -652,7 +633,7 @@
                                         
                                         <td><a href="../php/prev_archivo_controller.php?idArchivo=<?php echo $idArchivo?>&idUsuario=<?php echo $idUsuario_query?>&rutaFile=<?php  echo $rutaArchivo_query ?>&nameFile=<?php echo $nombreArchivo?>"><button class="btn_prev" type="button" ><img src="../resources/img/icons/previsualizar_eye.png" width="30px" height="32px" alt=""></button></a></td>
                                         
-                                        <?php if($tipoArchivo == "pdf" || $tipoArchivo == "docx" || $tipoArchivo == "txt") {?>
+                                        <?php if($tipoArchivo == "pdf" || $tipoArchivo == "docx" || $tipoArchivo == "txt" ) {?>
                                             <td><a href="../vistasAcciones/analisis_admin.php?idArchivo=<?php echo $idArchivo?>&idUsuario=<?php echo $idUsuario_query?>&rutaFile=<?php  echo $rutaArchivo_query ?>&nameFile=<?php echo $nombreArchivo?>&type=<?php echo $tipoArchivo;?>"><button class="btn_analizar" type="button"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                         <?php }else{?>
                                             <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>

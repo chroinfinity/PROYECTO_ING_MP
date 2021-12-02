@@ -2,13 +2,8 @@
 
     //conexion a la BDD e inicio de sesión.
 
-use function PHPSTORM_META\type;
 
-include '../php/connection.php';
-
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
+    include '../php/connection.php';
 
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
@@ -26,7 +21,6 @@ include '../php/connection.php';
             </script>';
         header("Location: ../index.php");
     }
-
 
 
     //obtención de datos de archivo:
@@ -56,7 +50,6 @@ include '../php/connection.php';
     $nivel = $_SESSION['nivelUsuario'];
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
-
 
 
     //Funciones auxiliares
@@ -153,9 +146,6 @@ include '../php/connection.php';
         $minusculas = mb_strtolower($limpia, 'UTF-8');
         $arrayListo = str_split($minusculas);
 
-        //for ($i=0; $i < count($arrayListo); $i++) { 
-        //    echo $arrayListo[$i];
-        //}
         
         //Número de caracteres
         $numeroCaracteres =  count($arrayListo);
@@ -211,16 +201,13 @@ include '../php/connection.php';
             $temp = "";
         }
 
-
-
-
         
         //FILTRADO DE PLABRAS QUE SOLO APARECEN UNA VEZ:
         $diccionariofiltrado = array();
-        foreach ($diccionariofiltrado as $key => $value) {
+        /* foreach ($diccionariofiltrado as $key => $value) {
             
             echo($value);
-        }
+        } */
 
 
         foreach($diccionario as $key => $value){
@@ -229,21 +216,17 @@ include '../php/connection.php';
             }
         }
 
-        
-
-        foreach ($diccionario as $key => $value) {
+        /* foreach ($diccionario as $key => $value) {
             echo ("Key:".$key);
             echo("Value:".$value."\n\n");
-        }
+        } */
 
-        foreach ($diccionariofiltrado as $key => $value) {
+        /* foreach ($diccionariofiltrado as $key => $value) {
             echo ("Key:".$key);
             echo($value);
-        }
+        } */
         //----
         
-        
-
         //acomodo de diccionario acomodado:
         $diccionario_acomodado = arsort($diccionario);
 
@@ -261,45 +244,27 @@ include '../php/connection.php';
         $documentoPDF = $parseador->parseFile($ruta);
         $contenidoPDF = $documentoPDF->getText();
 
+        //echo ($contenidoPDF);
+
 
         //var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
         $contenidobreakeadoPDF = $documentoPDF->getText();
-        
 
         //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
         $pdfText= nl2br($contenidobreakeadoPDF);
 
-
-        //test conteo de parrafos:
-        for($i=0;$i<strlen($pdfText);$i++)
-        {
-            //contar saltos de linea:
-            if(strpos($pdfText[$i],'n')){
-                echo "linea #".$i."contiene doble salto de linea";
-            }
-        }
-
-
         //separacin por saltos de linea
         $arreglo_lineas = explode("\n",$contenidoPDF);
+        
         $numeroLineas = 0;
         // Recorremos cada carácter de la cadena
         for($i=0;$i<count($arreglo_lineas);$i++)
         {
             // Mostramos cada uno de los caracteres...
             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
-            echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
+            //echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
             $numeroLineas++;
 
-            /* //contar saltos de linea:
-            if(strpos($arreglo_lineas[$i],'\r')){
-                echo "linea #".$i."contiene doble salto de linea";
-            }
-
-            if($i == 43){
-                echo "LINEA 43 CONTENIDO: ".$arreglo_lineas[$i];
-                echo gettype($arreglo_lineas[$i]);
-            } */
 
             
         }
@@ -308,28 +273,8 @@ include '../php/connection.php';
 
         //echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
-        //test de parrafos y lineas:
-         //Lineas y parrafos
-         /*
-         for($i=0;$i<strlen($contenidoPDF);$i++)
-         {
-             // Mostramos cada uno de los caracteres...
-             // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
-             echo "<br>".$contenidoPDF[$i];
-         } //fin test */
-
-
-        //impresion de contenido puro SIN PROCESAR del parsser: El Elemento HTML <pre> (o Texto HTML Preformateado) representa texto preformateado
-        /*$texto = $documentoPDF->getText();
-        echo "<pre>";
-        echo $texto;
-        echo "</pre>"; */
-
 
         $arrayPDF = str_split($contenidoPDF);
-
-        //var_dump($arrayPDF);
-
 
         $array_contenido= $arrayPDF ;
 
@@ -412,34 +357,6 @@ include '../php/connection.php';
 
         $path_to_file = $ruta;
 
-        /*$fileHandle = fopen($path_to_file, 'r');
-        $line       = @fread($fileHandle, filesize($path_to_file));
-        $lines      = explode(chr(0x0D), $line);
-        $response   = '';
-        
-        foreach ($lines as $current_line) {
-            
-            $pos = strpos($current_line, chr(0x00));
-            
-            if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
-                
-            } else {
-                $response .= $current_line . ' ';
-            }
-        }
-        
-        $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
-
-        echo $response; */ //VERSION 1
-
-
-            //=========DOCX===========
-
-
-            /* $phpWord = \PhpOffice\PhpWord\IOFactory::createReader('Word2007'); 
-    $phpword = $phpWord->load('text.doc'); */
-
-
     //FUNCION PARA CONTAR PALABRAS REPETIDAS:
     function docx2text($filename) {
         return readZippedXML($filename, "word/document.xml");
@@ -488,18 +405,18 @@ include '../php/connection.php';
     $limpia = eliminar_acentos($contenido_word);
     $minusculas = mb_strtolower($limpia, 'UTF-8');
     //impresion de contenido "limpio"
-    echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+    //echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
 
     $arraylisto = str_split($minusculas);
 
     $array_tmp= array(); //arreglo temporal para vaciar espacios
-    echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
+    //echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
     foreach ($arraylisto as $key => $value) {
         if($value != " " && $value != ""){
             $array_tmp[]= $value;
         }
-        echo ("Key:".$key);
-        echo("Value:".$value."/\n\n"); 
+        /* echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");  */
     }
 
     $numeroCaracteres = count($arraylisto);
@@ -561,7 +478,7 @@ include '../php/connection.php';
     $x = $xmlDoc->documentElement;
     foreach ($x->childNodes AS $item) {
         if($item->nodeName == "Lines"){
-            echo "NUMERO DE LINEAS: ".$item->nodeValue;
+            //echo "NUMERO DE LINEAS: ".$item->nodeValue;
             $numeroLineas = $item->nodeValue;
             
     
@@ -569,18 +486,18 @@ include '../php/connection.php';
         }
 
         if($item->nodeName == "Words"){
-            echo "NUMERO DE PALABRAS: ".$item->nodeValue;
+            //echo "NUMERO DE PALABRAS: ".$item->nodeValue;
             $numeroPalabras = $item->nodeValue;
         }
 
         if($item->nodeName == "Characters"){
-            echo "NUMERO DE CARACTERES: ".$item->nodeValue;
+            //echo "NUMERO DE CARACTERES: ".$item->nodeValue;
             $numeroCaracteres = $item->nodeValue;
     
         }
 
         if($item->nodeName == "Paragraphs"){
-            echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
+            //echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
             $numeroParrafos = $item->nodeValue;
 
         }
@@ -692,7 +609,7 @@ include '../php/connection.php';
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/home.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/misarchivos.php" style="font-family: 'Red Rose', serif;background: #ffffff;border-radius: 7px;color: #98bd9d;text-align: center;">Mis archivos</a></li>
-                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/subirArchivos.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
+                        <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/subir_Archivo.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Subir archivos</a></li>
                         <li class="nav-item"><a class="nav-link usser_nick m-lg-1 usser_nick p-lg-0.1" href="../vistasusser/ayuda.php" style="font-family: 'Red Rose', serif;background: #98bd9d;border-radius: 7px;color: rgb(255,255,255);text-align: center;">Ayuda</a></li>
                     </ul>
                 </div>
@@ -714,8 +631,10 @@ include '../php/connection.php';
                 <div class="container border-light" style="box-shadow: 5px 5px 5px rgba(33,37,41,0.39);text-align: center; background-color: #57638F;border-style: solid;border-color:#ffffff; border-radius: 5px; margin-top: 20px; color: white;">
                     <br>
                     <h3>Estadisticas</h3><br>
-                        Numero de Palabras: <h6 id="num_palabras"><?php echo $texto;?></h6> <br>
-                        Numero de Parrafos: <h6 id="num_parrafos"><?php echo $numeroParrafos;?></h6> <br>
+                        <h6 style="color:#ffffff">Archivo: <div style="color:#98bd9d; padding:2px"><?php echo $nombreArchivo;?></div></h6>
+                        <hr>
+                        Numero de Palabras: <h6 id="num_palabras"><?php echo $numeroPalabras;?></h6> <br>
+                        <?php if($extensionArchivo != "pdf"){  ?>Numero de Parrafos: <h6 id="num_parrafos"><?php echo $numeroParrafos;?></h6> <br> <?php } ?>
                         Numero de caracteres: <h6 id="num_caracteres"><?php echo $numeroCaracteres; ?></h6> <br>
                         Numero de Líneas: <h6 id="num_lineas"><?php echo $numeroLineas; ?></h6> <br>
                 </div>
@@ -734,7 +653,10 @@ include '../php/connection.php';
 
 
     <!-- TABLA DE PALABRAS -->
-    <h2 style="margin-top:20px; text-align:center;">ANALISIS DE CONTENIDO</h2>
+    <div class="container" style="background-color:#57638F; border-radius:5px;">
+        <h2 style="margin-top:20px; text-align:center; color:white;">ANALISIS DE CONTENIDO</h2>
+    </div>
+    
      <!--Tabla con el analisis-->
      <div class="container" style="margin-top:20px; background-color:#ffffff; border-radius:5px; margin-top:20px; height: 600px;overflow: scroll;">
     	<div class="row justify-content-center" >
@@ -746,8 +668,8 @@ include '../php/connection.php';
                     <thead>
                         <tr>
 
-                            <th>Palabra</th>
-                            <th># Repeticiones</th>
+                            <th style="color:#98bd9d;">Palabra</th>
+                            <th style="color:#98bd9d;"># Repeticiones</th>
                             
                         </tr>
                     </thead>
@@ -783,6 +705,7 @@ include '../php/connection.php';
     
 </body>
 
+    <?php if($extensionArchivo != "pdf"){?>
     <script>
 
        //variables prueba:
@@ -815,12 +738,24 @@ include '../php/connection.php';
                     {
                         
                         backgroundColor: [
-                            '#DA380D',
-                            '#2ADA0D',
-                            '#0DDACC',
-                            '#0D12DA',
-                            '#E181EE',
-                        ],
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                        borderWidth: 1,
                         data:[num_palabras,num_lineas,num_parrafos,num_caracteres]
                     }
                 ]
@@ -832,13 +767,101 @@ include '../php/connection.php';
                 title: {
                     display: true,
                     text: 'Analisis de documento'
-                }
+                },
+
+                legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                },
+
                 }
             },
         })
     
     
     </script>
+
+    <?php } ?>
+
+
+    <?php if($extensionArchivo == "pdf"){?>
+    <script>
+
+       //variables prueba:
+       num_palabras= <?php echo $numeroPalabras;?>;
+        num_lineas = <?php echo $numeroLineas; ?>;
+        num_caracteres = <?php echo $numeroCaracteres; ?>;
+
+        var label_palabras = document.getElementById('num_palabras');
+        var label_lineas = document.getElementById('num_lineas');
+        var label_caracteres = document.getElementById('num_caracteres');
+
+        //agregado de información
+        label_palabras.innerHTML= num_palabras;
+        label_lineas.innerHTML= num_lineas;
+        label_caracteres.innerHTML= num_caracteres;
+
+        //obtencion de canvas
+        let miCanvas=document.getElementById("miGrafica").getContext("2d");
+
+        //variable de libreri char: https://www.chartjs.org/docs/latest/samples/other-charts/radar-skip-points.html
+
+        var chart = new Chart(miCanvas,{
+            type: "bar",
+            data: {
+                
+                labels:["# de palabras","# de lineas","# de caracteres"],
+                datasets: [
+                    {
+                        
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                            ],
+                        borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                            ],
+                        borderWidth: 1,
+                        data:[num_palabras,num_lineas,num_caracteres]
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'Analisis de documento'
+                },
+                legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        }
+                }
+                },
+            },
+        })
+    
+    
+    </script>
+
+    <?php } ?>
+
 
     <!-- DO NOT TOUCH:  Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

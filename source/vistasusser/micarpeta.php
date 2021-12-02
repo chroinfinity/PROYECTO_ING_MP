@@ -3,10 +3,6 @@
     //conexion a la BDD e inicio de sesión.
     include '../php/connection.php';
 
-    /* var_dump($_SESSION['id']);
-    var_dump($_SESSION['nivelUsuario']); */
-
-
     //se realiza validación en caso de que ya exista una sesión, manejo de accesos.
     if (isset($_SESSION['id'])) {
         if(isset($_SESSION['nivelUsuario'] )){
@@ -17,7 +13,6 @@
     }else{
         header("Location: ../index.php");
     }
-
 
     //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
@@ -33,7 +28,7 @@
         $type_query= $_GET['type_query'];
     }
 
-    var_dump("TYPE: ".$type_query);
+    //var_dump("TYPE: ".$type_query);
 
 ?>
 
@@ -205,16 +200,12 @@
                             </div>
 
                             <!-- LISTA DE CHECKBOX SELECCIONADOS -->
-                            <div style="color:#57638F">Ids seleccionados en matriz: <span id="arr" style="color:#66e6b5"></span></div>
-                            <div style="color:#57638F">Ids seleccionados: <span id="str" style="color:#66e6b5"></span></div>
+                            
                             <hr>
-                            
-
-                            
 
                             <br>
                             <div class="btn_enviar">
-                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                                <button type="submit" class="btn btn-filtro " style="margin-top:10px; margin-bottom:10px; width:100%;">Filtrar <i class="fas fa-filter"></i></button>
                             </div>
 
                         
@@ -328,26 +319,9 @@
 
 
                                 //AQUI TERMINA LA IMPLEMENTACIÓN
-                                    
-                                            /* $sql = "SELECT  archivos.idArchivos,
-                                                            usuarios.nombreUsuario, 
-                                                            usuarios.nivelUsuario,
-                                                            usuarios.idUsuario,
-                                                            archivos.ruta,
-                                                            archivos.nombreArchivo, 
-                                                            archivos.tipoArchivo, 
-                                                            archivos.sizeArchivo, 
-                                                            archivos.fechaArchivo
-                                                             
-                                                            
-                                                    FROM archivos 
-                                                    INNER JOIN usuarios ON archivos.fk_usuarios_idUsuario = usuarios.idUsuario 
-                                                    WHERE usuarios.idUsuario = $id_usuario AND archivos.estado=1;"; */
                                            
 
                                     $result = mysqli_query($link, $sql);
-                                    //var_dump($sql);
-                                    //var_dump($result);
 
                                     while($mostrar = mysqli_fetch_array($result)){
                                         $idArchivo = $mostrar["idArchivos"];
@@ -366,7 +340,7 @@
 
                                         
                                         
-                                        <td><?php echo $nombreArchivo; ?></td>
+                                        <td style="font-size:small;"><b><?php echo $nombreArchivo; ?></b></td>
                                         <td><?php echo $fechaArchivo; ?></td>
                                         <td><?php echo $tipoArchivo; ?></td>
                                         <td><?php echo $sizeArchivo; ?></td>
@@ -380,7 +354,7 @@
                                         <?php }else{?>
                                             <td><a href="#"><button class="btn_analizar" type="button" style="background-color:gray"><img src="../resources/img/icons/graficas.png" width="30px" height="32px" alt=""></button></a></td>
                                         <?php } ?>
-                                        <td><a href="#"><button class="btn_x_file del_btn" id="del_btn" type="button" onclick="del_modal_id(<?php echo $idArchivo; ?>)" style="background-color:crimson; border-radius:10px;"><img src="../resources/img/icons/cross-flat.png" width="30px" height="32px" alt=""></button></a></td>
+                                        <td><a href="#"><button class="btn_x_file del_btn" id="del_btn" type="button" onclick="del_modal_id(<?php echo $idArchivo; ?>)" style="background-color:#f84545; border-radius:10px;"><img src="../resources/img/icons/cross-flat.png" width="30px" height="32px" alt=""></button></a></td>
                                         
                                 </tr>
                                 
@@ -402,33 +376,12 @@
             
         </div>
 
-
         </div>
     </div>
 
     <!-- FUNCION DE MODAL DELETE -->
 
     <script>
-        /* $(document).ready(function () {
-
-            $('.del_btn').on('click', function(){
-
-                $('#del_modal').modal('show');
-
-                //fetch el id a borrar:
-                $tr = $(this).closest('tr');
-
-                var data= $tr.children('td').map(function(){
-                    return $(this).text();
-                }).get;
-
-                console.log("pudin + "+ data);
-
-                $('#del_id').val(data[0]);
-
-            });
-        }); */
-
 
         function del_modal_id(id_archivo){
             $('#del_modal').modal('show');
@@ -465,28 +418,7 @@
             });
 
 
-            /*//Se crea una fila en el head de la tabla y se cloma para caa columna
-            $('#tablaGestorDataTable thead tr').clone(true).appendTo('#tablaGestorDataTable thead');
-
-            //funciones de busqueda por columna
-            $('#tablaGestorDataTable thead tr:eq(1) th').each(function(i) {
-                var title = $(this).text(); //es el nombre de la columna
-                $(this).html('<input type="text" placeholder="Buscar..." />');
-
-                $( 'input', this).on('keyup change',function (){
-                    if(table.column(i).search() !== this.value){
-                        table
-                            .column(i)
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-
-            });*/
-
         });
-
-        
 
     </script>
 
