@@ -138,7 +138,7 @@
             </div>
 
             <div class="col-md">
-                <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
+            <div class="container" style="text-align: center; background-color: #ffffff; border-radius: 5px; margin-top: 20px;">
                     <h1> Previsualización</h1>
 
                     <!-- PDF -->
@@ -183,16 +183,60 @@
                     <div class="container">
                         <img src="<?php echo $rutaArhivo; ?>" alt="<?php echo $nombreArchivo; ?>" class="img-thumbnail">
                     </div>
-
+                
                     <?php }
 
                     // WORD (.docx)
-                    elseif($tipoArchivo == "docx"){ ?>
+                    elseif($tipoArchivo == "docx"){ 
 
-                    <a href="prueba.docx">My Word Document</a>
+                        //FUNCION PARA CONTAR PALABRAS REPETIDAS:
+                        function docx2text($filename) {
+                            return readZippedXML($filename, "word/document.xml");
+                        }
+                        
+                        function readZippedXML($archiveFile, $dataFile) {
+                            // Create new ZIP archive
+                            $zip = new ZipArchive;
+                        
+                            // Open received archive file
+                            if (true === $zip -> open($archiveFile)) {
+                                // If done, search for the data file in the archive
+                                if (($index = $zip -> locateName($dataFile)) !== false) {
+                                    // If found, read it to the string
+                                    $data = $zip -> getFromIndex($index);
+                                    // Close archive file
+                                    $zip -> close();
+                                    // Load XML from a string
+                                    // Skip errors and warnings
+                                    
+                                    $xml = new DOMDocument();
+                                    
 
-                    <?php }
+                                    $xml -> loadXML($data);
 
+                                    $xmldata = $xml->saveXML();
+                                    
+                                    $xmldata = str_replace("</w:p>", "\n", $xmldata);
+                                    $xmldata = str_replace("<w:tab/>", "+", $xmldata);
+                                    
+
+                                    // Return data without XML formatting tags
+                                    return strip_tags($xmldata);
+                                }
+                                $zip -> close();
+                            }
+                        
+                            // In case of failure return empty string
+                            return "";
+                        }
+                        
+                        
+                        $contenido_word = docx2text($rutaArhivo); // Save this contents into a string
+                        $contenido_word = str_ireplace("\n","<br>",$contenido_word);
+                        $contenido_word = str_ireplace("+","&nbsp &nbsp &nbsp &nbsp",$contenido_word);
+                        echo '<div class="container"; style="padding-left:4%;"> <div class="container overflow-auto"; style=" padding-left: 46.3177px; padding-right: 46.3177px; padding-top: 32.3177px; padding-bottom: 46.3177px; text-align: justify; outline: 2px solid black; height: 517.64px; width: 400px; font-family:Arial; font-size:7.5px;">'.$contenido_word.'</div></div>'; 
+                    }
+                    
                     //otro tipo de archivos no compatibles
                     else { ?>
                     <div class="container" style="color:white; background-color:#57638F; ">

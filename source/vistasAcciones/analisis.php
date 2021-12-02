@@ -461,19 +461,28 @@ include '../php/connection.php';
             // Skip errors and warnings
             $xml = new DOMDocument();
             $xml -> loadXML($data, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+
+
+            $xmldata = $xml->saveXML();
+            //reemplazo de saltos de línea:
+            $xmldata = str_replace("</w:p>", "\n", $xmldata);
+
             // Return data without XML formatting tags
-            return strip_tags($xml -> saveXML());
+            return strip_tags($xmldata);
         }
         $zip -> close();
         }
     
+
         // In case of failure return empty string
         return "";
     }
     
 
     $contenido_word = docx2text($ruta); // Save this contents into a string
-    echo $contenido_word; 
+    //echo $contenido_word;  
+
+
 
 
     $limpia = eliminar_acentos($contenido_word);
@@ -492,13 +501,6 @@ include '../php/connection.php';
         echo ("Key:".$key);
         echo("Value:".$value."/\n\n"); 
     }
-
-    /* echo("IMPRESION DE ARREGLO TRABAJADO SIN ESPACIOS, DOCX");
-    foreach ($array_tmp as $key => $value) {
-        echo ("Key:".$key);
-        echo("Value:".$value."/\n\n");
-    } */
-
 
     $numeroCaracteres = count($arraylisto);
 
@@ -541,10 +543,8 @@ include '../php/connection.php';
         
 
 
-        //FUNCION PARA DATOS DE ANALISIS
-
-    $source= 'archivodocxtest_limpio.docx';
-
+    //FUNCION PARA DATOS DE ANALISIS -------------------- <METADATOS>
+    
     $zip = new ZipArchive;
     $doc_file = $ruta;
     $zip->open($doc_file);

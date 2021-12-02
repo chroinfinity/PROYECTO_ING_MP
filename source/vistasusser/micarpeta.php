@@ -147,7 +147,7 @@
 
         <div class="col-md-2 cuadro_filtros_2">
 
-                <a href="micarpeta.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Archivero</button></a>
+                <a href="misarchivos.php"><button class="btn_analizar" type="button" style="background-color:#57638F; margin-top:10px; margin-bottom:10px; width:100%;">Archivero</button></a>
 
                 <hr>
                 <h4 style="font-family: 'Red Rose', serif;">FILTROS</h4>
