@@ -38,12 +38,15 @@
     $numeroCaracteres = 0;
     $numeroParrafos = 0;
 
+    
+
     //Captura de variables de sesion (USUARIO-ADMIN)
     $id_usuario = $_SESSION['id'];
     $nombre_usuario = $_SESSION['nombreUsuario'];
     $nivel = $_SESSION['nivelUsuario'];
     $habilitado = $_SESSION['habilitarUsuario'];
     $correo_usuario = $_SESSION['correoUsuario'];
+
 
 
     //Funciones auxiliares
@@ -109,6 +112,8 @@
 
         //Lineas y parrafos
 
+        //var_dump(file($ruta));
+
         foreach(file($ruta) as $linea) {
             $actual = strlen($linea);
             if($actual == 2 and $anterior > 2){
@@ -128,6 +133,12 @@
 
         //Caracteres y palabras
         $texto = file_get_contents($ruta);
+
+        /*echo "<prev>";
+        echo $texto;
+        echo "</prev>";*/
+
+
         $limpia = eliminar_acentos($texto);
         $minusculas = mb_strtolower($limpia, 'UTF-8');
         $arrayListo = str_split($minusculas);
@@ -173,6 +184,7 @@
                 //echo $arrayListo[$i].'NOP </br>';
             }
         }
+ 
 
         //Palabra sobrante 
         if(strlen($temp)>0){
@@ -189,12 +201,48 @@
             $temp = "";
         }
 
+
+
+
         
+        //FILTRADO DE PLABRAS QUE SOLO APARECEN UNA VEZ:
+        $diccionariofiltrado = array();
+        foreach ($diccionariofiltrado as $key => $value) {
+            
+            echo($value);
+        }
+
+
+        foreach($diccionario as $key => $value){
+            if($value > 1){
+                $diccionariofiltrado[$key] = $value;
+            }
+        }
+
+        
+
+        foreach ($diccionario as $key => $value) {
+            echo ("Key:".$key);
+            echo("Value:".$value."\n\n");
+        }
+
+        foreach ($diccionariofiltrado as $key => $value) {
+            echo ("Key:".$key);
+            echo($value);
+        }
+        //----
+        
+        
+
+        //acomodo de diccionario acomodado:
+        $diccionario_acomodado = arsort($diccionario);
+
+        $diccionario = $diccionario;
 
         
     }
 
-    ### ANALIZAR PDF ###################################################################################33
+    ### ANALIZAR PDF ###################################################################################
 
     if($extensionArchivo == 'pdf'){
 
@@ -202,6 +250,53 @@
         $parseador = new \Smalot\PdfParser\Parser();
         $documentoPDF = $parseador->parseFile($ruta);
         $contenidoPDF = $documentoPDF->getText();
+
+
+        //var_dump("CONTENIDO PDF SIN BREAKS: ".$contenidoPDF);
+        $contenidobreakeadoPDF = $documentoPDF->getText();
+        
+
+        //SEGUNDO TEXTO CON <BR> SALTOS DE LINEA EN CADA CORTE
+        $pdfText= nl2br($contenidobreakeadoPDF);
+
+
+        //test conteo de parrafos:
+        for($i=0;$i<strlen($pdfText);$i++)
+        {
+            //contar saltos de linea:
+            if(strpos($pdfText[$i],'n')){
+                echo "linea #".$i."contiene doble salto de linea";
+            }
+        }
+
+
+        //separacin por saltos de linea
+        $arreglo_lineas = explode("\n",$contenidoPDF);
+        $numeroLineas = 0;
+        // Recorremos cada carácter de la cadena
+        for($i=0;$i<count($arreglo_lineas);$i++)
+        {
+            // Mostramos cada uno de los caracteres...
+            // con $cadena[0] se muestra el primera caracter, [1], el segundo, etc...
+            echo "NUMERO ".$i.":".$arreglo_lineas[$i] ."<br>";
+            $numeroLineas++;
+
+            /* //contar saltos de linea:
+            if(strpos($arreglo_lineas[$i],'\r')){
+                echo "linea #".$i."contiene doble salto de linea";
+            }
+
+            if($i == 43){
+                echo "LINEA 43 CONTENIDO: ".$arreglo_lineas[$i];
+                echo gettype($arreglo_lineas[$i]);
+            } */
+
+            
+        }
+
+
+
+        //echo nl2br("CONTENIDO PDF con BREAKS: ".$pdfText);
 
         //test de parrafos y lineas:
          //Lineas y parrafos
@@ -222,6 +317,8 @@
 
 
         $arrayPDF = str_split($contenidoPDF);
+
+        //var_dump($arrayPDF);
 
 
         $array_contenido= $arrayPDF ;
@@ -292,6 +389,8 @@
         }
 
         $diccionario_acomodado = arsort($diccionario);
+
+        
         $diccionario = $diccionario;
     }
 
@@ -330,6 +429,8 @@
             /* $phpWord = \PhpOffice\PhpWord\IOFactory::createReader('Word2007'); 
     $phpword = $phpWord->load('text.doc'); */
 
+
+    //FUNCION PARA CONTAR PALABRAS REPETIDAS:
     function docx2text($filename) {
         return readZippedXML($filename, "word/document.xml");
     }
@@ -360,10 +461,125 @@
         return "";
     }
     
-    echo docx2text($ruta); // Save this contents to file
-           
+
+    $contenido_word = docx2text($ruta); // Save this contents into a string
+    echo $contenido_word; 
+
+
+    $limpia = eliminar_acentos($contenido_word);
+    $minusculas = mb_strtolower($limpia, 'UTF-8');
+    //impresion de contenido "limpio"
+    echo ("CONTENIDO LIMPIO!!!!".$minusculas); 
+
+    $arraylisto = str_split($minusculas);
+
+    $array_tmp= array(); //arreglo temporal para vaciar espacios
+    echo("IMPRESION DE ARREGLO TRABAJADO CON ESPACIOS, DOCX");
+    foreach ($arraylisto as $key => $value) {
+        if($value != " " && $value != ""){
+            $array_tmp[]= $value;
+        }
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n"); 
     }
 
+    /* echo("IMPRESION DE ARREGLO TRABAJADO SIN ESPACIOS, DOCX");
+    foreach ($array_tmp as $key => $value) {
+        echo ("Key:".$key);
+        echo("Value:".$value."/\n\n");
+    } */
+
+
+    $numeroCaracteres = count($arraylisto);
+
+    //Palabras
+    $diccionario = array();
+    $temp = "";
+
+    $flag = false;
+    for ($i=0; $i < count($arraylisto); $i++) { 
+        if(in_array($arraylisto[$i], $letras)){
+            //echo $arrayListo[$i].' -> Agregado</br>';
+            $temp = $temp.$arraylisto[$i];
+            $flag = true;
+        }else{
+
+            //Al menos contiene un caracter valido
+
+            if($flag){
+                //echo "Recolectado: ".$temp.'</br>';
+                $flag = false;
+                $numeroPalabras = $numeroPalabras + 1;
+                //Agregamos la palbra 
+
+                //Primera vez
+                if(!isset($diccionario[$temp])){
+                    $diccionario[$temp] = 1;
+                }else{
+                    //Ya existe
+                    $diccionario[$temp] = $diccionario[$temp] + 1;
+                }
+
+                $temp = "";
+
+            }
+            //echo $arrayListo[$i].'NOP </br>';
+        }
+    }
+        //Acomodo de diccionario de palabras:
+        $diccionario_acomodado = arsort($diccionario);
+        
+
+
+        //FUNCION PARA DATOS DE ANALISIS
+
+    $source= 'archivodocxtest_limpio.docx';
+
+    $zip = new ZipArchive;
+    $doc_file = $ruta;
+    $zip->open($doc_file);
+    $zip->extractTo('./tmp');
+
+
+    // CARGA DE ARCHIVO:
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load("./tmp/docProps/app.xml");
+
+    //print $xmlDoc->saveXML();
+
+    //
+    $x = $xmlDoc->documentElement;
+    foreach ($x->childNodes AS $item) {
+        if($item->nodeName == "Lines"){
+            echo "NUMERO DE LINEAS: ".$item->nodeValue;
+            $numeroLineas = $item->nodeValue;
+            
+    
+    
+        }
+
+        if($item->nodeName == "Words"){
+            echo "NUMERO DE PALABRAS: ".$item->nodeValue;
+            $numeroPalabras = $item->nodeValue;
+        }
+
+        if($item->nodeName == "Characters"){
+            echo "NUMERO DE CARACTERES: ".$item->nodeValue;
+            $numeroCaracteres = $item->nodeValue;
+    
+        }
+
+        if($item->nodeName == "Paragraphs"){
+            echo "NUMERO DE PARRAFOS: ".$item->nodeValue;
+            $numeroParrafos = $item->nodeValue;
+
+        }
+    //print $item->nodeName . " = " . $item->nodeValue . "<br>";
+    }
+           
+    } //FIN DOC
+
+    
 
      ############## ANALIZAR DOC ##########################################
 
@@ -376,21 +592,24 @@
         $line       = @fread($fileHandle, filesize($path_to_file));
         $lines      = explode(chr(0x0D), $line);
         $response   = '';
+        $contador_lineas = 0;
         
         foreach ($lines as $current_line) {
+            $contador_lineas++;
             
             $pos = strpos($current_line, chr(0x00));
             
             if ( ($pos !== FALSE) || (strlen($current_line) == 0) ) {
                 
             } else {
-                $response .= $current_line . ' ';
+                $response .= $current_line . ' -PITO';
             }
         }
         
         $response = preg_replace('/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/', '', $response);
 
         echo $response;
+        echo "numero de lineas:".$contador_lineas; 
     }
 
 ?>
@@ -481,18 +700,20 @@
     </div>
 
     <!-- TABLA DE PALABRAS -->
+    <h2 style="margin-top:20px; text-align:center;">ANALISIS DE CONTENIDO</h2>
      <!--Tabla con el analisis-->
-     <div class="container-fluid" style="margin-top:20px">
-    	<div class="row justify-content-center">
+     <div class="container" style="margin-top:20px; background-color:#ffffff; border-radius:5px; margin-top:20px; height: 600px;overflow: scroll;">
+    	<div class="row justify-content-center" >
     		<div class="col-10">
 
-    			<table class="table table-bordered table-hover">
+                 
+    			<table class="table table-fixed" style="margin-top:20px;">
 
                     <thead>
                         <tr>
 
                             <th>Palabra</th>
-                            <th>Número de veces que aparece</th>
+                            <th># Repeticiones</th>
                             
                         </tr>
                     </thead>
