@@ -335,7 +335,7 @@
                                         $sizeArchivo = round($mostrar["sizeArchivo"]/1000000,3).' MB';
                                 ?>
 
-                                <tbody>
+                                
                                 <tr style="text-align:center;">
 
                                         
@@ -360,7 +360,7 @@
                                 
 
                                 <?php } ?>
-                                </tbody>
+                                
                             </table>
                         </div>
                     </div>
